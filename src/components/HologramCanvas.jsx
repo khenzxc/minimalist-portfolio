@@ -96,7 +96,7 @@ function HologramRubiksCube() {
 }
 
 export default function HologramCanvas() {
-  // Isalin ang Window Viewport Detection kung mobile ba o desktop
+  // Detection kung mobile ba o desktop
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -113,20 +113,27 @@ export default function HologramCanvas() {
     <div className="w-full h-full min-h-[440px] md:min-h-[500px] relative bg-[#0D1117]">
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#FFF_1.2px,transparent_1.2px)] [background-size:24px_24px] pointer-events-none"></div>
 
-      <Canvas camera={{ position: [0, 0, 4.3], fov: 45 }}>
-        <ambientLight intensity={1.5} />
-        <Center>
-          <HologramRubiksCube />
-        </Center>
-        
-        {/* 🛠️ BINAGO: Kapag mobile, i-disable ang rotate para swabe ang touch dragging/scrolling ng web page */}
-        <OrbitControls 
-          enableZoom={false} 
-          enableRotate={!isMobile} 
-        />
-      </Canvas>
+      {/* 🛠️ FIX: Idinagdag ang dynamic `pointer-events-none` sa wrapper kapag mobile (`isMobile`).
+        Dahil dito, hindi haharangin ng Canvas ang gestures kaya makakapag-scroll nang maayos sa mobile view.
+      */}
+      <div className={`w-full h-full absolute inset-0 ${isMobile ? 'pointer-events-none' : ''}`}>
+        <Canvas camera={{ position: [0, 0, 4.3], fov: 45 }}>
+          <ambientLight intensity={1.5} />
+          <Center>
+            <HologramRubiksCube />
+          </Center>
+          
+          {/* Kung mobile, hindi na natin ire-render ang OrbitControls para mas magaan ang execution */}
+          {!isMobile && (
+            <OrbitControls 
+              enableZoom={false} 
+              enableRotate={true} 
+            />
+          )}
+        </Canvas>
+      </div>
 
-      <div className="absolute bottom-4 left-4 font-mono text-[9px] text-blue-400/40 bg-black/50 px-2.5 py-1 rounded border border-blue-500/10 tracking-wider pointer-events-none">
+      <div className="absolute bottom-4 left-4 font-mono text-[9px] text-blue-400/40 bg-black/50 px-2.5 py-1 rounded border border-blue-500/10 tracking-wider pointer-events-none z-10">
         3D_FRAME // VOLUMETRIC_RUBIKS_CUBE
       </div>
     </div>
