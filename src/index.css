@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: black;
+  color: white;
+  font-family: Inter, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-track {
+  background: black;
+}
+
+/* 1. Gumawa ng standard CSS keyframes para sa gumagalaw na laser line */
+@keyframes scanline-movement {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+/* 2. Gumawa ng custom utility class na gagamitin natin sa Component */
+.animate-hologram-scan {
+  animation: scanline-movement 4s linear infinite;
+}
