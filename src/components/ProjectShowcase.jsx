@@ -7,30 +7,22 @@ export default function ProjectShowcase() {
   const projects = [
     {
       title: "Sagana Financial Architecture",
-      engine: "Base Network / EVM Protocol",
-      bgClass: "bg-gradient-to-br from-cyan-900 to-sky-950",
-      badgeText: "Production Deploy",
-      mockGraphic: (
-        <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-4 rounded-full border border-white/10 shadow-lg">
-          <div className="h-10 w-10 rounded-full bg-cyan-400 flex items-center justify-center font-bold text-gray-900 text-sm">🌾</div>
-          <span className="text-white font-mono font-bold tracking-tight text-lg">sagana-protocol</span>
-        </div>
-      )
+      bgClass: "bg-gradient-to-br from-cyan-950 via-slate-900 to-sky-950",
+      imageSrc: "./sagana.png"
     },
     {
-      title: "Taskify Automated Decision Engine",
-      engine: "React Lifecycle Framework",
-      bgClass: "bg-gradient-to-r from-gray-950 via-gray-900 to-zinc-900",
-      badgeText: "Mainnet Standard",
-      mockGraphic: (
-        <div className="w-full max-w-xs px-4 py-3 bg-black/40 backdrop-blur-sm border border-zinc-800 rounded-lg font-mono text-[10px] text-zinc-400 space-y-1">
-          <div className="text-zinc-500">// DECISION_TREE_MATRIX</div>
-          <div className="text-emerald-400">✓ Engine Node Active</div>
-          <div className="text-indigo-400">⚡ Latency 0.04ms</div>
-        </div>
-      )
+      title: "Danbhels Gym Management System",
+      bgClass: "bg-gradient-to-br from-zinc-950 via-gray-900 to-neutral-950",
+      imageSrc: "./danbhels.png"
     }
   ];
+
+  // Map ng mga paths para sa branding assets
+  const brandAssets = {
+    '/Black': './black.png',
+    '/White': './white.png',
+    '/Iridescent': './iridescent.png'
+  };
 
   return (
     <section 
@@ -39,18 +31,19 @@ export default function ProjectShowcase() {
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       
-      {/* ================= KALIWANG SIDE (Inalisan ng justify-between para umangat ang ibaba) ================= */}
-      <div className="lg:col-span-6 border-b lg:border-b-0 lg:border-r border-gray-200 p-8 md:p-12 flex flex-col space-y-10 h-full">
+      {/* ================= KALIWANG SIDE ================= */}
+      <div className="lg:col-span-6 border-b lg:border-b-0 lg:border-r border-gray-200 p-8 md:p-12 flex flex-col space-y-10 h-full justify-between">
         
         {/* Brand Assets Block */}
-        <div>
+        <div className="w-full">
           <h3 
             className="text-xl font-black text-gray-900 mb-8"
             style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em' }}
           >
-            Brand Assets
+            Brand Identity
           </h3>
 
+          {/* Navigation Tabs */}
           <div className="flex items-center gap-2 text-xs font-medium text-gray-400 mb-6">
             {['/Black', '/White', '/Iridescent'].map((tab) => (
               <button
@@ -67,22 +60,42 @@ export default function ProjectShowcase() {
             ))}
           </div>
 
-          <div className="bg-[#2D2D2D] rounded-2xl p-6 h-56 flex flex-col justify-between relative overflow-hidden border border-zinc-800 shadow-inner group">
-            <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">{activeTab}</span>
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-4">
-              <div className="flex items-center gap-3 text-white transition-transform duration-300 group-hover:scale-105">
-                <div className="h-10 w-10 rounded-full border-4 border-dashed border-zinc-400 flex items-center justify-center font-bold">N</div>
-                <span className="text-2xl font-black uppercase tracking-tighter" style={{ fontFamily: "'Inter', sans-serif" }}>NovaTech</span>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-2 mt-auto z-10">
-              <div className="bg-black/30 border border-white/5 rounded-lg h-12 flex items-center justify-center text-white/40 text-[10px] font-mono">/Logo_Icon</div>
-              <div className="bg-black/30 border border-white/5 rounded-lg h-12 flex items-center justify-center text-white/40 text-[10px] font-mono">/Typography</div>
-            </div>
+          {/* 🛠️ DYNAMIC CONTAINER BACKGROUND: Puti/Light gray ang lalabas kapag '/Black' tab ang pinili para sa transparent logos */}
+          <div 
+            className={`rounded-2xl p-6 h-64 flex items-center justify-center relative overflow-hidden border shadow-md group transition-colors duration-300 ${
+              activeTab === '/Black' 
+                ? 'bg-zinc-50 border-zinc-200' 
+                : 'bg-black border-zinc-800'
+            }`}
+          >
+            {/* Background grid design (Nag-aadjust ang kulay base sa active tab) */}
+            <div 
+              className={`absolute inset-0 [background-size:16px_16px] opacity-40 pointer-events-none ${
+                activeTab === '/Black'
+                  ? 'bg-[radial-gradient(#e4e4e7_1px,transparent_1px)]'
+                  : 'bg-[radial-gradient(#222_1px,transparent_1px)]'
+              }`} 
+            />
+            
+            {/* Tag indicator sa gilid (Nag-aadjust din ang kulay ng text) */}
+            <span 
+              className={`absolute top-4 left-6 text-[10px] font-mono uppercase tracking-wider select-none ${
+                activeTab === '/Black' ? 'text-zinc-400' : 'text-zinc-500'
+              }`}
+            >
+              {activeTab}
+            </span>
+            
+            {/* Dynamic Image Asset Showcase */}
+            <img 
+              src={brandAssets[activeTab] || "./brand-white.png"} 
+              alt={`Brand Asset ${activeTab}`}
+              className="w-full h-full object-contain max-h-40 transition-transform duration-500 group-hover:scale-105"
+            />
           </div>
         </div>
 
-        {/* 🛡️ INANGAT NA FEATURED BADGE: Sumusunod na sa agos ng itaas at may sakto na pt-6 */}
+        {/* Featured Badge Block */}
         <div className="pt-6 border-t border-gray-100 space-y-4">
           <div className="flex items-center justify-between">
             <h4 className="text-sm font-bold text-gray-900">Featured Badge</h4>
@@ -116,33 +129,31 @@ export default function ProjectShowcase() {
             {projects.map((project, idx) => (
               <div 
                 key={idx}
-                className="w-full rounded-3xl p-6 md:p-8 relative overflow-hidden group shadow-md border border-black/10 h-64 md:h-72 flex flex-col justify-between"
+                className="w-full rounded-3xl relative overflow-hidden group shadow-md border border-black/10 h-76 md:h-84 flex flex-col justify-between"
                 style={{ backgroundColor: 'transparent' }}
               >
-                <div className={`absolute inset-0 ${project.bgClass} transition-transform duration-500 ease-out`} />
+                {/* Background Base Layer */}
+                <div className={`absolute inset-0 ${project.bgClass}`} />
                 
-                <div className="flex justify-between items-start z-10">
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-mono text-white/50 uppercase tracking-widest block">// CORE_STAGING_0{idx + 1}</span>
-                    <h4 className="text-lg md:text-xl font-black text-white tracking-tight">{project.title}</h4>
-                  </div>
-                  <span className="text-[9px] font-mono font-medium text-white/80 bg-white/10 backdrop-blur-md border border-white/10 px-2.5 py-1 rounded-full uppercase tracking-wider whitespace-nowrap">
-                    {project.engine}
-                  </span>
+                {/* Full container fitted layout */}
+                <div className="absolute inset-0 p-4 md:p-6 flex items-center justify-center opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500 ease-out pointer-events-none z-0">
+                  <img 
+                    src={project.imageSrc} 
+                    alt={project.title}
+                    className="w-full h-full object-contain rounded-xl"
+                  />
                 </div>
                 
-                <div className="absolute inset-0 flex items-center justify-center p-4 opacity-75 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
-                  {project.mockGraphic}
-                </div>
-                
-                <div className="flex justify-between items-center z-10 pt-4 mt-auto">
-                  <span className="text-[10px] font-mono text-white/40 tracking-wider">
-                    DEPLOYMENT // {project.badgeText.toUpperCase()}
-                  </span>
-                  <button className="bg-white/10 backdrop-blur-md hover:bg-white text-white hover:text-gray-900 border border-white/10 text-xs font-semibold px-4 py-2 rounded-full flex items-center gap-1.5 tracking-tight transition-all shadow-sm">
-                    &lt; View <ArrowUpRight size={13} className="opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                {/* Structural space spacer */}
+                <div className="h-20 w-full pointer-events-none z-10" />
+
+                {/* Bottom Action Bar */}
+                <div className="p-6 md:p-8 flex justify-end items-center z-10 mt-auto relative bg-gradient-to-t from-black/40 via-black/5 to-transparent w-full">
+                  <button className="bg-white/10 backdrop-blur-md hover:bg-white text-white hover:text-gray-900 border border-white/10 text-xs font-semibold px-4 py-2 rounded-full flex items-center gap-1.5 tracking-tight transition-all shadow-sm group-hover:scale-105">
+                    View Project <ArrowUpRight size={13} className="opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </button>
                 </div>
+
               </div>
             ))}
           </div>

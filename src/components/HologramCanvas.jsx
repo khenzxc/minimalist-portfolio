@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Center } from '@react-three/drei';
 import * as THREE from 'three';
@@ -9,12 +9,10 @@ function HologramRubiksCube() {
   // 1. GENERATE THE RUBIK'S CUBE POINT CLOUD MATRIX
   const { positions, totalPoints } = useMemo(() => {
     const tempPositions = [];
-    
     const numBlocks = 3; 
-    const spacing = 0.7; // Distansya sa pagitan ng bawat cubie
-    const dotsPerEdge = 8; // Dami ng tuldok sa bawat gilid ng isang cubie
+    const spacing = 0.7; 
+    const dotsPerEdge = 8; 
 
-    // Loop sa bawat Grid Box (X, Y, Z coordinates ng Rubik's Cube)
     for (let bx = 0; bx < numBlocks; bx++) {
       for (let by = 0; by < numBlocks; by++) {
         for (let bz = 0; bz < numBlocks; bz++) {
@@ -45,7 +43,6 @@ function HologramRubiksCube() {
             tempPositions.push(blockX - size/2, blockY + size/2, blockZ + t * size);
             tempPositions.push(blockX + size/2, blockY + size/2, blockZ + t * size);
           }
-
         }
       }
     }
@@ -60,11 +57,9 @@ function HologramRubiksCube() {
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
     if (pointsRef.current) {
-      // Diagonal constant rotation looping
       pointsRef.current.rotation.y = time * 0.25;
       pointsRef.current.rotation.x = time * 0.12;
 
-      // Micro-vibration para sa natural hologram matrix texture
       const posAttr = pointsRef.current.geometry.attributes.position;
       for (let i = 0; i < posAttr.count; i++) {
         if (Math.random() > 0.985) {
@@ -87,7 +82,6 @@ function HologramRubiksCube() {
           itemSize={3}
         />
       </bufferGeometry>
-      {/* Pino at maliwanag na electric blue particles */}
       <pointsMaterial
         color="#3B82F6"
         size={0.024}
@@ -102,22 +96,36 @@ function HologramRubiksCube() {
 }
 
 export default function HologramCanvas() {
+  // Isalin ang Window Viewport Detection kung mobile ba o desktop
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkDevice = () => {
+      setIsMobile(window.innerWidth < 1024); // lg breakpoint ng Tailwind (1024px)
+    };
+    
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+    return () => window.removeEventListener('resize', checkDevice);
+  }, []);
+
   return (
     <div className="w-full h-full min-h-[440px] md:min-h-[500px] relative bg-[#0D1117]">
-      {/* Clean blueprint dot grid layout */}
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#FFF_1.2px,transparent_1.2px)] [background-size:24px_24px] pointer-events-none"></div>
 
-      {/* 3D WebGL Rendering Canvas Context */}
       <Canvas camera={{ position: [0, 0, 4.3], fov: 45 }}>
         <ambientLight intensity={1.5} />
         <Center>
           <HologramRubiksCube />
         </Center>
-        {/* Full mouse drag control */}
-        <OrbitControls enableZoom={false} />
+        
+        {/* 🛠️ BINAGO: Kapag mobile, i-disable ang rotate para swabe ang touch dragging/scrolling ng web page */}
+        <OrbitControls 
+          enableZoom={false} 
+          enableRotate={!isMobile} 
+        />
       </Canvas>
 
-      {/* Clean tech indicator tag (Walang gumagalaw na scan line) */}
       <div className="absolute bottom-4 left-4 font-mono text-[9px] text-blue-400/40 bg-black/50 px-2.5 py-1 rounded border border-blue-500/10 tracking-wider pointer-events-none">
         3D_FRAME // VOLUMETRIC_RUBIKS_CUBE
       </div>
