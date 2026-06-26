@@ -69,9 +69,9 @@ export default function Hero() {
           
           {/* Nilagyan ng gap-2 sa mobile para iwas patong-patong kapag gipit sa space */}
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-[11px] md:text-xs font-bold text-gray-900 uppercase tracking-tight">
-            <span className="bg-gray-50 border border-gray-200 px-2.5 py-1.5 rounded-lg">ONEPERCENT.</span>
-            <span className="bg-gray-50 border border-gray-200 px-2.5 py-1.5 rounded-lg">AVALANCHE</span>
-            <span className="bg-gray-50 border border-gray-200 px-2.5 py-1.5 rounded-lg">METIS</span>
+            <span className="bg-gray-50 border border-gray-200 px-2.5 py-1.5 rounded-lg">TECNO PARAGONS LEAGUE.</span>
+            <span className="bg-gray-50 border border-gray-200 px-2.5 py-1.5 rounded-lg">IS SYNERGY</span>
+            <span className="bg-gray-50 border border-gray-200 px-2.5 py-1.5 rounded-lg">PSITE</span>
           </div>
         </div>
       </div>

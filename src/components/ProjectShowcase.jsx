@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Award, ExternalLink, Code2, Presentation, Terminal } from 'lucide-react';
 
 export default function ProjectShowcase() {
   const [activeTab, setActiveTab] = useState('/White');
@@ -17,12 +17,33 @@ export default function ProjectShowcase() {
     }
   ];
 
-  // Map ng mga paths para sa branding assets
   const brandAssets = {
     '/Black': './black.png',
     '/White': './white.png',
     '/Iridescent': './iridescent.png'
   };
+
+  // 🛠️ UPDATED: Listahan na may minimalist geometric/tech icons at wala na ang Avalanche block
+  const badges = [
+    {
+      event: "PSITE RAITE HACKATHON PROGRAMMING CHALLENGE",
+      title: "1st Runner Up",
+      icon: <Terminal size={18} className="text-zinc-400 group-hover:text-blue-400 transition-colors" />,
+      certUrl: "#" 
+    },
+    {
+      event: "PSITE RAITE HACKATHON PROGRAMMING",
+      title: "Best Presentation",
+      icon: <Presentation size={18} className="text-zinc-400 group-hover:text-blue-400 transition-colors" />,
+      certUrl: "#"
+    },
+    {
+      event: "CODECHUM PROGRAMMING CHALLENGE",
+      title: "National Competitor / Finalist",
+      icon: <Code2 size={18} className="text-zinc-400 group-hover:text-blue-400 transition-colors" />,
+      certUrl: "#"
+    }
+  ];
 
   return (
     <section 
@@ -32,7 +53,7 @@ export default function ProjectShowcase() {
     >
       
       {/* ================= KALIWANG SIDE ================= */}
-      <div className="lg:col-span-6 border-b lg:border-b-0 lg:border-r border-gray-200 p-8 md:p-12 flex flex-col space-y-10 h-full justify-between">
+      <div className="lg:col-span-6 border-b lg:border-b-0 lg:border-r border-gray-200 p-8 md:p-12 flex flex-col space-y-12 h-full">
         
         {/* Brand Assets Block */}
         <div className="w-full">
@@ -60,7 +81,7 @@ export default function ProjectShowcase() {
             ))}
           </div>
 
-          {/* 🛠️ DYNAMIC CONTAINER BACKGROUND: Puti/Light gray ang lalabas kapag '/Black' tab ang pinili para sa transparent logos */}
+          {/* Dynamic Container Background */}
           <div 
             className={`rounded-2xl p-6 h-64 flex items-center justify-center relative overflow-hidden border shadow-md group transition-colors duration-300 ${
               activeTab === '/Black' 
@@ -68,7 +89,6 @@ export default function ProjectShowcase() {
                 : 'bg-black border-zinc-800'
             }`}
           >
-            {/* Background grid design (Nag-aadjust ang kulay base sa active tab) */}
             <div 
               className={`absolute inset-0 [background-size:16px_16px] opacity-40 pointer-events-none ${
                 activeTab === '/Black'
@@ -77,7 +97,6 @@ export default function ProjectShowcase() {
               }`} 
             />
             
-            {/* Tag indicator sa gilid (Nag-aadjust din ang kulay ng text) */}
             <span 
               className={`absolute top-4 left-6 text-[10px] font-mono uppercase tracking-wider select-none ${
                 activeTab === '/Black' ? 'text-zinc-400' : 'text-zinc-500'
@@ -86,7 +105,6 @@ export default function ProjectShowcase() {
               {activeTab}
             </span>
             
-            {/* Dynamic Image Asset Showcase */}
             <img 
               src={brandAssets[activeTab] || "./brand-white.png"} 
               alt={`Brand Asset ${activeTab}`}
@@ -95,21 +113,47 @@ export default function ProjectShowcase() {
           </div>
         </div>
 
-        {/* Featured Badge Block */}
-        <div className="pt-6 border-t border-gray-100 space-y-4">
-          <div className="flex items-center justify-between">
-            <h4 className="text-sm font-bold text-gray-900">Featured Badge</h4>
-            <button className="text-[11px] font-medium text-gray-400 bg-gray-50 border border-gray-200 px-2.5 py-1 rounded-md hover:text-gray-900 transition-colors">View all</button>
+        {/* Featured Badges Block */}
+        <div className="pt-2 space-y-4 w-full">
+          <div className="flex items-center justify-between mb-2">
+            <h4 className="text-sm font-bold text-gray-900 flex items-center gap-2">
+              <Award size={16} className="text-zinc-700" /> Featured Badges & Recognition
+            </h4>
           </div>
-          <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center justify-between gap-4 max-w-md">
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xl">🛡️</div>
-              <div>
-                <span className="text-[9px] font-mono text-gray-400 block tracking-wider uppercase">AVALANCHE HACK2BUILD</span>
-                <span className="text-xs font-black text-gray-900 block tracking-tight">3rd Place, Infrastructure & AI</span>
+          
+          <div className="space-y-3 max-w-xl">
+            {badges.map((badge, index) => (
+              <div 
+                key={index} 
+                className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center justify-between gap-4 hover:bg-zinc-50/80 transition-all shadow-sm group"
+              >
+                <div className="flex items-center gap-3">
+                  {/* 🛠️ MINIMALIST ICON CONTAINER */}
+                  <div className="h-10 w-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0 shadow-inner">
+                    {badge.icon}
+                  </div>
+                  <div>
+                    <span className="text-[9px] font-mono text-gray-400 block tracking-wider uppercase leading-tight">
+                      {badge.event}
+                    </span>
+                    <span className="text-xs font-black text-gray-900 block tracking-tight mt-0.5">
+                      {badge.title}
+                    </span>
+                  </div>
+                </div>
+                
+                {/* Clickable Certificate Button */}
+                <a 
+                  href={badge.certUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-zinc-800 hover:bg-black text-white text-[11px] font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap shadow-sm hover:scale-[1.02]"
+                >
+                  View Cert
+                  <ExternalLink size={11} className="opacity-80" />
+                </a>
               </div>
-            </div>
-            <button className="bg-zinc-800 hover:bg-black text-white text-[11px] font-semibold px-3 py-1.5 rounded-lg transition-all whitespace-nowrap">Details</button>
+            ))}
           </div>
         </div>
 
@@ -132,10 +176,8 @@ export default function ProjectShowcase() {
                 className="w-full rounded-3xl relative overflow-hidden group shadow-md border border-black/10 h-76 md:h-84 flex flex-col justify-between"
                 style={{ backgroundColor: 'transparent' }}
               >
-                {/* Background Base Layer */}
                 <div className={`absolute inset-0 ${project.bgClass}`} />
                 
-                {/* Full container fitted layout */}
                 <div className="absolute inset-0 p-4 md:p-6 flex items-center justify-center opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500 ease-out pointer-events-none z-0">
                   <img 
                     src={project.imageSrc} 
@@ -144,10 +186,8 @@ export default function ProjectShowcase() {
                   />
                 </div>
                 
-                {/* Structural space spacer */}
                 <div className="h-20 w-full pointer-events-none z-10" />
 
-                {/* Bottom Action Bar */}
                 <div className="p-6 md:p-8 flex justify-end items-center z-10 mt-auto relative bg-gradient-to-t from-black/40 via-black/5 to-transparent w-full">
                   <button className="bg-white/10 backdrop-blur-md hover:bg-white text-white hover:text-gray-900 border border-white/10 text-xs font-semibold px-4 py-2 rounded-full flex items-center gap-1.5 tracking-tight transition-all shadow-sm group-hover:scale-105">
                     View Project <ArrowUpRight size={13} className="opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
