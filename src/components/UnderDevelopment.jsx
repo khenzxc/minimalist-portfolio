@@ -6,8 +6,8 @@ export default function UnderDevelopment({ title, subtitle, moduleName, theme = 
   return (
     <div 
       id="under-development" 
-      // 🎯 GLOBAL BORDER SYNC: Tinitiyak na ang horizontal bounding layer ay lapat sa grid patterns ng portfolio frames
-      className={`w-full py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-200 dark:border-zinc-800 relative overflow-hidden flex flex-col items-center justify-center min-h-[420px] transition-colors duration-200 ${
+      // 👈 TINANGGAL ANG `border-b border-gray-200 dark:border-zinc-800` DITO
+      className={`w-full py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col items-center justify-center min-h-[420px] transition-colors duration-200 ${
         isDark ? 'bg-zinc-950 text-white' : 'bg-white dark:bg-zinc-900 text-gray-900 dark:text-white'
       }`}
       style={{ fontFamily: "'Space Grotesk', sans-serif" }}
@@ -19,7 +19,6 @@ export default function UnderDevelopment({ title, subtitle, moduleName, theme = 
 
       <div className="relative z-10 text-center max-w-xl space-y-4">
         {/* Animated System Status Badge */}
-        {/* 🎯 BADGE BOUNDARIES: Ginamit ang saktong theme variables para sa malinis na wireframe pill badge */}
         <div className={`inline-flex items-center gap-2 border font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full ${
           isDark 
             ? 'bg-amber-500/10 border-amber-500/20 text-amber-400' 
@@ -41,7 +40,6 @@ export default function UnderDevelopment({ title, subtitle, moduleName, theme = 
 
         {/* Micro Tech Loader Decoration */}
         <div className="pt-6 max-w-xs mx-auto">
-          {/* 🎯 LOADER BOX OUTLINES: Inihanay ang loader container edge sa standardized border pattern (border-gray-200 o border-zinc-800 depende sa state) */}
           <div className={`w-full border rounded-xl p-4 text-left font-mono text-[10px] space-y-1.5 transition-colors duration-200 ${
             isDark 
               ? 'bg-zinc-900/60 border-zinc-800 text-gray-500' 

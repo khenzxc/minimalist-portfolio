@@ -29,7 +29,7 @@ export default function GithubActivity() {
 
   const explicitTheme = {
     light: ['#EBEDF0', '#9BE9A8', '#40C463', '#30A14E', '#216E39'],
-    dark: ['#27272A', '#A3E635', '#4ADE80', '#22C55E', '#15803D'] // Pinalitan ang `#EAEAEA` ng `#27272A` para sa kalasag ng background grids sa dark mode
+    dark: ['#27272A', '#A3E635', '#4ADE80', '#22C55E', '#15803D'] 
   };
 
   // 📈 ACCURATE DATA FOR KHENZXC: Nilapat sa totoong profile counts mo
@@ -66,8 +66,8 @@ export default function GithubActivity() {
   return (
     <section 
       id="activity" 
-      // 🎯 GLOBAL CONTAINER STROKE: Naka-sync sa `border-b border-gray-200 dark:border-zinc-800` ng Hero frame
-      className="border-b border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 md:p-12 transition-colors duration-200"
+      // 👈 TINANGGAL ANG `border-b border-gray-200 dark:border-zinc-800` DITO
+      className="bg-white dark:bg-zinc-900 p-8 md:p-12 transition-colors duration-200"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       <div className="max-w-6xl mx-auto">
@@ -102,7 +102,6 @@ export default function GithubActivity() {
             {currentStats.map((stat, i) => (
               <div 
                 key={i} 
-                // 🎯 STAT CARD BORDERS: Selyado gamit ang `border-gray-200 dark:border-zinc-800` para sa uniform wireframe grid look
                 className="bg-white dark:bg-zinc-800/50 border border-gray-200 dark:border-zinc-800 rounded-xl p-5 shadow-sm space-y-1.5 transition-colors duration-200"
               >
                 <span className="text-[11px] font-medium text-gray-400 dark:text-zinc-500 tracking-tight block">
@@ -115,8 +114,7 @@ export default function GithubActivity() {
             ))}
           </div>
 
-          {/* 2. HEATMAP CARD CONTAINER WITH SMOOTH INTERACTION OVERLAYS */}
-          {/* 🎯 MAIN BOX EDGE: Eksaktong ibinase sa structure ng Hero layouts upang pantay ang bigat ng cards */}
+          {/* 2. HEATMAP CARD CONTAINER */}
           <div className="border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 md:p-8 bg-white dark:bg-zinc-900 shadow-sm transition-colors duration-200">
             <div className="flex md:grid md:grid-cols-12 gap-2 items-start overflow-x-auto">
               
@@ -127,7 +125,7 @@ export default function GithubActivity() {
                 <span className="transform translate-y-[5px]">Fri</span>
               </div>
 
-              {/* 📊 SENTRO: Ang GitHub Calendar Matrix (May Crossfade Transition Effect) */}
+              {/* 📊 SENTRO: Ang GitHub Calendar Matrix */}
               <div className={`flex-grow md:col-span-10 overflow-x-auto graphical-calendar-wrapper px-2 min-w-[620px] CleanCalendar transition-all duration-200 ease-in-out ${isTransitioning ? 'opacity-0 scale-[0.99]' : 'opacity-100 scale-100'}`}>
                 
                 <GitHubCalendar 
@@ -187,7 +185,6 @@ export default function GithubActivity() {
 
           {/* Technical Metadata Footer */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
-            {/* 🎯 FOOTER MODULE OUTLINES: Binago mula `border-gray-100` patungong `border-gray-200 dark:border-zinc-800` para sa flush global layout sync */}
             <div className="bg-gray-50 dark:bg-zinc-800/30 border border-gray-200 dark:border-zinc-800 p-4 rounded-xl transition-colors duration-200">
               <span className="text-[10px] font-mono text-gray-400 dark:text-zinc-500 block uppercase tracking-wider">// DATA_SOURCE</span>
               <span className="text-xs font-bold text-gray-900 dark:text-zinc-200 block mt-1">GitHub REST Network</span>

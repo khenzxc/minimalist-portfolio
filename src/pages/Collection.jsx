@@ -30,8 +30,8 @@ export default function Collections() {
   return (
     <section 
       id="collections"
-      // 🎯 PERIMETER LINE: Naka-sync sa standard grid bounding system (border-b border-gray-200 dark:border-zinc-800)
-      className="p-8 md:p-12 min-h-[70vh] bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-800 flex flex-col justify-between transition-colors duration-200"
+      // 👈 TINANGGAL ANG `border-b border-gray-200 dark:border-zinc-800` DITO
+      className="p-8 md:p-12 min-h-[70vh] bg-white dark:bg-zinc-900 flex flex-col justify-between transition-colors duration-200"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       <div>
@@ -49,7 +49,6 @@ export default function Collections() {
             <div 
               key={idx}
               onClick={() => setSelectedCert(cert)}
-              // 🎯 CARD HOVER & BORDERS: Ginawang ganap na clickable at naka-sync sa wireframe lines gamit ang border-gray-200 at dark:border-zinc-800
               className="w-full rounded-3xl relative overflow-hidden group shadow-md border border-gray-200 dark:border-zinc-800 h-76 md:h-84 flex flex-col justify-between cursor-pointer transition-all duration-300 hover:-translate-y-1"
               style={{ backgroundColor: 'transparent' }}
             >
@@ -99,7 +98,6 @@ export default function Collections() {
           onClick={() => setSelectedCert(null)}
         >
           <div 
-            // 🎯 MODAL FRAMING: Isinaayos ang secondary lines sa standard border-gray-200 at dark:border-zinc-800 scheme
             className="bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden max-w-2xl w-full shadow-2xl relative flex flex-col border border-gray-200 dark:border-zinc-800 transition-colors duration-200"
             onClick={(e) => e.stopPropagation()}
           >
