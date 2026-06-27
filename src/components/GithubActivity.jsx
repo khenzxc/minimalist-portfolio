@@ -66,6 +66,7 @@ export default function GithubActivity() {
   return (
     <section 
       id="activity" 
+      // 🎯 GLOBAL CONTAINER STROKE: Naka-sync sa `border-b border-gray-200 dark:border-zinc-800` ng Hero frame
       className="border-b border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 md:p-12 transition-colors duration-200"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
@@ -101,6 +102,7 @@ export default function GithubActivity() {
             {currentStats.map((stat, i) => (
               <div 
                 key={i} 
+                // 🎯 STAT CARD BORDERS: Selyado gamit ang `border-gray-200 dark:border-zinc-800` para sa uniform wireframe grid look
                 className="bg-white dark:bg-zinc-800/50 border border-gray-200 dark:border-zinc-800 rounded-xl p-5 shadow-sm space-y-1.5 transition-colors duration-200"
               >
                 <span className="text-[11px] font-medium text-gray-400 dark:text-zinc-500 tracking-tight block">
@@ -114,6 +116,7 @@ export default function GithubActivity() {
           </div>
 
           {/* 2. HEATMAP CARD CONTAINER WITH SMOOTH INTERACTION OVERLAYS */}
+          {/* 🎯 MAIN BOX EDGE: Eksaktong ibinase sa structure ng Hero layouts upang pantay ang bigat ng cards */}
           <div className="border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 md:p-8 bg-white dark:bg-zinc-900 shadow-sm transition-colors duration-200">
             <div className="flex md:grid md:grid-cols-12 gap-2 items-start overflow-x-auto">
               
@@ -184,11 +187,12 @@ export default function GithubActivity() {
 
           {/* Technical Metadata Footer */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
-            <div className="bg-gray-50 dark:bg-zinc-800/30 border border-gray-100 dark:border-zinc-800 p-4 rounded-xl transition-colors duration-200">
+            {/* 🎯 FOOTER MODULE OUTLINES: Binago mula `border-gray-100` patungong `border-gray-200 dark:border-zinc-800` para sa flush global layout sync */}
+            <div className="bg-gray-50 dark:bg-zinc-800/30 border border-gray-200 dark:border-zinc-800 p-4 rounded-xl transition-colors duration-200">
               <span className="text-[10px] font-mono text-gray-400 dark:text-zinc-500 block uppercase tracking-wider">// DATA_SOURCE</span>
               <span className="text-xs font-bold text-gray-900 dark:text-zinc-200 block mt-1">GitHub REST Network</span>
             </div>
-            <div className="bg-gray-50 dark:bg-zinc-800/30 border border-gray-100 dark:border-zinc-800 p-4 rounded-xl transition-colors duration-200">
+            <div className="bg-gray-50 dark:bg-zinc-800/30 border border-gray-200 dark:border-zinc-800 p-4 rounded-xl transition-colors duration-200">
               <span className="text-[10px] font-mono text-gray-400 dark:text-zinc-500 block uppercase tracking-wider">// METRIC_YEAR</span>
               <span className="text-xs font-bold text-gray-900 dark:text-zinc-200 block mt-1">{selectedYear} Engine Active</span>
             </div>

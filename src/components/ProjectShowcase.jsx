@@ -47,12 +47,13 @@ export default function ProjectShowcase() {
   return (
     <section 
       id="projects" 
+      // 🎯 GLOBAL SECTION STROKE: Ginamit ang border-gray-200 dark:border-zinc-800 para sa main grid breakdown
       className="grid grid-cols-1 lg:grid-cols-12 bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-800 items-stretch transition-colors duration-200"
-      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+      style={{ fontFamily: "'Space Grotesk', sans-serif" }} // 🎯 FONT UNIFICATION: Ini-align sa Space Grotesk para terno sa Hero identity block
     >
       
       {/* ================= KANANG SIDE (FEATURED PROJECTS) ================= */}
-      {/* 💡 Ginawang `order-1` sa mobile at ibinalik sa `lg:order-2` para sa desktop view */}
+      {/* 🎯 OUTER COLUMN DIVIDER: Ginabayan ng border-gray-200 dark:border-zinc-800 para sa responsive mobile breakpoint lines */}
       <div className="order-1 lg:order-2 lg:col-span-6 p-8 md:p-12 flex flex-col justify-between h-full bg-white dark:bg-zinc-900 transition-colors duration-200 border-b lg:border-b-0 border-gray-200 dark:border-zinc-800">
         <div>
           <h3 
@@ -66,7 +67,8 @@ export default function ProjectShowcase() {
             {projects.map((project, idx) => (
               <div 
                 key={idx}
-                className="w-full rounded-3xl relative overflow-hidden group shadow-md border border-black/10 dark:border-zinc-800 h-76 md:h-84 flex flex-col justify-between"
+                // 🎯 INNER CARD SHIELD: Binago mula border-black/10 patungong border-gray-200 dark:border-zinc-800 para pumasok sa wireframe format ng system mo
+                className="w-full rounded-3xl relative overflow-hidden group shadow-md border border-gray-200 dark:border-zinc-800 h-76 md:h-84 flex flex-col justify-between"
                 style={{ backgroundColor: 'transparent' }}
               >
                 <div className={`absolute inset-0 ${project.bgClass}`} />
@@ -93,11 +95,10 @@ export default function ProjectShowcase() {
       </div>
 
       {/* ================= KALIWANG SIDE (BADGES & BRAND) ================= */}
-      {/* 💡 Ginawang `order-2` sa mobile at `lg:order-1` sa desktop. Ginamit din ang `flex flex-col` para ma-kontrol ang sub-items. */}
+      {/* 🎯 MAIN VERTICAL GUTTER BORDER: Naka-sync sa lg:border-r border-gray-200 dark:border-zinc-800 ng kaliwang panel block */}
       <div className="order-2 lg:order-1 lg:col-span-6 border-r-0 lg:border-r border-gray-200 dark:border-zinc-800 p-8 md:p-12 flex flex-col h-full transition-colors duration-200">
         
         {/* Featured Badges Block */}
-        {/* 💡 Nilagyan ng `order-1` para mauna ito sa mobile, at `lg:order-2` para bumaba sa desktop */}
         <div className="order-1 lg:order-2 pt-2 space-y-4 w-full mb-12 lg:mb-0">
           <div className="flex items-center justify-between mb-2">
             <h4 className="text-sm font-bold text-gray-900 dark:text-zinc-100 flex items-center gap-2">
@@ -109,9 +110,11 @@ export default function ProjectShowcase() {
             {badges.map((badge, index) => (
               <div 
                 key={index} 
+                // 🎯 RECOGNITION CONTAINER OUTLINE: Gumagamit ng border-gray-200 dark:border-zinc-800/80 para sa micro-layout borders
                 className="bg-gray-50 dark:bg-zinc-800/40 border border-gray-200 dark:border-zinc-800/80 rounded-xl p-4 flex items-center justify-between gap-4 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/70 transition-all shadow-sm group"
               >
                 <div className="flex items-center gap-3">
+                  {/* 🎯 BADGE ICON FRAMES: Ini-adjust sa border-gray-200 dark:border-zinc-700 katulad ng Affiliation badging method ng Hero */}
                   <div className="h-10 w-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0 shadow-inner">
                     {badge.icon}
                   </div>
@@ -140,7 +143,6 @@ export default function ProjectShowcase() {
         </div>
 
         {/* Brand Assets Block */}
-        {/* 💡 Nilagyan ng `order-2` para mahuli sa mobile, at `lg:order-1` para mauna sa desktop sa loob ng kaliwang column */}
         <div className="order-2 lg:order-1 w-full lg:mb-12">
           <h3 
             className="text-xl font-black text-gray-900 dark:text-white mb-8"
@@ -166,9 +168,10 @@ export default function ProjectShowcase() {
           </div>
 
           <div 
+            // 🎯 BRAND CONTAINER EDGES: Inihanay sa border-gray-200 at dark:border-zinc-700 base variables ng Hero block elements
             className={`rounded-2xl p-6 h-64 flex items-center justify-center relative overflow-hidden border shadow-md group transition-all duration-300 ${
               activeTab === '/Black' 
-                ? 'bg-zinc-50 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700' 
+                ? 'bg-zinc-50 dark:bg-zinc-800 border-gray-200 dark:border-zinc-700' 
                 : 'bg-black dark:bg-black border-zinc-800 dark:border-zinc-900'
             }`}
           >

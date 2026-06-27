@@ -5,13 +5,13 @@ export default function Collections() {
   // State para sa Pop-up Modal image viewer
   const [selectedCert, setSelectedCert] = useState(null);
 
-  // Certifications list nang walang ID field
+  // Certifications list 
   const certifications = [
     {
       event: "CODECHUM",
       title: "Programming Challenge",
       bgClass: "from-cyan-950 via-slate-900 to-sky-950",
-      imageSrc: "./codechum-cert.jpg" // Palitan ng totoong path ng screenshot mo
+      imageSrc: "./codechum-cert.jpg" 
     },
     {
       event: "PSITE RAITE",
@@ -29,7 +29,9 @@ export default function Collections() {
 
   return (
     <section 
-      className="p-8 md:p-12 min-h-[70vh] bg-white dark:bg-zinc-900 flex flex-col justify-between transition-colors duration-200"
+      id="collections"
+      // 🎯 PERIMETER LINE: Naka-sync sa standard grid bounding system (border-b border-gray-200 dark:border-zinc-800)
+      className="p-8 md:p-12 min-h-[70vh] bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-800 flex flex-col justify-between transition-colors duration-200"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       <div>
@@ -46,8 +48,9 @@ export default function Collections() {
           {certifications.map((cert, idx) => (
             <div 
               key={idx}
-              // Inayos ang dynamic outer card structure para maging safe ang visibility ng cards sa dark mode gamit ang border overlays
-              className="w-full rounded-3xl relative overflow-hidden group shadow-md border border-black/10 dark:border-zinc-800 h-76 md:h-84 flex flex-col justify-between transition-colors duration-200"
+              onClick={() => setSelectedCert(cert)}
+              // 🎯 CARD HOVER & BORDERS: Ginawang ganap na clickable at naka-sync sa wireframe lines gamit ang border-gray-200 at dark:border-zinc-800
+              className="w-full rounded-3xl relative overflow-hidden group shadow-md border border-gray-200 dark:border-zinc-800 h-76 md:h-84 flex flex-col justify-between cursor-pointer transition-all duration-300 hover:-translate-y-1"
               style={{ backgroundColor: 'transparent' }}
             >
               {/* Dynamic Gradient Background Layer */}
@@ -75,10 +78,8 @@ export default function Collections() {
                   {cert.title}
                 </h4>
                 
-                {/* View Cert Button na magti-trigger ng Pop-up Modal */}
-                {/* Nilagyan ng dynamic text overrides (`dark:hover:text-zinc-900`) kapag aktibo ang system themes */}
+                {/* View Cert Button */}
                 <button 
-                  onClick={() => setSelectedCert(cert)}
                   className="bg-white/10 backdrop-blur-md hover:bg-white text-white hover:text-gray-900 dark:hover:text-zinc-900 border border-white/10 text-xs font-semibold px-4 py-2 rounded-full flex items-center gap-1.5 tracking-tight transition-all shadow-sm group-hover:scale-105"
                 >
                   View Cert 
@@ -91,45 +92,45 @@ export default function Collections() {
         </div>
       </div>
 
-      {/* 🛑 POP-UP MODAL ENGINE */}
+      {/* ================= POP-UP MODAL ENGINE ================= */}
       {selectedCert && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in"
           onClick={() => setSelectedCert(null)}
         >
           <div 
-            // Modal Inner Container (`dark:bg-zinc-900`)
-            className="bg-white dark:bg-zinc-900 rounded-xl overflow-hidden max-w-2xl w-full shadow-2xl relative flex flex-col border border-transparent dark:border-zinc-800 transition-colors duration-200"
+            // 🎯 MODAL FRAMING: Isinaayos ang secondary lines sa standard border-gray-200 at dark:border-zinc-800 scheme
+            className="bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden max-w-2xl w-full shadow-2xl relative flex flex-col border border-gray-200 dark:border-zinc-800 transition-colors duration-200"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Header (`dark:bg-zinc-950/50`, `dark:border-zinc-800`) */}
-            <div className="p-4 border-b border-gray-100 dark:border-zinc-800 flex items-center justify-between bg-gray-50 dark:bg-zinc-950/50">
+            {/* Modal Header */}
+            <div className="p-4 border-b border-gray-200 dark:border-zinc-800 flex items-center justify-between bg-gray-50 dark:bg-zinc-950/50">
               <div>
                 <h4 className="text-xs font-black text-gray-900 dark:text-zinc-100 tracking-tight">{selectedCert.title}</h4>
                 <p className="text-[9px] text-gray-400 dark:text-zinc-500 font-mono uppercase tracking-tight mt-0.5">{selectedCert.event}</p>
               </div>
               <button 
                 onClick={() => setSelectedCert(null)}
-                className="p-1 rounded-md text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-200/60 dark:hover:bg-zinc-800 transition-all"
+                className="p-1 rounded-lg text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-200/60 dark:hover:bg-zinc-800 transition-all"
               >
                 <X size={16} />
               </button>
             </div>
 
-            {/* Image Preview Body Area (`dark:bg-zinc-950`) */}
-            <div className="p-3 bg-gray-100 dark:bg-zinc-950 flex items-center justify-center overflow-auto max-h-[60vh]">
+            {/* Image Preview Body Area */}
+            <div className="p-4 bg-gray-100 dark:bg-zinc-950 flex items-center justify-center overflow-auto max-h-[60vh]">
               <img 
                 src={selectedCert.imageSrc} 
                 alt={selectedCert.title} 
-                className="max-w-full h-auto object-contain rounded border border-gray-200 dark:border-zinc-800 shadow-inner bg-white dark:bg-zinc-900"
+                className="max-w-full h-auto object-contain rounded-xl border border-gray-200 dark:border-zinc-800 shadow-inner bg-white dark:bg-zinc-900"
               />
             </div>
 
-            {/* Modal Footer (`dark:bg-zinc-900`, `dark:border-zinc-800`) */}
-            <div className="p-3 bg-white dark:bg-zinc-900 border-t border-gray-100 dark:border-zinc-800 flex justify-end gap-2 text-[11px] font-bold">
+            {/* Modal Footer */}
+            <div className="p-3 bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-zinc-800 flex justify-end gap-2 text-[11px] font-bold">
               <button 
                 onClick={() => setSelectedCert(null)}
-                className="border border-gray-200 dark:border-zinc-700 hover:border-gray-900 dark:hover:border-zinc-400 text-gray-700 dark:text-zinc-400 hover:text-black dark:hover:text-zinc-200 px-3 py-1.5 rounded-lg transition-colors"
+                className="border border-gray-200 dark:border-zinc-800 hover:border-gray-400 text-gray-700 dark:text-zinc-400 hover:text-black dark:hover:text-zinc-200 px-4 py-2 rounded-xl transition-colors"
               >
                 Close
               </button>

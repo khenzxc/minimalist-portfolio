@@ -1,39 +1,20 @@
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react'; // Tanging ang ArrowUpRight na lang ang natira para iwas-error
+import { Github, Linkedin, Send, ExternalLink } from 'lucide-react';
 
 export default function Project() {
   const socialLinks = [
     { 
-      // 🚀 PURE SVG GITHUB
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-          <path d="M9 18c-4.51 2-5-2-7-2" />
-        </svg>
-      ), 
+      icon: <Github size={16} />, 
       url: "https://github.com/khenzxc", 
       label: "GitHub" 
     },
     { 
-      // 🚀 PURE SVG LINKEDIN
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-          <rect width="4" height="12" x="2" y="9" />
-          <circle cx="4" cy="4" r="2" />
-        </svg>
-      ), 
+      icon: <Linkedin size={16} />, 
       url: "https://linkedin.com", 
       label: "LinkedIn" 
     },
     { 
-      // 🚀 PURE SVG TELEGRAM
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="m22 2-7 20-4-9-9-4Z" />
-          <path d="M22 2 11 13" />
-        </svg>
-      ), 
+      icon: <Send size={16} />, 
       url: "https://telegram.org", 
       label: "Telegram" 
     },
@@ -68,23 +49,20 @@ export default function Project() {
   ];
 
   return (
-    // 1. Ginawang dynamic ang main container background (`bg-white` -> `dark:bg-zinc-900`)
     <div className="bg-white dark:bg-zinc-900 p-8 md:p-12 transition-colors duration-200" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       {/* HEADER BLOCK */}
       <header className="mb-12">
-        {/* 2. Dinagdagan ng `dark:text-white` ang h1 */}
         <h1 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-4 tracking-tight transition-colors duration-200" style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em' }}>
           Project Featured Showcase
         </h1>
         
-        {/* 3. Ginawang `dark:text-zinc-400` ang main sub-paragraph */}
         <p className="text-gray-500 dark:text-zinc-400 text-sm md:text-base max-w-2xl font-normal leading-relaxed tracking-tight transition-colors duration-200">
           Explore websites and projects what I built. Each example demonstrates my innovation development.
         </p>
 
         {/* SOCIAL BAR & DECORATION ACCENT */}
-        {/* 4. Ginawang `dark:border-zinc-800` ang divider line */}
-        <div className="flex items-center justify-between gap-4 pt-6 mt-6 border-b border-gray-100 dark:border-zinc-800 pb-6 transition-colors duration-200">
+        {/* 🎯 BASELINE BORDER: Naka-sync sa dulo ng Hero/Activity section lines */}
+        <div className="flex items-center justify-between gap-4 pt-6 mt-6 border-b border-gray-200 dark:border-zinc-800 pb-6 transition-colors duration-200">
           <div className="flex items-center gap-2">
             {socialLinks.map((link, index) => (
               <a
@@ -92,7 +70,8 @@ export default function Project() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                // 5. Binigyan ng dark variants ang border, text, at hover state ng social icon buttons
+                title={link.label}
+                // 🎯 BUTTON BORDERS: Naka-set sa wireframe outline look gamit ang border-gray-200 dark:border-zinc-800
                 className="h-9 w-9 border border-gray-200 dark:border-zinc-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-zinc-400 hover:bg-gray-900 dark:hover:bg-white hover:border-gray-900 dark:hover:border-white hover:text-white dark:hover:text-black transition-all duration-200 shadow-sm"
               >
                 {link.icon}
@@ -100,7 +79,6 @@ export default function Project() {
             ))}
           </div>
 
-          {/* 6. In-update ang maliit na square accent color (`dark:bg-zinc-600`) */}
           <div className="h-3 w-3 bg-gray-400 dark:bg-zinc-600 rounded-sm transition-colors duration-200"></div>
         </div>
       </header>
@@ -111,8 +89,8 @@ export default function Project() {
           {projects.map((project, idx) => (
             <div 
               key={idx}
-              // 7. Nilapatan ng `dark:border-zinc-800` ang bento wrapper para sa low-contrast blend
-              className="relative h-[420px] rounded-2xl overflow-hidden group border border-neutral-200 dark:border-zinc-800 shadow-md flex flex-col justify-between p-5 transition-all duration-300 hover:-translate-y-1"
+              // 🎯 CARD BORDERS: Eksaktong kapareho ng linya at kapal ng iba pang UI frames
+              className="relative h-[420px] rounded-2xl overflow-hidden group border border-gray-200 dark:border-zinc-800 shadow-md flex flex-col justify-between p-5 transition-all duration-300 hover:-translate-y-1"
             >
               <div className="absolute inset-0 z-0">
                 <img 
@@ -140,6 +118,7 @@ export default function Project() {
 
               <div className="relative z-10 flex items-end justify-between mt-auto">
                 {project.hasBadge ? (
+                  // 🎯 BADGE STROKES: Naka-set sa translucent glassmorphism para sa magandang blend sa madilim na image cards
                   <div className="h-10 w-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-inner overflow-hidden">
                     <span className="text-xs">🐟</span>
                   </div>
@@ -151,10 +130,11 @@ export default function Project() {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 text-white hover:bg-white hover:text-black text-[11px] font-medium px-3.5 py-2 rounded-xl transition-all flex items-center gap-1 shadow-sm"
+                  className="bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 text-white hover:bg-white hover:text-black text-[11px] font-medium px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 shadow-sm"
                   style={{ fontFamily: "'Inter', sans-serif" }}
                 >
-                  &lt; View
+                  <span>View Project</span>
+                  <ExternalLink size={12} />
                 </a>
               </div>
             </div>
