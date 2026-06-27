@@ -68,19 +68,23 @@ export default function Project() {
   ];
 
   return (
-    <div className="bg-white p-8 md:p-12" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+    // 1. Ginawang dynamic ang main container background (`bg-white` -> `dark:bg-zinc-900`)
+    <div className="bg-white dark:bg-zinc-900 p-8 md:p-12 transition-colors duration-200" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       {/* HEADER BLOCK */}
       <header className="mb-12">
-        <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight" style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em' }}>
+        {/* 2. Dinagdagan ng `dark:text-white` ang h1 */}
+        <h1 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-4 tracking-tight transition-colors duration-200" style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em' }}>
           Project Featured Showcase
         </h1>
         
-        <p className="text-gray-500 text-sm md:text-base max-w-2xl font-normal leading-relaxed tracking-tight">
+        {/* 3. Ginawang `dark:text-zinc-400` ang main sub-paragraph */}
+        <p className="text-gray-500 dark:text-zinc-400 text-sm md:text-base max-w-2xl font-normal leading-relaxed tracking-tight transition-colors duration-200">
           Explore websites and projects what I built. Each example demonstrates my innovation development.
         </p>
 
         {/* SOCIAL BAR & DECORATION ACCENT */}
-        <div className="flex items-center justify-between gap-4 pt-6 mt-6 border-b border-gray-100 pb-6">
+        {/* 4. Ginawang `dark:border-zinc-800` ang divider line */}
+        <div className="flex items-center justify-between gap-4 pt-6 mt-6 border-b border-gray-100 dark:border-zinc-800 pb-6 transition-colors duration-200">
           <div className="flex items-center gap-2">
             {socialLinks.map((link, index) => (
               <a
@@ -88,14 +92,16 @@ export default function Project() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-9 w-9 border border-gray-200 rounded-lg flex items-center justify-center text-gray-600 hover:bg-gray-900 hover:border-gray-900 hover:text-white transition-all duration-200 shadow-sm"
+                // 5. Binigyan ng dark variants ang border, text, at hover state ng social icon buttons
+                className="h-9 w-9 border border-gray-200 dark:border-zinc-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-zinc-400 hover:bg-gray-900 dark:hover:bg-white hover:border-gray-900 dark:hover:border-white hover:text-white dark:hover:text-black transition-all duration-200 shadow-sm"
               >
                 {link.icon}
               </a>
             ))}
           </div>
 
-          <div className="h-3 w-3 bg-gray-400 rounded-sm"></div>
+          {/* 6. In-update ang maliit na square accent color (`dark:bg-zinc-600`) */}
+          <div className="h-3 w-3 bg-gray-400 dark:bg-zinc-600 rounded-sm transition-colors duration-200"></div>
         </div>
       </header>
 
@@ -105,7 +111,8 @@ export default function Project() {
           {projects.map((project, idx) => (
             <div 
               key={idx}
-              className="relative h-[420px] rounded-2xl overflow-hidden group border border-neutral-800 shadow-md flex flex-col justify-between p-5 transition-all duration-300 hover:-translate-y-1"
+              // 7. Nilapatan ng `dark:border-zinc-800` ang bento wrapper para sa low-contrast blend
+              className="relative h-[420px] rounded-2xl overflow-hidden group border border-neutral-200 dark:border-zinc-800 shadow-md flex flex-col justify-between p-5 transition-all duration-300 hover:-translate-y-1"
             >
               <div className="absolute inset-0 z-0">
                 <img 

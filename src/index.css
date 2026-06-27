@@ -1,15 +1,28 @@
 @import "tailwindcss";
 
+/* ─── TAILWIND V4 DARK MODE CONFIGURATION ────────────────────────── */
+/* Sinasabihan nito ang Tailwind v4 na i-trigger ang dark: kapag may .dark class sa html */
+@variant dark (&:where(.dark, .dark *));
+
 html {
   scroll-behavior: smooth;
 }
 
+/* Binago natin para mag-adapt ang background at text depende sa mode */
 body {
-  background: black;
-  color: white;
+  background: white;
+  color: #09090b; /* zinc-950 */
   font-family: Inter, sans-serif;
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
+/* Kapag may .dark class na ang html, magiging black ang body natin */
+html.dark body {
+  background: black;
+  color: white;
+}
+
+/* ─── SCROLLBAR STYLES ───────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -20,10 +33,14 @@ body {
 }
 
 ::-webkit-scrollbar-track {
+  background: white;
+}
+
+html.dark ::-webkit-scrollbar-track {
   background: black;
 }
 
-/* 1. Gumawa ng standard CSS keyframes para sa gumagalaw na laser line */
+/* ─── HOLOGRAM ANIMATION ─────────────────────────────────────────── */
 @keyframes scanline-movement {
   0% {
     top: 0%;
@@ -33,7 +50,6 @@ body {
   }
 }
 
-/* 2. Gumawa ng custom utility class na gagamitin natin sa Component */
 .animate-hologram-scan {
   animation: scanline-movement 4s linear infinite;
 }

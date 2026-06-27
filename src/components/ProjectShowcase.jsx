@@ -23,7 +23,6 @@ export default function ProjectShowcase() {
     '/Iridescent': './iridescent.png'
   };
 
-  // 🛠️ UPDATED: Listahan na may minimalist geometric/tech icons at wala na ang Avalanche block
   const badges = [
     {
       event: "PSITE RAITE HACKATHON PROGRAMMING CHALLENGE",
@@ -48,32 +47,36 @@ export default function ProjectShowcase() {
   return (
     <section 
       id="projects" 
-      className="grid grid-cols-1 lg:grid-cols-12 bg-white border-b border-gray-200 items-stretch"
+      // 1. Main Section Container Dark Mode variants
+      className="grid grid-cols-1 lg:grid-cols-12 bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-800 items-stretch transition-colors duration-200"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       
       {/* ================= KALIWANG SIDE ================= */}
-      <div className="lg:col-span-6 border-b lg:border-b-0 lg:border-r border-gray-200 p-8 md:p-12 flex flex-col space-y-12 h-full">
+      {/* 2. Responsive Border Divider setup */}
+      <div className="lg:col-span-6 border-b lg:border-b-0 lg:border-r border-gray-200 dark:border-zinc-800 p-8 md:p-12 flex flex-col space-y-12 h-full transition-colors duration-200">
         
         {/* Brand Assets Block */}
         <div className="w-full">
+          {/* 3. Text Header Color Adaptations */}
           <h3 
-            className="text-xl font-black text-gray-900 mb-8"
+            className="text-xl font-black text-gray-900 dark:text-white mb-8"
             style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em' }}
           >
             Brand Identity
           </h3>
 
           {/* Navigation Tabs */}
-          <div className="flex items-center gap-2 text-xs font-medium text-gray-400 mb-6">
+          {/* 4. Tweak active and inactive state button colors inside the active tab loop */}
+          <div className="flex items-center gap-2 text-xs font-medium text-gray-400 dark:text-zinc-500 mb-6">
             {['/Black', '/White', '/Iridescent'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`px-3 py-1 rounded-md transition-all ${
                   activeTab === tab 
-                    ? 'bg-gray-100 text-gray-900 font-bold' 
-                    : 'hover:text-gray-600'
+                    ? 'bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-white font-bold' 
+                    : 'hover:text-gray-600 dark:hover:text-zinc-300'
                 }`}
               >
                 {tab}
@@ -82,24 +85,25 @@ export default function ProjectShowcase() {
           </div>
 
           {/* Dynamic Container Background */}
+          {/* 5. Combined manual logic rendering with standard dark responsive layers */}
           <div 
-            className={`rounded-2xl p-6 h-64 flex items-center justify-center relative overflow-hidden border shadow-md group transition-colors duration-300 ${
+            className={`rounded-2xl p-6 h-64 flex items-center justify-center relative overflow-hidden border shadow-md group transition-all duration-300 ${
               activeTab === '/Black' 
-                ? 'bg-zinc-50 border-zinc-200' 
-                : 'bg-black border-zinc-800'
+                ? 'bg-zinc-50 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700' 
+                : 'bg-black dark:bg-black border-zinc-800 dark:border-zinc-900'
             }`}
           >
             <div 
               className={`absolute inset-0 [background-size:16px_16px] opacity-40 pointer-events-none ${
                 activeTab === '/Black'
-                  ? 'bg-[radial-gradient(#e4e4e7_1px,transparent_1px)]'
+                  ? 'bg-[radial-gradient(#e4e4e7_1px,transparent_1px)] dark:bg-[radial-gradient(#3f3f46_1px,transparent_1px)]'
                   : 'bg-[radial-gradient(#222_1px,transparent_1px)]'
               }`} 
             />
             
             <span 
               className={`absolute top-4 left-6 text-[10px] font-mono uppercase tracking-wider select-none ${
-                activeTab === '/Black' ? 'text-zinc-400' : 'text-zinc-500'
+                activeTab === '/Black' ? 'text-zinc-400 dark:text-zinc-500' : 'text-zinc-500'
               }`}
             >
               {activeTab}
@@ -116,8 +120,9 @@ export default function ProjectShowcase() {
         {/* Featured Badges Block */}
         <div className="pt-2 space-y-4 w-full">
           <div className="flex items-center justify-between mb-2">
-            <h4 className="text-sm font-bold text-gray-900 flex items-center gap-2">
-              <Award size={16} className="text-zinc-700" /> Featured Badges & Recognition
+            {/* 6. Section Subtitle Adaptations */}
+            <h4 className="text-sm font-bold text-gray-900 dark:text-zinc-100 flex items-center gap-2">
+              <Award size={16} className="text-zinc-700 dark:text-zinc-300" /> Featured Badges & Recognition
             </h4>
           </div>
           
@@ -125,29 +130,31 @@ export default function ProjectShowcase() {
             {badges.map((badge, index) => (
               <div 
                 key={index} 
-                className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center justify-between gap-4 hover:bg-zinc-50/80 transition-all shadow-sm group"
+                // 7. Individual Badge Panel dark states
+                className="bg-gray-50 dark:bg-zinc-800/40 border border-gray-200 dark:border-zinc-800/80 rounded-xl p-4 flex items-center justify-between gap-4 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/70 transition-all shadow-sm group"
               >
                 <div className="flex items-center gap-3">
-                  {/* 🛠️ MINIMALIST ICON CONTAINER */}
+                  {/* Minimalist Icon Container */}
                   <div className="h-10 w-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0 shadow-inner">
                     {badge.icon}
                   </div>
                   <div>
-                    <span className="text-[9px] font-mono text-gray-400 block tracking-wider uppercase leading-tight">
+                    <span className="text-[9px] font-mono text-gray-400 dark:text-zinc-500 block tracking-wider uppercase leading-tight">
                       {badge.event}
                     </span>
-                    <span className="text-xs font-black text-gray-900 block tracking-tight mt-0.5">
+                    <span className="text-xs font-black text-gray-900 dark:text-white block tracking-tight mt-0.5">
                       {badge.title}
                     </span>
                   </div>
                 </div>
                 
                 {/* Clickable Certificate Button */}
+                {/* 8. Adjusted Button Colors (`dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white`) */}
                 <a 
                   href={badge.certUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-zinc-800 hover:bg-black text-white text-[11px] font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap shadow-sm hover:scale-[1.02]"
+                  className="bg-zinc-800 hover:bg-black dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white text-white text-[11px] font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap shadow-sm hover:scale-[1.02]"
                 >
                   View Cert
                   <ExternalLink size={11} className="opacity-80" />
@@ -160,10 +167,11 @@ export default function ProjectShowcase() {
       </div>
 
       {/* ================= KANANG SIDE ================= */}
-      <div className="lg:col-span-6 p-8 md:p-12 flex flex-col justify-between h-full bg-white">
+      {/* 9. Balanced right side container matching background configuration */}
+      <div className="lg:col-span-6 p-8 md:p-12 flex flex-col justify-between h-full bg-white dark:bg-zinc-900 transition-colors duration-200">
         <div>
           <h3 
-            className="text-xl font-black text-gray-900 mb-8"
+            className="text-xl font-black text-gray-900 dark:text-white mb-8"
             style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em' }}
           >
             Featured Projects
@@ -173,7 +181,8 @@ export default function ProjectShowcase() {
             {projects.map((project, idx) => (
               <div 
                 key={idx}
-                className="w-full rounded-3xl relative overflow-hidden group shadow-md border border-black/10 h-76 md:h-84 flex flex-col justify-between"
+                // 10. Card structure outer perimeter tweak (`dark:border-zinc-800`)
+                className="w-full rounded-3xl relative overflow-hidden group shadow-md border border-black/10 dark:border-zinc-800 h-76 md:h-84 flex flex-col justify-between"
                 style={{ backgroundColor: 'transparent' }}
               >
                 <div className={`absolute inset-0 ${project.bgClass}`} />
@@ -189,6 +198,7 @@ export default function ProjectShowcase() {
                 <div className="h-20 w-full pointer-events-none z-10" />
 
                 <div className="p-6 md:p-8 flex justify-end items-center z-10 mt-auto relative bg-gradient-to-t from-black/40 via-black/5 to-transparent w-full">
+                  {/* Project Internal Floating Action Link */}
                   <button className="bg-white/10 backdrop-blur-md hover:bg-white text-white hover:text-gray-900 border border-white/10 text-xs font-semibold px-4 py-2 rounded-full flex items-center gap-1.5 tracking-tight transition-all shadow-sm group-hover:scale-105">
                     View Project <ArrowUpRight size={13} className="opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </button>
