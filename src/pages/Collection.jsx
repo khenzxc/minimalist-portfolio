@@ -17,13 +17,13 @@ export default function Collections() {
       event: "PSITE RAITE",
       title: "Hackathon Programming Challenge",
       bgClass: "from-zinc-950 via-gray-900 to-neutral-950",
-      imageSrc: "./cybersecurity.png"
+      imageSrc: "./1st-runner-up.jpeg"
     },
     {
       event: "PSITE RAITE",
       title: "Hackathon Programming Challenge",
       bgClass: "from-slate-950 via-stone-900 to-zinc-950",
-      imageSrc: "./oracle.png"
+      imageSrc: "./best-presentation.jpeg"
     }
   ];
 
