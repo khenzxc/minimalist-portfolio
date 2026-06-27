@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import { TechCapabilities } from './components/TechCapabilities';
-import ProjectShowcase from './components/ProjectShowcase';
-import GithubActivity from './components/GithubActivity'; 
-import Footer from './components/Footer'; // 1. I-import ang bagong Footer component
+import Footer from './components/Footer'; // Ibinaba at ibinalik sa loob ng container block
+import Home from './pages/Home'; 
 
 export default function App() {
   const [viewMode, setViewMode] = useState('personal');
@@ -24,18 +22,22 @@ export default function App() {
         <main className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-8">
           <div className="bg-white border border-gray-200 shadow-sm overflow-hidden rounded-none md:rounded-md">
             
-            <Hero />
-            <TechCapabilities />
-            <ProjectShowcase />
+            {/* Dito magpapalit-palit ang mga pahina depende sa URL path (e.g. Home, About, etc.) */}
+            <Routes>
+              <Route path="/" element={<Home />} />
+              
+              {/* Dagdag na pages sa hinaharap na papasok din sa loob ng frame:
+              <Route path="/about" element={<About />} />
+              <Route path="/projects" element={<Projects />} /> 
+              */}
+            </Routes>
             
-            {/* 2. Dito natin isasalpak ang Github Heatmap sa pinakailalim ng container block */}
-            <GithubActivity />
-            <Footer/>
+            {/* FOOTER: Ibinalik sa loob ng card container sa pinakailalim block */}
+            <Footer />
             
           </div>
         </main>
       </div>
-
 
     </div>
   );
