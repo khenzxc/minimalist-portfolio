@@ -49,82 +49,13 @@ export function TechCapabilities() {
 
   return (
     <section 
-      className="grid grid-cols-1 lg:grid-cols-12 border-b border-gray-200 bg-white items-stretch"
+      className="flex flex-col lg:flex-row border-b border-gray-200 bg-white items-stretch"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       
-      {/* KALIWANG SIDE: TECH STACK MATRIX */}
-      <div className="lg:col-span-6 border-b lg:border-b-0 lg:border-r border-gray-200 p-8 md:p-12 flex flex-col justify-between h-full">
-        <div>
-          <h3 
-            className="text-xl font-black text-gray-900 mb-8"
-            style={{ 
-              fontFamily: "'Inter', sans-serif",
-              letterSpacing: '-0.04em'
-            }}
-          >
-            Tech Stack
-          </h3>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
-            {categories.map((cat) => (
-              <div key={cat.title} className="space-y-2.5">
-                <span 
-                  className="text-[11px] font-medium tracking-[0.15em] text-gray-400 uppercase block" 
-                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                >
-                  {cat.title}
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {cat.items.map((tech) => (
-                    <div 
-                      key={tech.name} 
-                      title={tech.name}
-                      className="group relative h-10 w-10 bg-white border border-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-900 hover:border-gray-900 transition-all duration-200 cursor-pointer shadow-sm"
-                    >
-                      {/* 🚀 BAGONG DIREKTANG CDN: Tinanggal ang kulay sa URL para iwas 404, pinalitan ng direct raw SVGs */}
-                      <img 
-                        src={`https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/${tech.slug}.svg`} 
-                        alt={tech.name}
-                        // Ginamitan ng Tailwind utility filters para makuha ang kulay gray bago i-hover, at mag-invert sa puti kapag hino-hover ang card.
-                        className="w-5 h-5 object-contain opacity-60 grayscale brightness-50 transition-all duration-200 group-hover:invert group-hover:brightness-200 group-hover:opacity-100"
-                        onError={(e) => {
-                          // Sakaling mag-update o magbago ang repository tags, ito ang solid fallback link
-                          e.target.src = `https://unpkg.com/simple-icons@v11/icons/${tech.slug}.svg`;
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* IN PROGRESS BLOCK */}
-        <div className="pt-8 mt-12 border-t border-gray-100">
-          <span className="text-[11px] font-medium tracking-[0.15em] text-gray-400 uppercase block mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-            In progress
-          </span>
-          <div className="bg-[#1A1A1A] text-white p-5 rounded-xl font-mono text-xs space-y-3 max-w-sm border border-gray-800 shadow-md">
-            <div className="flex items-center justify-between text-gray-500 text-[9px] tracking-wider">
-              <span>RUNTIME_MONITOR</span>
-              <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse"></span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-200">
-              <Terminal size={12} className="text-blue-400" />
-              <span>n8n AI Workflow Systems</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-200">
-              <Cpu size={12} className="text-blue-400" />
-              <span>Smart Contract Audits</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* KANANG SIDE: BIOGRAPHY DESCRIPTION */}
-      <div className="lg:col-span-6 p-8 md:p-12 flex flex-col justify-between bg-white h-full">
+      {/* 📋 DESCRIPTION COLUMN */}
+      {/* Naka-set bilang pangalawa sa desktop gamit ang `lg:order-2` para manatili ito sa kanang bahagi */}
+      <div className="w-full lg:w-1/2 p-8 md:p-12 flex flex-col justify-between bg-white h-full order-1 lg:order-2 border-b lg:border-b-0 border-gray-200">
         <div>
           <h3 
             className="text-xl font-black text-gray-900 mb-8"
@@ -157,6 +88,74 @@ export function TechCapabilities() {
           >
             Story <ArrowUpRight size={14} />
           </button>
+        </div>
+      </div>
+
+      {/* 🚀 TECH STACK MATRIX COLUMN */}
+      {/* Naka-set bilang una sa desktop gamit ang `lg:order-1` kaya mananatili ito sa kaliwang bahagi */}
+      <div className="w-full lg:w-1/2 lg:border-r border-gray-200 p-8 md:p-12 flex flex-col justify-between h-full order-2 lg:order-1">
+        <div>
+          <h3 
+            className="text-xl font-black text-gray-900 mb-8"
+            style={{ 
+              fontFamily: "'Inter', sans-serif",
+              letterSpacing: '-0.04em'
+            }}
+          >
+            Tech Stack
+          </h3>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+            {categories.map((cat) => (
+              <div key={cat.title} className="space-y-2.5">
+                <span 
+                  className="text-[11px] font-medium tracking-[0.15em] text-gray-400 uppercase block" 
+                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                >
+                  {cat.title}
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {cat.items.map((tech) => (
+                    <div 
+                      key={tech.name} 
+                      title={tech.name}
+                      className="group relative h-10 w-10 bg-white border border-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-900 hover:border-gray-900 transition-all duration-200 cursor-pointer shadow-sm"
+                    >
+                      <img 
+                        src={`https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/${tech.slug}.svg`} 
+                        alt={tech.name}
+                        className="w-5 h-5 object-contain opacity-60 grayscale brightness-50 transition-all duration-200 group-hover:invert group-hover:brightness-200 group-hover:opacity-100"
+                        onError={(e) => {
+                          e.target.src = `https://unpkg.com/simple-icons@v11/icons/${tech.slug}.svg`;
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* IN PROGRESS BLOCK */}
+        <div className="pt-8 mt-12 border-t border-gray-100">
+          <span className="text-[11px] font-medium tracking-[0.15em] text-gray-400 uppercase block mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+            In progress
+          </span>
+          <div className="bg-[#1A1A1A] text-white p-5 rounded-xl font-mono text-xs space-y-3 max-w-sm border border-gray-800 shadow-md">
+            <div className="flex items-center justify-between text-gray-500 text-[9px] tracking-wider">
+              <span>RUNTIME_MONITOR</span>
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+            </div>
+            <div className="flex items-center gap-2 text-gray-200">
+              <Terminal size={12} className="text-blue-400" />
+              <span>n8n AI Workflow Systems</span>
+            </div>
+            <div className="flex items-center gap-2 text-gray-200">
+              <Cpu size={12} className="text-blue-400" />
+              <span>Smart Contract Audits</span>
+            </div>
+          </div>
         </div>
       </div>
 

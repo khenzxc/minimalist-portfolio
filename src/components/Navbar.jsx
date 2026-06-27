@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom'; // 👈 Idinagdag ang Link at useLocation para sa routing tracking
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Navbar({ viewMode, setViewMode }) {
     // State para sa pagbubukas at pagsasara ng mobile menu
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const location = useLocation(); // 👈 Kinuha ang kasalukuyang URL path para sa active style matching
+    const location = useLocation(); // Kinuha ang kasalukuyang URL path para sa active style matching
 
     return (
         <div 
@@ -33,7 +33,6 @@ export default function Navbar({ viewMode, setViewMode }) {
                 {/* Brand/Logo Area & Desktop Nav */}
                 <div className="flex items-center gap-4">
                     <div className="flex items-center tracking-tight">
-                        {/* Ginawang Link ang Logo para bumalik sa Home page kapag kini-click */}
                         <Link to="/" className="relative w-28 sm:w-34 h-8 flex items-center justify-start -mb-0.5 -mr-4">
                             <img
                                 src="/navbar-logo.png"
@@ -43,14 +42,15 @@ export default function Navbar({ viewMode, setViewMode }) {
                         </Link>
                     </div>
 
-                    {/* Desktop Navigation Links (Naka-hide sa mobile) */}
+                    {/* Desktop Navigation Links */}
                     <nav className="hidden lg:flex items-center gap-6 text-xs font-bold text-gray-500 uppercase tracking-tight">
-                        {/* Dahil ibang page na ang Projects, gumamit tayo ng Link to sa halip na # anchor */}
-                        <Link to="/" className={`hover:text-black transition-colors ${location.pathname === '/' ? 'text-black font-black' : ''}`}>
+                        <Link 
+                            to="/" 
+                            className={`hover:text-black transition-colors ${location.pathname === '/' ? 'text-black font-black' : ''}`}
+                        >
                             About
                         </Link>
                         
-                        {/* 🔥 PINAGDUGTONG NA PROJECT PAGE DIRECTORY */}
                         <Link 
                             to="/projects" 
                             className={`hover:text-black transition-colors ${location.pathname === '/projects' ? 'text-black font-black' : ''}`}
@@ -58,8 +58,19 @@ export default function Navbar({ viewMode, setViewMode }) {
                             Projects
                         </Link>
                         
-                        <a href="/#experience" className="hover:text-black transition-colors">Experience</a>
-                        <a href="/#collections" className="hover:text-black transition-colors">Collections</a>
+                        <Link 
+                            to="/experience" 
+                            className={`hover:text-black transition-colors ${location.pathname === '/experience' ? 'text-black font-black' : ''}`}
+                        >
+                            Experience
+                        </Link>
+                        
+                        <Link 
+                            to="/collections" 
+                            className={`hover:text-black transition-colors ${location.pathname === '/collections' ? 'text-black font-black' : ''}`}
+                        >
+                            Collections
+                        </Link>
                     </nav>
                 </div>
 
@@ -110,7 +121,6 @@ export default function Navbar({ viewMode, setViewMode }) {
                             About
                         </Link>
                         
-                        {/* 🔥 PROJECT PAGE LINK SA MOBILE RESPONSIVE PANEL */}
                         <Link 
                             to="/projects" 
                             onClick={() => setIsMenuOpen(false)}
@@ -119,20 +129,21 @@ export default function Navbar({ viewMode, setViewMode }) {
                             Projects
                         </Link>
                         
-                        <a 
-                            href="/#experience" 
+                        <Link 
+                            to="/experience" 
                             onClick={() => setIsMenuOpen(false)}
-                            className="hover:text-black py-1 transition-colors"
+                            className={`hover:text-black py-1 transition-colors ${location.pathname === '/experience' ? 'text-black' : ''}`}
                         >
                             Experience
-                        </a>
-                        <a 
-                            href="/#collections" 
+                        </Link>
+                        
+                        <Link 
+                            to="/collections" 
                             onClick={() => setIsMenuOpen(false)}
-                            className="hover:text-black py-1 transition-colors"
+                            className={`hover:text-black py-1 transition-colors ${location.pathname === '/collections' ? 'text-black' : ''}`}
                         >
                             Collections
-                        </a>
+                        </Link>
                     </nav>
                     
                     {/* CTA Button sa loob ng Mobile Menu */}

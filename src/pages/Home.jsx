@@ -11,7 +11,7 @@ export default function Home() {
       <TechCapabilities />
       <ProjectShowcase />
       
-      {/* 2. Dito natin isasalpak ang Github Heatmap sa pinakailalim ng container block */}
+      {/* Github Heatmap sa pinakailalim ng container block */}
       <GithubActivity />
     </>
   );
