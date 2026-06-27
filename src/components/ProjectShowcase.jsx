@@ -47,18 +47,101 @@ export default function ProjectShowcase() {
   return (
     <section 
       id="projects" 
-      // 1. Main Section Container Dark Mode variants
       className="grid grid-cols-1 lg:grid-cols-12 bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-800 items-stretch transition-colors duration-200"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       
-      {/* ================= KALIWANG SIDE ================= */}
-      {/* 2. Responsive Border Divider setup */}
-      <div className="lg:col-span-6 border-b lg:border-b-0 lg:border-r border-gray-200 dark:border-zinc-800 p-8 md:p-12 flex flex-col space-y-12 h-full transition-colors duration-200">
+      {/* ================= KANANG SIDE (FEATURED PROJECTS) ================= */}
+      {/* 💡 Ginawang `order-1` sa mobile at ibinalik sa `lg:order-2` para sa desktop view */}
+      <div className="order-1 lg:order-2 lg:col-span-6 p-8 md:p-12 flex flex-col justify-between h-full bg-white dark:bg-zinc-900 transition-colors duration-200 border-b lg:border-b-0 border-gray-200 dark:border-zinc-800">
+        <div>
+          <h3 
+            className="text-xl font-black text-gray-900 dark:text-white mb-8"
+            style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em' }}
+          >
+            Featured Projects
+          </h3>
+
+          <div className="space-y-6">
+            {projects.map((project, idx) => (
+              <div 
+                key={idx}
+                className="w-full rounded-3xl relative overflow-hidden group shadow-md border border-black/10 dark:border-zinc-800 h-76 md:h-84 flex flex-col justify-between"
+                style={{ backgroundColor: 'transparent' }}
+              >
+                <div className={`absolute inset-0 ${project.bgClass}`} />
+                
+                <div className="absolute inset-0 p-4 md:p-6 flex items-center justify-center opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500 ease-out pointer-events-none z-0">
+                  <img 
+                    src={project.imageSrc} 
+                    alt={project.title}
+                    className="w-full h-full object-contain rounded-xl"
+                  />
+                </div>
+                
+                <div className="h-20 w-full pointer-events-none z-10" />
+
+                <div className="p-6 md:p-8 flex justify-end items-center z-10 mt-auto relative bg-gradient-to-t from-black/40 via-black/5 to-transparent w-full">
+                  <button className="bg-white/10 backdrop-blur-md hover:bg-white text-white hover:text-gray-900 border border-white/10 text-xs font-semibold px-4 py-2 rounded-full flex items-center gap-1.5 tracking-tight transition-all shadow-sm group-hover:scale-105">
+                    View Project <ArrowUpRight size={13} className="opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ================= KALIWANG SIDE (BADGES & BRAND) ================= */}
+      {/* 💡 Ginawang `order-2` sa mobile at `lg:order-1` sa desktop. Ginamit din ang `flex flex-col` para ma-kontrol ang sub-items. */}
+      <div className="order-2 lg:order-1 lg:col-span-6 border-r-0 lg:border-r border-gray-200 dark:border-zinc-800 p-8 md:p-12 flex flex-col h-full transition-colors duration-200">
         
+        {/* Featured Badges Block */}
+        {/* 💡 Nilagyan ng `order-1` para mauna ito sa mobile, at `lg:order-2` para bumaba sa desktop */}
+        <div className="order-1 lg:order-2 pt-2 space-y-4 w-full mb-12 lg:mb-0">
+          <div className="flex items-center justify-between mb-2">
+            <h4 className="text-sm font-bold text-gray-900 dark:text-zinc-100 flex items-center gap-2">
+              <Award size={16} className="text-zinc-700 dark:text-zinc-300" /> Featured Badges & Recognition
+            </h4>
+          </div>
+          
+          <div className="space-y-3 max-w-xl">
+            {badges.map((badge, index) => (
+              <div 
+                key={index} 
+                className="bg-gray-50 dark:bg-zinc-800/40 border border-gray-200 dark:border-zinc-800/80 rounded-xl p-4 flex items-center justify-between gap-4 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/70 transition-all shadow-sm group"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0 shadow-inner">
+                    {badge.icon}
+                  </div>
+                  <div>
+                    <span className="text-[9px] font-mono text-gray-400 dark:text-zinc-500 block tracking-wider uppercase leading-tight">
+                      {badge.event}
+                    </span>
+                    <span className="text-xs font-black text-gray-900 dark:text-white block tracking-tight mt-0.5">
+                      {badge.title}
+                    </span>
+                  </div>
+                </div>
+                
+                <a 
+                  href={badge.certUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-zinc-800 hover:bg-black dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white text-white text-[11px] font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap shadow-sm hover:scale-[1.02]"
+                >
+                  View Cert
+                  <ExternalLink size={11} className="opacity-80" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Brand Assets Block */}
-        <div className="w-full">
-          {/* 3. Text Header Color Adaptations */}
+        {/* 💡 Nilagyan ng `order-2` para mahuli sa mobile, at `lg:order-1` para mauna sa desktop sa loob ng kaliwang column */}
+        <div className="order-2 lg:order-1 w-full lg:mb-12">
           <h3 
             className="text-xl font-black text-gray-900 dark:text-white mb-8"
             style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em' }}
@@ -66,8 +149,6 @@ export default function ProjectShowcase() {
             Brand Identity
           </h3>
 
-          {/* Navigation Tabs */}
-          {/* 4. Tweak active and inactive state button colors inside the active tab loop */}
           <div className="flex items-center gap-2 text-xs font-medium text-gray-400 dark:text-zinc-500 mb-6">
             {['/Black', '/White', '/Iridescent'].map((tab) => (
               <button
@@ -84,8 +165,6 @@ export default function ProjectShowcase() {
             ))}
           </div>
 
-          {/* Dynamic Container Background */}
-          {/* 5. Combined manual logic rendering with standard dark responsive layers */}
           <div 
             className={`rounded-2xl p-6 h-64 flex items-center justify-center relative overflow-hidden border shadow-md group transition-all duration-300 ${
               activeTab === '/Black' 
@@ -117,97 +196,6 @@ export default function ProjectShowcase() {
           </div>
         </div>
 
-        {/* Featured Badges Block */}
-        <div className="pt-2 space-y-4 w-full">
-          <div className="flex items-center justify-between mb-2">
-            {/* 6. Section Subtitle Adaptations */}
-            <h4 className="text-sm font-bold text-gray-900 dark:text-zinc-100 flex items-center gap-2">
-              <Award size={16} className="text-zinc-700 dark:text-zinc-300" /> Featured Badges & Recognition
-            </h4>
-          </div>
-          
-          <div className="space-y-3 max-w-xl">
-            {badges.map((badge, index) => (
-              <div 
-                key={index} 
-                // 7. Individual Badge Panel dark states
-                className="bg-gray-50 dark:bg-zinc-800/40 border border-gray-200 dark:border-zinc-800/80 rounded-xl p-4 flex items-center justify-between gap-4 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/70 transition-all shadow-sm group"
-              >
-                <div className="flex items-center gap-3">
-                  {/* Minimalist Icon Container */}
-                  <div className="h-10 w-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0 shadow-inner">
-                    {badge.icon}
-                  </div>
-                  <div>
-                    <span className="text-[9px] font-mono text-gray-400 dark:text-zinc-500 block tracking-wider uppercase leading-tight">
-                      {badge.event}
-                    </span>
-                    <span className="text-xs font-black text-gray-900 dark:text-white block tracking-tight mt-0.5">
-                      {badge.title}
-                    </span>
-                  </div>
-                </div>
-                
-                {/* Clickable Certificate Button */}
-                {/* 8. Adjusted Button Colors (`dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white`) */}
-                <a 
-                  href={badge.certUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-zinc-800 hover:bg-black dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white text-white text-[11px] font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap shadow-sm hover:scale-[1.02]"
-                >
-                  View Cert
-                  <ExternalLink size={11} className="opacity-80" />
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-
-      </div>
-
-      {/* ================= KANANG SIDE ================= */}
-      {/* 9. Balanced right side container matching background configuration */}
-      <div className="lg:col-span-6 p-8 md:p-12 flex flex-col justify-between h-full bg-white dark:bg-zinc-900 transition-colors duration-200">
-        <div>
-          <h3 
-            className="text-xl font-black text-gray-900 dark:text-white mb-8"
-            style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em' }}
-          >
-            Featured Projects
-          </h3>
-
-          <div className="space-y-6">
-            {projects.map((project, idx) => (
-              <div 
-                key={idx}
-                // 10. Card structure outer perimeter tweak (`dark:border-zinc-800`)
-                className="w-full rounded-3xl relative overflow-hidden group shadow-md border border-black/10 dark:border-zinc-800 h-76 md:h-84 flex flex-col justify-between"
-                style={{ backgroundColor: 'transparent' }}
-              >
-                <div className={`absolute inset-0 ${project.bgClass}`} />
-                
-                <div className="absolute inset-0 p-4 md:p-6 flex items-center justify-center opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500 ease-out pointer-events-none z-0">
-                  <img 
-                    src={project.imageSrc} 
-                    alt={project.title}
-                    className="w-full h-full object-contain rounded-xl"
-                  />
-                </div>
-                
-                <div className="h-20 w-full pointer-events-none z-10" />
-
-                <div className="p-6 md:p-8 flex justify-end items-center z-10 mt-auto relative bg-gradient-to-t from-black/40 via-black/5 to-transparent w-full">
-                  {/* Project Internal Floating Action Link */}
-                  <button className="bg-white/10 backdrop-blur-md hover:bg-white text-white hover:text-gray-900 border border-white/10 text-xs font-semibold px-4 py-2 rounded-full flex items-center gap-1.5 tracking-tight transition-all shadow-sm group-hover:scale-105">
-                    View Project <ArrowUpRight size={13} className="opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </button>
-                </div>
-
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
 
     </section>

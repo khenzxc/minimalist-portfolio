@@ -7,7 +7,7 @@ export function TechCapabilities() {
       title: "Languages",
       items: [
         { name: "JavaScript", slug: "javascript" },
-        { name: "Java", slug: "java" },
+        { name: "Java", slug: "oraclejava" }, // 💡 NAAYOS NA: "oraclejava" ang tamang slug sa Simple Icons
         { name: "Python", slug: "python" },
         { name: "HTML5", slug: "html5" },
         { name: "CSS3", slug: "css3" }
@@ -127,11 +127,15 @@ export function TechCapabilities() {
                       className="group relative h-10 w-10 bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-lg flex items-center justify-center hover:bg-gray-900 hover:border-gray-900 dark:hover:bg-white dark:hover:border-white transition-all duration-200 cursor-pointer shadow-sm"
                     >
                       <img
-                        src={`https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/${tech.slug}.svg`}
+                        /* 💡 IPINATUPAD: Direktang unpkg.com URL na may taglay na tamang CORS headers upang mapigilan ang CORB blocking ng Chrome */
+                        src={`https://unpkg.com/simple-icons@v11/icons/${tech.slug}.svg`}
                         alt={tech.name}
                         className="w-5 h-5 object-contain opacity-60 grayscale brightness-50 transition-all duration-200 group-hover:invert group-hover:brightness-200 group-hover:opacity-100 dark:invert dark:brightness-200 dark:opacity-70 dark:group-hover:invert-0 dark:group-hover:brightness-0 dark:group-hover:opacity-100"
                         onError={(e) => {
-                          e.target.src = `https://unpkg.com/simple-icons@v11/icons/${tech.slug}.svg`;
+                          /* 💡 SAFEGUARD: Kung magkaproblema ang unpkg, lilipat ito sa jsdelivr nang isang beses lang upang maiwasan ang loop error */
+                          if (!e.target.src.includes('jsdelivr')) {
+                            e.target.src = `https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/${tech.slug}.svg`;
+                          }
                         }}
                       />
                     </div>
@@ -153,7 +157,6 @@ export function TechCapabilities() {
               <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse"></span>
             </div>
 
-            {/* Dynamic rendering ng kasalukuyan mong inaaral */}
             {learningStack.map((stack, index) => (
               <div key={index} className="flex items-center gap-2 text-gray-200 dark:text-zinc-300">
                 {stack.icon}
