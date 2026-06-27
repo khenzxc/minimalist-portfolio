@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom'; // 👈 Idinagdag ang Link at useLocation para sa routing tracking
 
 export default function Navbar({ viewMode, setViewMode }) {
     // State para sa pagbubukas at pagsasara ng mobile menu
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const location = useLocation(); // 👈 Kinuha ang kasalukuyang URL path para sa active style matching
 
     return (
         <div 
@@ -31,21 +33,33 @@ export default function Navbar({ viewMode, setViewMode }) {
                 {/* Brand/Logo Area & Desktop Nav */}
                 <div className="flex items-center gap-4">
                     <div className="flex items-center tracking-tight">
-                        <div className="relative w-28 sm:w-34 h-8 flex items-center justify-start -mb-0.5 -mr-4">
+                        {/* Ginawang Link ang Logo para bumalik sa Home page kapag kini-click */}
+                        <Link to="/" className="relative w-28 sm:w-34 h-8 flex items-center justify-start -mb-0.5 -mr-4">
                             <img
                                 src="/navbar-logo.png"
                                 alt="Khen Logo"
                                 className="h-full w-auto object-contain object-left"
                             />
-                        </div>
+                        </Link>
                     </div>
 
                     {/* Desktop Navigation Links (Naka-hide sa mobile) */}
                     <nav className="hidden lg:flex items-center gap-6 text-xs font-bold text-gray-500 uppercase tracking-tight">
-                        <a href="#about" className="hover:text-black transition-colors">About</a>
-                        <a href="#projects" className="hover:text-black transition-colors">Projects</a>
-                        <a href="#experience" className="hover:text-black transition-colors">Experience</a>
-                        <a href="#collections" className="hover:text-black transition-colors">Collections</a>
+                        {/* Dahil ibang page na ang Projects, gumamit tayo ng Link to sa halip na # anchor */}
+                        <Link to="/" className={`hover:text-black transition-colors ${location.pathname === '/' ? 'text-black font-black' : ''}`}>
+                            About
+                        </Link>
+                        
+                        {/* 🔥 PINAGDUGTONG NA PROJECT PAGE DIRECTORY */}
+                        <Link 
+                            to="/projects" 
+                            className={`hover:text-black transition-colors ${location.pathname === '/projects' ? 'text-black font-black' : ''}`}
+                        >
+                            Projects
+                        </Link>
+                        
+                        <a href="/#experience" className="hover:text-black transition-colors">Experience</a>
+                        <a href="/#collections" className="hover:text-black transition-colors">Collections</a>
                     </nav>
                 </div>
 
@@ -66,10 +80,9 @@ export default function Navbar({ viewMode, setViewMode }) {
                         >
                             Prof
                         </button> 
-                        {/* 💡 Ginawang "Prof" sa mobile, pero kung malaki screen, kusa 'yang magbabago kung gusto mo */}
                     </div>
 
-                    {/* Call Button (Naka-hide sa pinakamaliliit na screen para iwas siksikan, lalabas sa sm:block) */}
+                    {/* Call Button */}
                     <button className="hidden sm:flex bg-[#374151] hover:bg-black text-white text-[11px] font-bold px-3.5 py-2.5 rounded-md transition-all items-center gap-1.5 shadow-sm uppercase tracking-tight">
                         Schedule <ArrowUpRight size={13} />
                     </button>
@@ -89,29 +102,32 @@ export default function Navbar({ viewMode, setViewMode }) {
             {isMenuOpen && (
                 <div className="lg:hidden w-full bg-white border-t border-gray-100 px-4 py-4 space-y-3 shadow-inner uppercase tracking-tight font-bold text-xs">
                     <nav className="flex flex-col space-y-3 text-gray-500">
-                        <a 
-                            href="#about" 
+                        <Link 
+                            to="/" 
                             onClick={() => setIsMenuOpen(false)}
-                            className="hover:text-black py-1 transition-colors"
+                            className={`hover:text-black py-1 transition-colors ${location.pathname === '/' ? 'text-black' : ''}`}
                         >
                             About
-                        </a>
-                        <a 
-                            href="#projects" 
+                        </Link>
+                        
+                        {/* 🔥 PROJECT PAGE LINK SA MOBILE RESPONSIVE PANEL */}
+                        <Link 
+                            to="/projects" 
                             onClick={() => setIsMenuOpen(false)}
-                            className="hover:text-black py-1 transition-colors"
+                            className={`hover:text-black py-1 transition-colors ${location.pathname === '/projects' ? 'text-black' : ''}`}
                         >
                             Projects
-                        </a>
+                        </Link>
+                        
                         <a 
-                            href="#experience" 
+                            href="/#experience" 
                             onClick={() => setIsMenuOpen(false)}
                             className="hover:text-black py-1 transition-colors"
                         >
                             Experience
                         </a>
                         <a 
-                            href="#collections" 
+                            href="/#collections" 
                             onClick={() => setIsMenuOpen(false)}
                             className="hover:text-black py-1 transition-colors"
                         >
@@ -119,7 +135,7 @@ export default function Navbar({ viewMode, setViewMode }) {
                         </a>
                     </nav>
                     
-                    {/* CTA Button sa loob ng Mobile Menu para sa maliliit na screen */}
+                    {/* CTA Button sa loob ng Mobile Menu */}
                     <div className="pt-2 sm:hidden">
                         <button className="w-full bg-[#374151] text-white py-2.5 rounded-md flex items-center justify-center gap-1.5">
                             Schedule a Call <ArrowUpRight size={13} />

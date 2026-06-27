@@ -27,7 +27,7 @@ export function TechCapabilities() {
       items: [
         { name: "Claude", slug: "anthropic" },
         { name: "Gemini", slug: "googlegemini" },
-        { name: "ChatGPT", slug: "openai" },
+        { name: "ChatGPT", slug: "openai" }, 
         { name: "Grok", slug: "x" }
       ]
     },
@@ -82,10 +82,16 @@ export function TechCapabilities() {
                       title={tech.name}
                       className="group relative h-10 w-10 bg-white border border-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-900 hover:border-gray-900 transition-all duration-200 cursor-pointer shadow-sm"
                     >
+                      {/* 🚀 BAGONG DIREKTANG CDN: Tinanggal ang kulay sa URL para iwas 404, pinalitan ng direct raw SVGs */}
                       <img 
-                        src={`https://cdn.simpleicons.org/${tech.slug}/${tech.slug === 'vercel' || tech.slug === 'express' || tech.slug === 'openai' || tech.slug === 'x' ? '000000' : '4B5563'}`} 
+                        src={`https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/${tech.slug}.svg`} 
                         alt={tech.name}
-                        className="w-5 h-5 object-contain transition-all duration-200 group-hover:invert group-hover:brightness-200"
+                        // Ginamitan ng Tailwind utility filters para makuha ang kulay gray bago i-hover, at mag-invert sa puti kapag hino-hover ang card.
+                        className="w-5 h-5 object-contain opacity-60 grayscale brightness-50 transition-all duration-200 group-hover:invert group-hover:brightness-200 group-hover:opacity-100"
+                        onError={(e) => {
+                          // Sakaling mag-update o magbago ang repository tags, ito ang solid fallback link
+                          e.target.src = `https://unpkg.com/simple-icons@v11/icons/${tech.slug}.svg`;
+                        }}
                       />
                     </div>
                   ))}
@@ -130,7 +136,6 @@ export function TechCapabilities() {
             Description
           </h3>
           
-          {/* ✨ PINAGANDANG DESCRIPTION BASE SA INFO MO ✨ */}
           <div className="space-y-5 text-[15px] text-gray-500 font-normal leading-[1.7] tracking-tight max-w-2xl">
             <p>
               I am a <span className="text-gray-900 font-semibold">3rd Year Information Systems student at Bulacan State University</span>, deeply passionate about building human-centric software. My core focus lies in software engineering and design infrastructure, with a strong emphasis on writing clean, clean-coded, and highly interactive user interfaces.
