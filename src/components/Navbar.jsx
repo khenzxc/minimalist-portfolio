@@ -60,7 +60,7 @@ export default function Navbar({ viewMode, setViewMode }) {
                 </div>
 
                 {/* Right Side Actions */}
-                <div className="flex items-center gap-2 sm:gap-4">
+                <div className="flex items-center gap-3 sm:gap-4">
                     
                     {/* Dark Mode Button */}
                     <DarkMode /> 
@@ -70,13 +70,17 @@ export default function Navbar({ viewMode, setViewMode }) {
                         Resume <ArrowUpRight size={13} />
                     </button>
 
-                    {/* ─── PINALAKING HAMBURGER BUTTON ─── */}
+                    {/* ─── MAS PINALAKING MENU BUTTON PARA SA MOBILE ─── */}
                     <button 
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="lg:hidden p-2.5 -mr-2 text-gray-600 dark:text-zinc-400 hover:text-black dark:hover:text-white rounded-md hover:bg-gray-50 dark:hover:bg-zinc-900 transition-colors focus:outline-none"
+                        className="lg:hidden p-3 -mr-3 text-gray-700 dark:text-zinc-300 hover:text-black dark:hover:text-white rounded-xl hover:bg-gray-100 dark:hover:bg-zinc-900 transition-all duration-200 active:scale-95 focus:outline-none"
                         aria-label="Toggle Menu"
                     >
-                        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        {isMenuOpen ? (
+                            <X size={28} className="transition-transform duration-200 rotate-0" />
+                        ) : (
+                            <Menu size={28} className="transition-transform duration-200 rotate-0" />
+                        )}
                     </button>
                 </div>
             </header>
