@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import DarkMode from './DarkMode'; // <─── DITO INIMPORT ANG DARK MODE COMPONENT
+import DarkMode from './DarkMode';
 
 export default function Navbar({ viewMode, setViewMode }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -62,22 +62,21 @@ export default function Navbar({ viewMode, setViewMode }) {
                 {/* Right Side Actions */}
                 <div className="flex items-center gap-2 sm:gap-4">
                     
-                    {/* ─── DARK MODE BUTTON PLACEHOLDER ─── */}
+                    {/* Dark Mode Button */}
                     <DarkMode /> 
 
-
-                    {/* Call Button */}
+                    {/* Resume Button */}
                     <button className="hidden sm:flex bg-[#374151] hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 text-[11px] font-bold px-3.5 py-2.5 rounded-md transition-all items-center gap-1.5 shadow-sm uppercase tracking-tight">
-                        Schedule <ArrowUpRight size={13} />
+                        Resume <ArrowUpRight size={13} />
                     </button>
 
-                    {/* Hamburger Button */}
+                    {/* ─── PINALAKING HAMBURGER BUTTON ─── */}
                     <button 
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="lg:hidden p-2 text-gray-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors focus:outline-none"
+                        className="lg:hidden p-2.5 -mr-2 text-gray-600 dark:text-zinc-400 hover:text-black dark:hover:text-white rounded-md hover:bg-gray-50 dark:hover:bg-zinc-900 transition-colors focus:outline-none"
                         aria-label="Toggle Menu"
                     >
-                        {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
                 </div>
             </header>

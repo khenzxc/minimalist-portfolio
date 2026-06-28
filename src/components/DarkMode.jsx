@@ -28,26 +28,24 @@ export default function DarkMode() {
         <button
             onClick={() => setIsDark(!isDark)}
             className={`
-                relative inline-flex h-8 w-14 items-center rounded-full 
-                transition-colors duration-300 focus:outline-none
+                relative inline-flex h-6 w-10 items-center rounded-full 
+                transition-colors duration-300 focus:outline-none shrink-0
                 ${isDark ? 'bg-zinc-800 border border-zinc-700' : 'bg-gray-200 border border-gray-300'}
             `}
             aria-label="Toggle Dark Mode"
         >
-            {/* Ang gumagalaw na bilog (Knob) */}
+            {/* Ang gumagalaw na maliit na bilog (Knob) */}
             <span
                 className={`
-                    flex h-6 w-6 items-center justify-center rounded-full 
-                    transition-transform duration-300 shadow-md
-                    ${isDark ? 'translate-x-7 bg-white text-zinc-900' : 'translate-x-1 bg-zinc-900 text-white'}
+                    flex h-4 w-4 items-center justify-center rounded-full 
+                    transition-transform duration-300 shadow-sm
+                    ${isDark ? 'translate-x-[18px] bg-white text-zinc-900' : 'translate-x-0.5 bg-zinc-900 text-white'}
                 `}
             >
-                {/* Light Mode: Madilim na Sun on Puting Knob */}
-                {/* Dark Mode: Maputing Moon on Itim na Knob */}
                 {isDark ? (
-                    <Moon size={14} strokeWidth={2} />
+                    <Moon size={10} strokeWidth={2.5} />
                 ) : (
-                    <Sun size={14} strokeWidth={2.5} />
+                    <Sun size={10} strokeWidth={2.5} />
                 )}
             </span>
         </button>
