@@ -5,8 +5,12 @@ export default function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Pinipilit nitong ibalik sa pinakataas ang screen
-  }, [pathname]); // Tatakbo ito tuwing magbabago ang URL path
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant' // 💡 Tinitiyak nito na walang sliding animation
+    });
+  }, [pathname]);
 
-  return null; // Walang ididisplay na UI ito, taga-utos lang sa scroll
+  return null;
 }
