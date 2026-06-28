@@ -1,15 +1,21 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react'; // 💡 Pinalitan mula 'useEffect'
 import { useLocation } from 'react-router-dom';
 
 export default function ScrollToTop() {
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'instant' // 💡 Tinitiyak nito na walang sliding animation
-    });
+  useLayoutEffect(() => {
+    // Kinukuha ang kasalukuyang scroll position para i-lock habang nag-rerender
+    try {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant'
+      });
+    } catch (error) {
+      // Fallback para sa mga lumang browser
+      window.scrollTo(0, 0);
+    }
   }, [pathname]);
 
   return null;
