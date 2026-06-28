@@ -97,7 +97,7 @@ export default function Navbar({ viewMode, setViewMode }) {
                     
                     <div className="pt-2 sm:hidden">
                         <button className="w-full bg-[#374151] dark:bg-zinc-100 text-white dark:text-zinc-950 py-2.5 rounded-md flex items-center justify-center gap-1.5 text-xs font-bold transition-all">
-                            Schedule a Call <ArrowUpRight size={13} />
+                            View Resume <ArrowUpRight size={13} />
                         </button>
                     </div>
                 </div>
