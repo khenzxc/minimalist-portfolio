@@ -3,7 +3,8 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Center } from '@react-three/drei';
 import * as THREE from 'three';
 
-function HologramSaktoKG() {
+// ─── 3D HOLOGRAM LOGIC WITH OBJECT SCALE ZOOM (SOLVED ROUGH ROTATION) ───
+function HologramSaktoKG({ isHovered }) {
   const pointsRef = useRef();
 
   // 1. GENERATE CLEAN & BALANCED 3D BLOCK FOR "KG"
@@ -74,14 +75,24 @@ function HologramSaktoKG() {
     };
   }, []);
 
-  // 2. 🔄 PURE SIDE-TO-SIDE (Y-AXIS ONLY) ROTATION 
+  // 2. 🔄 ROTATION & OBJECT-SCALE ZOOM VIA USEFRAME
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
+    
     if (pointsRef.current) {
-      // Dito natin ni-lock ang ikot: Tanging .rotation.y lang ang nagbabago, naka-0 ang x at z
+      // ─── PINALITAN DITO: Scale ng object ang nilerlerp, hindi na camera! ───
+      // Default size kapag normal ay 1. Kung naka-hover, mag-zozoom up to 1.15x
+      const targetScale = isHovered ? 1.15 : 1.0;
+      
+      // I-lerp ang X, Y, at Z scale nang sabay para pantay ang pag-zoom
+      pointsRef.current.scale.x = THREE.MathUtils.lerp(pointsRef.current.scale.x, targetScale, 0.1);
+      pointsRef.current.scale.y = THREE.MathUtils.lerp(pointsRef.current.scale.y, targetScale, 0.1);
+      pointsRef.current.scale.z = THREE.MathUtils.lerp(pointsRef.current.scale.z, targetScale, 0.1);
+
+      // Panatilihin ang rotation logic mo
       pointsRef.current.rotation.y = time * 0.35; 
-      pointsRef.current.rotation.x = 0; // Lock top-to-bottom tilted frame
-      pointsRef.current.rotation.z = 0; // Lock side tilting
+      pointsRef.current.rotation.x = 0; 
+      pointsRef.current.rotation.z = 0; 
 
       // Micro-shimmer matrix particle glitch
       const posAttr = pointsRef.current.geometry.attributes.position;
@@ -121,6 +132,7 @@ function HologramSaktoKG() {
 
 export default function HologramCanvas() {
   const [isMobile, setIsMobile] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const checkDevice = () => {
@@ -133,19 +145,28 @@ export default function HologramCanvas() {
   }, []);
 
   return (
-    <div className="w-full h-full min-h-[440px] md:min-h-[500px] relative bg-[#0D1117]">
+    <div 
+      className="w-full h-full min-h-[440px] md:min-h-[500px] relative bg-[#0D1117] overflow-hidden group"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Background Matrix Dots */}
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#FFF_1.2px,transparent_1.2px)] [background-size:24px_24px] pointer-events-none"></div>
 
+      {/* 3D Canvas Context */}
       <div className={`w-full h-full absolute inset-0 ${isMobile ? 'pointer-events-none' : ''}`}>
         <Canvas camera={{ position: [0, 0, 4.2], fov: 45 }}>
           <ambientLight intensity={1.5} />
           <Center>
-            <HologramSaktoKG />
+            <HologramSaktoKG isHovered={isHovered} />
           </Center>
           {!isMobile && (
             <OrbitControls 
               enableZoom={false} 
               enableRotate={true} 
+              // Nilagyan ng damping para mas swabe ang rotation kapag binitawan
+              enableDamping={true}
+              dampingFactor={0.05}
             />
           )}
         </Canvas>
