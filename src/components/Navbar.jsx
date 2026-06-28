@@ -7,6 +7,17 @@ export default function Navbar({ viewMode, setViewMode }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const location = useLocation();
 
+    // 🛠️ Function para i-handle ang scroll up kapag pinindot ang active page link
+    const handleLinkClick = (path) => {
+        if (location.pathname === path) {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // "smooth" para may konting sliding effect, o "instant" para biglang akyat
+            });
+        }
+        setIsMenuOpen(false); // Isasara rin nito ang mobile dropdown kapag nag-click
+    };
+
     return (
         <div 
             className="w-full bg-white dark:bg-zinc-950 border-b border-gray-200 dark:border-zinc-800 sticky top-0 z-50 transition-colors duration-200"
@@ -33,7 +44,11 @@ export default function Navbar({ viewMode, setViewMode }) {
                 {/* Brand/Logo Area & Desktop Nav */}
                 <div className="flex items-center gap-4">
                     <div className="flex items-center tracking-tight">
-                        <Link to="/" className="relative w-28 sm:w-34 h-8 flex items-center justify-start -mb-0.5 -mr-4">
+                        <Link 
+                            to="/" 
+                            onClick={() => handleLinkClick('/')}
+                            className="relative w-28 sm:w-34 h-8 flex items-center justify-start -mb-0.5 -mr-4"
+                        >
                             <img
                                 src="/navbar-logo.png"
                                 alt="Khen Logo"
@@ -44,16 +59,32 @@ export default function Navbar({ viewMode, setViewMode }) {
 
                     {/* Desktop Navigation Links */}
                     <nav className="hidden lg:flex items-center gap-6 text-xs font-bold text-gray-500 dark:text-zinc-400 uppercase tracking-tight">
-                        <Link to="/" className={`hover:text-black dark:hover:text-white transition-colors ${location.pathname === '/' ? 'text-black dark:text-white font-black' : ''}`}>
+                        <Link 
+                            to="/" 
+                            onClick={() => handleLinkClick('/')}
+                            className={`hover:text-black dark:hover:text-white transition-colors ${location.pathname === '/' ? 'text-black dark:text-white font-black' : ''}`}
+                        >
                             About
                         </Link>
-                        <Link to="/projects" className={`hover:text-black dark:hover:text-white transition-colors ${location.pathname === '/projects' ? 'text-black dark:text-white font-black' : ''}`}>
+                        <Link 
+                            to="/projects" 
+                            onClick={() => handleLinkClick('/projects')}
+                            className={`hover:text-black dark:hover:text-white transition-colors ${location.pathname === '/projects' ? 'text-black dark:text-white font-black' : ''}`}
+                        >
                             Projects
                         </Link>
-                        <Link to="/experience" className={`hover:text-black dark:hover:text-white transition-colors ${location.pathname === '/experience' ? 'text-black dark:text-white font-black' : ''}`}>
+                        <Link 
+                            to="/experience" 
+                            onClick={() => handleLinkClick('/experience')}
+                            className={`hover:text-black dark:hover:text-white transition-colors ${location.pathname === '/experience' ? 'text-black dark:text-white font-black' : ''}`}
+                        >
                             Experience
                         </Link>
-                        <Link to="/collections" className={`hover:text-black dark:hover:text-white transition-colors ${location.pathname === '/collections' ? 'text-black dark:text-white font-black' : ''}`}>
+                        <Link 
+                            to="/collections" 
+                            onClick={() => handleLinkClick('/collections')}
+                            className={`hover:text-black dark:hover:text-white transition-colors ${location.pathname === '/collections' ? 'text-black dark:text-white font-black' : ''}`}
+                        >
                             Collections
                         </Link>
                     </nav>
@@ -70,7 +101,7 @@ export default function Navbar({ viewMode, setViewMode }) {
                         Resume <ArrowUpRight size={13} />
                     </button>
 
-                    {/* ─── MAS PINALAKING MENU BUTTON PARA SA MOBILE ─── */}
+                    {/* Menu Button para sa Mobile */}
                     <button 
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         className="lg:hidden p-3 -mr-3 text-gray-700 dark:text-zinc-300 hover:text-black dark:hover:text-white rounded-xl hover:bg-gray-100 dark:hover:bg-zinc-900 transition-all duration-200 active:scale-95 focus:outline-none"
@@ -89,10 +120,10 @@ export default function Navbar({ viewMode, setViewMode }) {
             {isMenuOpen && (
                 <div className="lg:hidden w-full bg-white dark:bg-zinc-950 border-t border-gray-100 dark:border-zinc-900 px-4 py-4 space-y-3 shadow-inner uppercase tracking-tight font-bold text-xs">
                     <nav className="flex flex-col space-y-3 text-gray-500 dark:text-zinc-400">
-                        <Link to="/" onClick={() => setIsMenuOpen(false)} className={`hover:text-black dark:hover:text-white py-1 transition-colors ${location.pathname === '/' ? 'text-black dark:text-white' : ''}`}>About</Link>
-                        <Link to="/projects" onClick={() => setIsMenuOpen(false)} className={`hover:text-black dark:hover:text-white py-1 transition-colors ${location.pathname === '/projects' ? 'text-black dark:text-white' : ''}`}>Projects</Link>
-                        <Link to="/experience" onClick={() => setIsMenuOpen(false)} className={`hover:text-black dark:hover:text-white py-1 transition-colors ${location.pathname === '/experience' ? 'text-black dark:text-white' : ''}`}>Experience</Link>
-                        <Link to="/collections" onClick={() => setIsMenuOpen(false)} className={`hover:text-black dark:hover:text-white py-1 transition-colors ${location.pathname === '/collections' ? 'text-black dark:text-white' : ''}`}>Collections</Link>
+                        <Link to="/" onClick={() => handleLinkClick('/')} className={`hover:text-black dark:hover:text-white py-1 transition-colors ${location.pathname === '/' ? 'text-black dark:text-white' : ''}`}>About</Link>
+                        <Link to="/projects" onClick={() => handleLinkClick('/projects')} className={`hover:text-black dark:hover:text-white py-1 transition-colors ${location.pathname === '/projects' ? 'text-black dark:text-white' : ''}`}>Projects</Link>
+                        <Link to="/experience" onClick={() => handleLinkClick('/experience')} className={`hover:text-black dark:hover:text-white py-1 transition-colors ${location.pathname === '/experience' ? 'text-black dark:text-white' : ''}`}>Experience</Link>
+                        <Link to="/collections" onClick={() => handleLinkClick('/collections')} className={`hover:text-black dark:hover:text-white py-1 transition-colors ${location.pathname === '/collections' ? 'text-black dark:text-white' : ''}`}>Collections</Link>
                     </nav>
                     
                     <div className="pt-2 sm:hidden">
