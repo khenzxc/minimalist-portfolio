@@ -65,21 +65,6 @@ export default function Navbar({ viewMode, setViewMode }) {
                     {/* ─── DARK MODE BUTTON PLACEHOLDER ─── */}
                     <DarkMode /> 
 
-                    {/* Mode Toggle Switcher */}
-                    <div className="bg-gray-100 dark:bg-zinc-900 p-0.5 rounded-full flex items-center text-[10px] border border-gray-200/60 dark:border-zinc-800 uppercase tracking-tight">
-                        <button
-                            onClick={() => setViewMode('personal')}
-                            className={`px-2.5 sm:px-3 py-1 rounded-full font-bold transition-all ${viewMode === 'personal' ? 'bg-[#374151] dark:bg-zinc-100 text-white dark:text-zinc-950 shadow-sm' : 'text-gray-500 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white'}`}
-                        >
-                            Personal
-                        </button>
-                        <button
-                            onClick={() => setViewMode('professional')}
-                            className={`px-2.5 sm:px-3 py-1 rounded-full font-bold transition-all ${viewMode === 'professional' ? 'bg-[#374151] dark:bg-zinc-100 text-white dark:text-zinc-950 shadow-sm' : 'text-gray-500 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white'}`}
-                        >
-                            Prof
-                        </button> 
-                    </div>
 
                     {/* Call Button */}
                     <button className="hidden sm:flex bg-[#374151] hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 text-[11px] font-bold px-3.5 py-2.5 rounded-md transition-all items-center gap-1.5 shadow-sm uppercase tracking-tight">
