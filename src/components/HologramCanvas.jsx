@@ -118,7 +118,7 @@ function HologramSaktoKG({ isHovered }) {
         />
       </bufferGeometry>
       <pointsMaterial
-        color="#3B82F6"
+        color="#00FFFF" // PINALITAN: Ginawang matingkad na Neon Cyan / Electric Blue
         size={0.024}
         sizeAttenuation={true}
         transparent={true}
