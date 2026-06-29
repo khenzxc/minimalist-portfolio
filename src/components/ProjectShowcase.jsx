@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, Award, ExternalLink, Code2, Presentation, Terminal } from 'lucide-react';
+// 🎯 IMPORT LINK MULA SA REACT-ROUTER-DOM
+import { Link } from 'react-router-dom';
+import { ArrowUpRight, Award, ExternalLink, Code2, Presentation, Terminal, Plus } from 'lucide-react';
 
 export default function ProjectShowcase() {
   const [activeTab, setActiveTab] = useState('/White');
@@ -47,13 +49,11 @@ export default function ProjectShowcase() {
   return (
     <section 
       id="projects" 
-      // 🎯 GLOBAL SECTION STROKE: Ginamit ang border-gray-200 dark:border-zinc-800 para sa main grid breakdown
       className="grid grid-cols-1 lg:grid-cols-12 bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-800 items-stretch transition-colors duration-200"
-      style={{ fontFamily: "'Space Grotesk', sans-serif" }} // 🎯 FONT UNIFICATION: Ini-align sa Space Grotesk para terno sa Hero identity block
+      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
     >
       
       {/* ================= KANANG SIDE (FEATURED PROJECTS) ================= */}
-      {/* 🎯 OUTER COLUMN DIVIDER: Ginabayan ng border-gray-200 dark:border-zinc-800 para sa responsive mobile breakpoint lines */}
       <div className="order-1 lg:order-2 lg:col-span-6 p-8 md:p-12 flex flex-col justify-between h-full bg-white dark:bg-zinc-900 transition-colors duration-200 border-b lg:border-b-0 border-gray-200 dark:border-zinc-800">
         <div>
           <h3 
@@ -67,7 +67,6 @@ export default function ProjectShowcase() {
             {projects.map((project, idx) => (
               <div 
                 key={idx}
-                // 🎯 INNER CARD SHIELD: Binago mula border-black/10 patungong border-gray-200 dark:border-zinc-800 para pumasok sa wireframe format ng system mo
                 className="w-full rounded-3xl relative overflow-hidden group shadow-md border border-gray-200 dark:border-zinc-800 h-76 md:h-84 flex flex-col justify-between"
                 style={{ backgroundColor: 'transparent' }}
               >
@@ -85,17 +84,26 @@ export default function ProjectShowcase() {
 
                 <div className="p-6 md:p-8 flex justify-end items-center z-10 mt-auto relative bg-gradient-to-t from-black/40 via-black/5 to-transparent w-full">
                   <button className="bg-white/10 backdrop-blur-md hover:bg-white text-white hover:text-gray-900 border border-white/10 text-xs font-semibold px-4 py-2 rounded-full flex items-center gap-1.5 tracking-tight transition-all shadow-sm group-hover:scale-105">
-                    View Project <ArrowUpRight size={13} className="opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    Details <ArrowUpRight size={13} className="opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </button>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* 🎯 SEEMORE PROJECTS: Ginagamit ang `to="/projects"` para sa instant routing */}
+          <div className="mt-8 flex justify-center">
+            <Link 
+              to="/projects" 
+              className="w-full max-w-xs bg-gray-50 dark:bg-zinc-800/40 hover:bg-gray-100 dark:hover:bg-zinc-800 border border-gray-200 dark:border-zinc-800/80 text-gray-900 dark:text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm hover:scale-[1.01] text-center"
+            >
+              See More <Plus size={14} />
+            </Link>
+          </div>
         </div>
       </div>
 
       {/* ================= KALIWANG SIDE (BADGES & BRAND) ================= */}
-      {/* 🎯 MAIN VERTICAL GUTTER BORDER: Naka-sync sa lg:border-r border-gray-200 dark:border-zinc-800 ng kaliwang panel block */}
       <div className="order-2 lg:order-1 lg:col-span-6 border-r-0 lg:border-r border-gray-200 dark:border-zinc-800 p-8 md:p-12 flex flex-col h-full transition-colors duration-200">
         
         {/* Featured Badges Block */}
@@ -110,11 +118,9 @@ export default function ProjectShowcase() {
             {badges.map((badge, index) => (
               <div 
                 key={index} 
-                // 🎯 RECOGNITION CONTAINER OUTLINE: Gumagamit ng border-gray-200 dark:border-zinc-800/80 para sa micro-layout borders
                 className="bg-gray-50 dark:bg-zinc-800/40 border border-gray-200 dark:border-zinc-800/80 rounded-xl p-4 flex items-center justify-between gap-4 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/70 transition-all shadow-sm group"
               >
                 <div className="flex items-center gap-3">
-                  {/* 🎯 BADGE ICON FRAMES: Ini-adjust sa border-gray-200 dark:border-zinc-700 katulad ng Affiliation badging method ng Hero */}
                   <div className="h-10 w-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0 shadow-inner">
                     {badge.icon}
                   </div>
@@ -134,11 +140,21 @@ export default function ProjectShowcase() {
                   rel="noopener noreferrer"
                   className="bg-zinc-800 hover:bg-black dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white text-white text-[11px] font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap shadow-sm hover:scale-[1.02]"
                 >
-                  View Cert
+                  Details
                   <ExternalLink size={11} className="opacity-80" />
                 </a>
               </div>
             ))}
+
+            {/* 🎯 SEEMORE RECOGNITIONS: Naka-link sa iyong `/collections` route */}
+            <div className="pt-2 flex justify-center">
+              <Link 
+                to="/collections" 
+                className="w-full bg-gray-50 dark:bg-zinc-800/40 hover:bg-gray-100 dark:hover:bg-zinc-800 border border-gray-200 dark:border-zinc-800/80 text-gray-900 dark:text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm hover:scale-[1.01] text-center"
+              >
+                See More <Plus size={14} />
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -168,7 +184,6 @@ export default function ProjectShowcase() {
           </div>
 
           <div 
-            // 🎯 BRAND CONTAINER EDGES: Inihanay sa border-gray-200 at dark:border-zinc-700 base variables ng Hero block elements
             className={`rounded-2xl p-6 h-64 flex items-center justify-center relative overflow-hidden border shadow-md group transition-all duration-300 ${
               activeTab === '/Black' 
                 ? 'bg-zinc-50 dark:bg-zinc-800 border-gray-200 dark:border-zinc-700' 
