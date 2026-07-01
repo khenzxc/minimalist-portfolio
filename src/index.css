@@ -53,3 +53,16 @@ html.dark ::-webkit-scrollbar-track {
 .animate-hologram-scan {
   animation: scanline-movement 4s linear infinite;
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-pure {
+  animation: marquee 20s linear infinite;
+}

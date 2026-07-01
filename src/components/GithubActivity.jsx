@@ -148,19 +148,6 @@ export default function GithubActivity() {
                     });
                   }}
                 />
-                
-                {/* Custom Less / More Indicator sa Ilalim */}
-                <div className="flex justify-end items-center gap-1 text-[11px] text-gray-400 dark:text-zinc-500 mt-2 select-none pr-2">
-                  <span>Less</span>
-                  <div className="flex gap-1 mx-1">
-                    <span className="w-2.5 h-2.5 bg-[#EBEDF0] dark:bg-[#27272A] rounded-sm"></span>
-                    <span className="w-2.5 h-2.5 bg-[#9BE9A8] dark:bg-[#A3E635] rounded-sm"></span>
-                    <span className="w-2.5 h-2.5 bg-[#40C463] dark:bg-[#4ADE80] rounded-sm"></span>
-                    <span className="w-2.5 h-2.5 bg-[#30A14E] dark:bg-[#22C55E] rounded-sm"></span>
-                    <span className="w-2.5 h-2.5 bg-[#216E39] dark:bg-[#15803D] rounded-sm"></span>
-                  </div>
-                  <span>More</span>
-                </div>
               </div>
 
               {/* 📅 KANANG GILID: Year Selector */}
