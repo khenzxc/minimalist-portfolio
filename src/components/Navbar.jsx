@@ -12,10 +12,10 @@ export default function Navbar({ viewMode, setViewMode }) {
         if (location.pathname === path) {
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth' // "smooth" para may konting sliding effect, o "instant" para biglang akyat
+                behavior: 'smooth' // "smooth" para sliding effect, o "instant" para biglang akyat
             });
         }
-        setIsMenuOpen(false); // Isasara rin nito ang mobile dropdown kapag nag-click
+        setIsMenuOpen(false); // Isasara ang mobile menu kapag nag-click ng kahit anong link
     };
 
     return (
@@ -44,6 +44,7 @@ export default function Navbar({ viewMode, setViewMode }) {
                 {/* Brand/Logo Area & Desktop Nav */}
                 <div className="flex items-center gap-4">
                     <div className="flex items-center tracking-tight">
+                        {/* 🏠 Ang mismong Logo na ang link papuntang Home Page (Desktop at Mobile) */}
                         <Link 
                             to="/" 
                             onClick={() => handleLinkClick('/')}
@@ -60,30 +61,30 @@ export default function Navbar({ viewMode, setViewMode }) {
                     {/* Desktop Navigation Links */}
                     <nav className="hidden lg:flex items-center gap-6 text-xs font-bold text-gray-500 dark:text-zinc-400 uppercase tracking-tight">
                         <Link 
-                            to="/" 
-                            onClick={() => handleLinkClick('/')}
-                            className={`hover:text-black dark:hover:text-white transition-colors ${location.pathname === '/' ? 'text-black dark:text-white font-black' : ''}`}
+                            to="/about" 
+                            onClick={() => handleLinkClick('/about')}
+                            className={`hover:text-black dark:hover:text-white transition-colors decoration-2 underline-offset-4 ${location.pathname === '/about' ? 'text-black dark:text-white font-black underline' : ''}`}
                         >
                             About
                         </Link>
                         <Link 
                             to="/projects" 
                             onClick={() => handleLinkClick('/projects')}
-                            className={`hover:text-black dark:hover:text-white transition-colors ${location.pathname === '/projects' ? 'text-black dark:text-white font-black' : ''}`}
+                            className={`hover:text-black dark:hover:text-white transition-colors decoration-2 underline-offset-4 ${location.pathname === '/projects' ? 'text-black dark:text-white font-black underline' : ''}`}
                         >
                             Projects
                         </Link>
                         <Link 
                             to="/experience" 
                             onClick={() => handleLinkClick('/experience')}
-                            className={`hover:text-black dark:hover:text-white transition-colors ${location.pathname === '/experience' ? 'text-black dark:text-white font-black' : ''}`}
+                            className={`hover:text-black dark:hover:text-white transition-colors decoration-2 underline-offset-4 ${location.pathname === '/experience' ? 'text-black dark:text-white font-black underline' : ''}`}
                         >
                             Experience
                         </Link>
                         <Link 
                             to="/collections" 
                             onClick={() => handleLinkClick('/collections')}
-                            className={`hover:text-black dark:hover:text-white transition-colors ${location.pathname === '/collections' ? 'text-black dark:text-white font-black' : ''}`}
+                            className={`hover:text-black dark:hover:text-white transition-colors decoration-2 underline-offset-4 ${location.pathname === '/collections' ? 'text-black dark:text-white font-black underline' : ''}`}
                         >
                             Collections
                         </Link>
@@ -120,10 +121,11 @@ export default function Navbar({ viewMode, setViewMode }) {
             {isMenuOpen && (
                 <div className="lg:hidden w-full bg-white dark:bg-zinc-950 border-t border-gray-100 dark:border-zinc-900 px-4 py-4 space-y-3 shadow-inner uppercase tracking-tight font-bold text-xs">
                     <nav className="flex flex-col space-y-3 text-gray-500 dark:text-zinc-400">
-                        <Link to="/" onClick={() => handleLinkClick('/')} className={`hover:text-black dark:hover:text-white py-1 transition-colors ${location.pathname === '/' ? 'text-black dark:text-white' : ''}`}>About</Link>
-                        <Link to="/projects" onClick={() => handleLinkClick('/projects')} className={`hover:text-black dark:hover:text-white py-1 transition-colors ${location.pathname === '/projects' ? 'text-black dark:text-white' : ''}`}>Projects</Link>
-                        <Link to="/experience" onClick={() => handleLinkClick('/experience')} className={`hover:text-black dark:hover:text-white py-1 transition-colors ${location.pathname === '/experience' ? 'text-black dark:text-white' : ''}`}>Experience</Link>
-                        <Link to="/collections" onClick={() => handleLinkClick('/collections')} className={`hover:text-black dark:hover:text-white py-1 transition-colors ${location.pathname === '/collections' ? 'text-black dark:text-white' : ''}`}>Collections</Link>
+                        {/* 🌟 Tinanggal na ang "Home" text link dito. Logo na lang ang gagamitin ng user. */}
+                        <Link to="/about" onClick={() => handleLinkClick('/about')} className={`hover:text-black dark:hover:text-white py-1 transition-colors decoration-2 underline-offset-4 ${location.pathname === '/about' ? 'text-black dark:text-white underline' : ''}`}>About</Link>
+                        <Link to="/projects" onClick={() => handleLinkClick('/projects')} className={`hover:text-black dark:hover:text-white py-1 transition-colors decoration-2 underline-offset-4 ${location.pathname === '/projects' ? 'text-black dark:text-white underline' : ''}`}>Projects</Link>
+                        <Link to="/experience" onClick={() => handleLinkClick('/experience')} className={`hover:text-black dark:hover:text-white py-1 transition-colors decoration-2 underline-offset-4 ${location.pathname === '/experience' ? 'text-black dark:text-white underline' : ''}`}>Experience</Link>
+                        <Link to="/collections" onClick={() => handleLinkClick('/collections')} className={`hover:text-black dark:hover:text-white py-1 transition-colors decoration-2 underline-offset-4 ${location.pathname === '/collections' ? 'text-black dark:text-white underline' : ''}`}>Collections</Link>
                     </nav>
                     
                     <div className="pt-2 sm:hidden">

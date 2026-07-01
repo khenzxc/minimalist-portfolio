@@ -1,4 +1,5 @@
 import React from 'react';
+import { AlertTriangle } from 'lucide-react'; // Gagamit tayo ng Triangle icon mula sa lucide-react
 
 export default function UnderDevelopment({ title, subtitle, moduleName, theme = 'dark' }) {
   const isDark = theme === 'dark';
@@ -6,7 +7,6 @@ export default function UnderDevelopment({ title, subtitle, moduleName, theme = 
   return (
     <div 
       id="under-development" 
-      // 👈 TINANGGAL ANG `border-b border-gray-200 dark:border-zinc-800` DITO
       className={`w-full py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col items-center justify-center min-h-[420px] transition-colors duration-200 ${
         isDark ? 'bg-zinc-950 text-white' : 'bg-white dark:bg-zinc-900 text-gray-900 dark:text-white'
       }`}
@@ -17,7 +17,7 @@ export default function UnderDevelopment({ title, subtitle, moduleName, theme = 
         isDark ? 'bg-[radial-gradient(#FFF_1.2px,transparent_1.2px)]' : 'bg-[radial-gradient(#000_1.5px,transparent_1.5px)] dark:bg-[radial-gradient(#FFF_1.2px,transparent_1.2px)]'
       } [background-size:24px_24px]`} />
 
-      <div className="relative z-10 text-center max-w-xl space-y-4">
+      <div className="relative z-10 text-center max-w-xl space-y-5">
         {/* Animated System Status Badge */}
         <div className={`inline-flex items-center gap-2 border font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full ${
           isDark 
@@ -25,7 +25,7 @@ export default function UnderDevelopment({ title, subtitle, moduleName, theme = 
             : 'bg-blue-500/10 border-blue-500/20 text-blue-600'
         }`}>
           <span className={`h-1.5 w-1.5 rounded-full animate-pulse ${isDark ? 'bg-amber-500' : 'bg-blue-500'}`} />
-          System: {moduleName || 'Core'} // Status: Pending
+          System: {moduleName || 'Core'} {/* Status: Pending */}
         </div>
 
         {/* Dynamic Section Title */}
@@ -38,22 +38,26 @@ export default function UnderDevelopment({ title, subtitle, moduleName, theme = 
           {subtitle || '[DATA_LOCKED]: Compilation loops and architectural node parameters are currently being deployed.'}
         </p>
 
-        {/* Micro Tech Loader Decoration */}
-        <div className="pt-6 max-w-xs mx-auto">
-          <div className={`w-full border rounded-xl p-4 text-left font-mono text-[10px] space-y-1.5 transition-colors duration-200 ${
+        {/* ⚠️ Triangle Warning Box (Pinalit sa Loading Loader) */}
+        <div className="pt-4 max-w-xs mx-auto">
+          <div className={`border rounded-xl p-5 flex flex-col items-center justify-center gap-3 transition-colors duration-200 ${
             isDark 
-              ? 'bg-zinc-900/60 border-zinc-800 text-gray-500' 
-              : 'bg-gray-50 dark:bg-zinc-800/60 border-gray-200 dark:border-zinc-800 text-gray-400 dark:text-zinc-500'
+              ? 'bg-zinc-900/40 border-amber-500/20 text-amber-400/80' 
+              : 'bg-amber-500/5 border-amber-500/20 text-amber-600'
           }`}>
-            <div className={`flex justify-between ${isDark ? 'text-amber-400/70' : 'text-blue-500/70'}`}>
-              <span>&gt; initializing_buffer_stream...</span>
-              <span className="animate-pulse font-bold">LOADING</span>
+            {/* Ang Triangle '!' Icon */}
+            <div className={`p-2 rounded-full animate-pulse ${isDark ? 'bg-amber-500/10' : 'bg-amber-500/10'}`}>
+              <AlertTriangle size={24} strokeWidth={2.5} />
             </div>
-            <div className={`w-full h-1.5 rounded-full overflow-hidden mt-1 ${isDark ? 'bg-zinc-800' : 'bg-gray-200 dark:bg-zinc-700'}`}>
-              <div className={`h-full w-[60%] animate-pulse ${isDark ? 'bg-amber-500' : 'bg-blue-500'}`} />
+            
+            {/* Status Footer Text */}
+            <div className="text-center font-mono text-[10px] uppercase tracking-wider space-y-0.5">
+              <span className="block font-bold">Access Restricted</span>
+              <span className={isDark ? 'text-zinc-500' : 'text-gray-400 dark:text-zinc-500'}>Module under construction</span>
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   );
