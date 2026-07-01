@@ -81,7 +81,6 @@ export function TechCapabilities() {
                   {cat.title}
                 </span>
                 
-                {/* Binago ang gap mula gap-4 patungong gap-5 para maaliwalas tingnan kahit malaki ang icons */}
                 <div className="flex flex-wrap gap-5 items-center">
                   {cat.items.map((tech) => (
                     <div
@@ -92,8 +91,11 @@ export function TechCapabilities() {
                       <img
                         src={`https://unpkg.com/simple-icons@v11/icons/${tech.slug}.svg`}
                         alt={tech.name}
-                        // 🌟 Ginawang w-9 h-9 mula sa dating w-7 h-7 para mas malaki at kapansin-pansin
-                        className="w-9 h-9 object-contain opacity-80 grayscale brightness-50 dark:invert dark:brightness-200 dark:opacity-70 transition-all duration-200 group-hover:grayscale-0 group-hover:opacity-100 group-hover:brightness-100 dark:group-hover:invert-0"
+                        // 🛠️ FIX: Pinanatili ang dark mode styles kahit i-hover para hindi magbago ang kulay.
+                        className="w-9 h-9 object-contain opacity-80 grayscale brightness-50 transition-all duration-200 
+                                   hover:grayscale-0 hover:opacity-100 hover:brightness-100 
+                                   dark:invert dark:brightness-200 dark:opacity-70 
+                                   dark:group-hover:invert dark:group-hover:brightness-200 dark:group-hover:opacity-70"
                         onError={(e) => {
                           if (!e.target.src.includes('jsdelivr')) {
                             e.target.src = `https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/${tech.slug}.svg`;
