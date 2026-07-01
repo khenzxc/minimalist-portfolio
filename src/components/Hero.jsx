@@ -23,7 +23,7 @@ export default function Hero() {
           {/* Header Title Metadata Block */}
           {/* 4. Dinagdagan ng `dark:text-zinc-400` ang kategorya */}
           <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-zinc-400 mb-6 md:mb-8 uppercase tracking-tight transition-colors duration-200">
-            Identity / Core
+            Profile Overview
           </h3>
 
           <div className="space-y-4 md:space-y-6 max-w-xl">

@@ -91,11 +91,11 @@ export default function ProjectShowcase() {
             ))}
           </div>
 
-          {/* 🎯 SEEMORE PROJECTS: Ginagamit ang `to="/projects"` para sa instant routing */}
+          {/* 🎯 SEEMORE PROJECTS: Ginawang Dark Background (Bumabaligtad kapag Dark/Light Mode) */}
           <div className="mt-8 flex justify-center">
             <Link 
               to="/projects" 
-              className="w-full max-w-xs bg-gray-50 dark:bg-zinc-800/40 hover:bg-gray-100 dark:hover:bg-zinc-800 border border-gray-200 dark:border-zinc-800/80 text-gray-900 dark:text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm hover:scale-[1.01] text-center"
+              className="w-full max-w-xs bg-zinc-900 hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 border border-zinc-800 dark:border-zinc-200 text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md hover:scale-[1.01] text-center"
             >
               See More <Plus size={14} />
             </Link>
@@ -146,11 +146,11 @@ export default function ProjectShowcase() {
               </div>
             ))}
 
-            {/* 🎯 SEEMORE RECOGNITIONS: Naka-link sa iyong `/collections` route */}
+            {/* 🎯 SEEMORE RECOGNITIONS: Ginawang Dark Background para pantay sa disenyo */}
             <div className="pt-2 flex justify-center">
               <Link 
                 to="/collections" 
-                className="w-full bg-gray-50 dark:bg-zinc-800/40 hover:bg-gray-100 dark:hover:bg-zinc-800 border border-gray-200 dark:border-zinc-800/80 text-gray-900 dark:text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm hover:scale-[1.01] text-center"
+                className="w-full bg-zinc-900 hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 border border-zinc-800 dark:border-zinc-200 text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md hover:scale-[1.01] text-center"
               >
                 See More <Plus size={14} />
               </Link>
