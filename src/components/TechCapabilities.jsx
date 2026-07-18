@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react'; // 🛠️ Idinagdag ang useState para sa modal state
 import { Terminal, Cpu, ArrowUpRight } from 'lucide-react';
 
 export function TechCapabilities() {
+  // 🟢 State para malaman kung nakabukas ang pop-up ng profile picture
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const categories = [
     {
       title: "Languages",
@@ -80,7 +83,7 @@ export function TechCapabilities() {
                 >
                   {cat.title}
                 </span>
-                
+
                 <div className="flex flex-wrap gap-5 items-center">
                   {cat.items.map((tech) => (
                     <div
@@ -91,14 +94,14 @@ export function TechCapabilities() {
                       <img
                         src={`https://unpkg.com/simple-icons@v11/icons/${tech.slug}.svg`}
                         alt={tech.name}
-                        // 🛠️ FIX: Pinanatili ang dark mode styles kahit i-hover para hindi magbago ang kulay.
                         className="w-9 h-9 object-contain opacity-80 grayscale brightness-50 transition-all duration-200 
                                    hover:grayscale-0 hover:opacity-100 hover:brightness-100 
                                    dark:invert dark:brightness-200 dark:opacity-70 
                                    dark:group-hover:invert dark:group-hover:brightness-200 dark:group-hover:opacity-70"
                         onError={(e) => {
-                          if (!e.target.src.includes('jsdelivr')) {
-                            e.target.src = `https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/${tech.slug}.svg`;
+                          const target = e.target;
+                          if (!target.src.includes('jsdelivr')) {
+                            target.src = `https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/${tech.slug}.svg`;
                           }
                         }}
                       />
@@ -115,7 +118,7 @@ export function TechCapabilities() {
           <span className="text-[11px] font-medium tracking-[0.15em] text-gray-400 dark:text-zinc-500 uppercase block mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             In progress
           </span>
-          
+
           <div className="bg-[#1A1A1A] dark:bg-zinc-950 text-white p-5 rounded-xl font-mono text-xs space-y-3 max-w-sm border border-gray-800 dark:border-zinc-850 shadow-md transition-colors duration-200">
             <div className="flex items-center justify-between text-gray-500 dark:text-zinc-600 text-[9px] tracking-wider">
               <span>LEARNING_MONITOR</span>
@@ -145,7 +148,32 @@ export function TechCapabilities() {
             Description
           </h3>
 
-          <div className="space-y-5 text-[15px] text-gray-500 dark:text-zinc-400 font-normal leading-[1.7] tracking-tight max-w-2xl">
+          {/* 👤 PROFILE IMAGE HOLDER (May trigger na para mag-open ang modal) */}
+          <div className="flex items-center gap-5 mb-8 pb-6 border-b border-gray-100 dark:border-zinc-850">
+            <div 
+              onClick={() => setIsModalOpen(true)}
+              className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gray-50 dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 overflow-hidden shrink-0 shadow-sm group relative cursor-pointer active:scale-95 transition-all duration-150"
+            >
+              <img
+                src="profile.jpg"
+                alt="Profile Avatar"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              {/* Subtle active indicator dot */}
+              <span className="absolute bottom-1.5 right-1.5 w-3 h-3 bg-emerald-500 border-2 border-white dark:border-zinc-900 rounded-full shadow-sm"></span>
+            </div>
+
+            <div>
+              <h4 className="text-base font-bold text-gray-900 dark:text-white leading-tight">
+                Khen Vonoe D. Gabriel
+              </h4>
+              <p className="text-xs text-gray-400 dark:text-zinc-500 mt-1 font-mono">
+                @khenzxc / dev
+              </p>
+            </div>
+          </div>
+
+          <div className="space-y-5 text-[15px] text-gray-500 dark:text-zinc-400 font-normal leading-[1.7] tracking-tight max-w-2xl text-justify">
             <p>
               I am a <span className="text-gray-900 dark:text-zinc-200 font-semibold">3rd Year Information Systems student at Bulacan State University</span> with a passion for building modern, user-friendly web applications and business systems. I enjoy turning ideas into practical solutions through clean, maintainable code and intuitive user experiences.
             </p>
@@ -154,9 +182,6 @@ export function TechCapabilities() {
               I primarily work with <span className="text-blue-600 dark:text-blue-400 font-semibold">React, Node.js, Express, and MySQL</span> to develop full-stack web applications. I also use AI as a development tool to improve productivity, explore different solutions, and accelerate learning while continuously strengthening my software development skills.
             </p>
 
-            <p>
-              As a <span className="text-gray-900 dark:text-zinc-200 font-semibold">Co-Founder of NovaTech Labs</span>, I collaborate on designing and developing web-based systems, focusing on creating scalable, reliable, and efficient solutions from planning to deployment.
-            </p>
           </div>
         </div>
 
@@ -170,6 +195,32 @@ export function TechCapabilities() {
           </button>
         </div>
       </div>
+
+      {/* 💥 LIGHTBOX MODAL OVERLAY */}
+      {isModalOpen && (
+        <div 
+          onClick={() => setIsModalOpen(false)} 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm cursor-zoom-out"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()} 
+            className="relative max-w-sm sm:max-w-md w-full aspect-square bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl animate-in fade-in zoom-in-95 duration-150"
+          >
+            <img 
+              src="profile.jpg" 
+              alt="Profile Full View" 
+              className="w-full h-full object-cover"
+            />
+            
+            <button 
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 bg-black/40 hover:bg-black/60 text-white px-3 py-1.5 rounded-xl backdrop-blur-md transition-colors text-xs font-sans font-medium"
+            >
+              ✕ Close
+            </button>
+          </div>
+        </div>
+      )}
 
     </section>
   );
