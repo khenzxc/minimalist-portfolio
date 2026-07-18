@@ -148,8 +148,8 @@ export function TechCapabilities() {
             Description
           </h3>
 
-          {/* 👤 PROFILE IMAGE HOLDER (May trigger na para mag-open ang modal) */}
-          <div className="flex items-center gap-5 mb-8 pb-6 border-b border-gray-100 dark:border-zinc-850">
+          {/* 👤 PROFILE IMAGE HOLDER (Tinanggal ang border-b at pb-6 para mawala ang linya) */}
+          <div className="flex items-center gap-5 mb-8">
             <div 
               onClick={() => setIsModalOpen(true)}
               className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gray-50 dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 overflow-hidden shrink-0 shadow-sm group relative cursor-pointer active:scale-95 transition-all duration-150"
