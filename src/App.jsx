@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer'; 
 import Home from './pages/Home'; 
 import Project from './pages/Project'; 
+import About from './pages/About'; // 👈 Inimport ang bagong About component
 import Collections from './pages/Collection'; 
 import UnderDevelopment from './components/UnderDevelopment'; 
 import ScrollToTop from './components/ScrollToTop';
@@ -26,18 +27,8 @@ export default function App() {
               {/* 🏠 Home Page Route */}
               <Route path="/" element={<Home />} />
 
-              {/* ℹ️ About Route (Inline UnderDevelopment tulad ng Experience) */}
-              <Route 
-                path="/about" 
-                element={
-                  <UnderDevelopment 
-                    title="About Me" 
-                    moduleName="About_Core_Index"
-                    subtitle="[ERR_EMPTY_INDEX]: Compiling personal background, technical skill sets, core philosophies, and personal bio records." 
-                    theme="light" 
-                  />
-                } 
-              />
+              {/* ℹ️ About Route (Aktibo na gamit ang bagong iOS/Twitter Creative Storytelling layout) */}
+              <Route path="/about" element={<About />} /> 
 
               {/* 🚀 Projects Page Route */}
               <Route path="/projects" element={<Project />} /> 

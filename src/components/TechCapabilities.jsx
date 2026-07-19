@@ -145,7 +145,7 @@ export function TechCapabilities() {
               letterSpacing: '-0.04em'
             }}
           >
-            Description
+            Profile 
           </h3>
 
           {/* 👤 PROFILE IMAGE HOLDER (Tinanggal ang border-b at pb-6 para mawala ang linya) */}

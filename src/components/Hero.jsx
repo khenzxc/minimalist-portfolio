@@ -25,7 +25,7 @@ export default function Hero() {
         <div>
           {/* Header Title Metadata Block */}
           <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-zinc-400 mb-6 md:mb-8 uppercase tracking-tight transition-colors duration-200">
-            Profile Overview
+            Overview
           </h3>
 
           <div className="space-y-4 md:space-y-6 max-w-xl">
