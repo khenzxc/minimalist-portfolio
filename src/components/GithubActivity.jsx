@@ -66,7 +66,6 @@ export default function GithubActivity() {
   return (
     <section 
       id="activity" 
-      // 👈 TINANGGAL ANG `border-b border-gray-200 dark:border-zinc-800` DITO
       className="bg-white dark:bg-zinc-900 p-8 md:p-12 transition-colors duration-200"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
@@ -76,7 +75,7 @@ export default function GithubActivity() {
         <h3 
           className="text-xl font-black text-gray-900 dark:text-white mb-8"
           style={{ 
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Plus Jakarta Sans', sans-serif",
             letterSpacing: '-0.04em'
           }}
         >
@@ -88,7 +87,7 @@ export default function GithubActivity() {
           <div>
             <span 
               className="text-[11px] font-medium tracking-[0.15em] text-gray-400 dark:text-zinc-500 uppercase block mb-1" 
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
               Heatmap
             </span>
@@ -161,6 +160,7 @@ export default function GithubActivity() {
                         ? 'bg-blue-600 text-white shadow-md font-black scale-105'
                         : 'text-gray-400 dark:text-zinc-500 hover:text-gray-900 dark:hover:text-zinc-200 hover:bg-gray-100 dark:hover:bg-zinc-800'
                     }`}
+                    style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                   >
                     {year}
                   </button>
@@ -189,6 +189,7 @@ export default function GithubActivity() {
         .CleanCalendar svg text {
           fill: #9CA3AF !important;
           font-weight: 500;
+          font-family: 'Plus Jakarta Sans', sans-serif !important;
         }
         .dark .CleanCalendar svg text {
           fill: #71717A !important;
@@ -196,6 +197,7 @@ export default function GithubActivity() {
         .CleanCalendar footer {
           margin-top: 8px !important;
           color: #9CA3AF !important;
+          font-family: 'Plus Jakarta Sans', sans-serif !important;
         }
         .dark .CleanCalendar footer {
           color: #71717A !important;

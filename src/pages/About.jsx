@@ -4,6 +4,7 @@ import { Heart, MessageSquare, Share2 } from 'lucide-react';
 export default function About() {
   const [displayMode, setDisplayMode] = useState('feed'); // 'feed' | 'matrix'
   const [likedLogs, setLikedLogs] = useState({});
+  const [topImageIndex, setTopImageIndex] = useState(0);
 
   const profileData = {
     name: "Khen Vonoe D. Gabriel",
@@ -15,33 +16,23 @@ export default function About() {
     avatar: "profile.jpg"
   };
 
+  const galleryImages = [
+    { id: 1, src: "khen.jpeg", alt: "Gym Rat" },
+    { id: 2, src: "khen2.jpeg", alt: "Coffe Boy" },
+    { id: 3, src: "khen3.jpeg", alt: "Best Team" },
+    { id: 4, src: "khen4.jpeg", alt: "Plaque" },
+    { id: 5, src: "khen5.jpeg", alt: "Best Day" }
+  ];
+
   const logs = [
     {
-      code: "01",
-      tag: "THE ORIGIN",
-      title: "Sparking Curiosity & First Compiling",
-      text: "It all started with a simple 'Inspect Element' tweak in high school. That was the moment I realized the digital world isn't a static environment, but a living ecosystem responding directly to our commands. Seeing an interface's structure shift layout or color because of my own input hooked me instantly—sparking a lasting drive to turn abstract concepts into tangible, responsive software platforms.",
-      systemNote: "SYS_INIT // Core curiosity vector engaged.",
-      timestamp: "2 hrs ago",
-      metrics: { likes: 42, comments: 5 }
-    },
-    {
-      code: "02",
-      tag: "THE RUNTIME",
-      title: "Academic Endurance & BulSU Logic Loops",
-      text: "As a 3rd Year Information Systems student at Bulacan State University, I discovered early on that pure interest means nothing without technical discipline. The university serves as my testing ground to deploy abstract concepts into actual production workflows. This sandbox forces me to dissect real relational database structures, map complex component states, and debug intricate logic trees until deep into the night.",
-      systemNote: "SYS_COMPILE // BSU_CORE_v3.0_stable",
-      timestamp: "Yesterday",
-      metrics: { likes: 88, comments: 12 }
-    },
-    {
-      code: "03",
-      tag: "THE WORKFLOW",
-      title: "Stack Architecture & Productivity Sync",
-      text: "Currently, my technical stack focuses on creating scalable web engineering components using a modern foundation—primarily React for building interactive UI, alongside Express and Node.js for reliable backend logic and MySQL for structured data pipelines. Beyond traditional programming paradigms, I systematically leverage generative AI environments (Claude, Gemini, Grok) as real-time development co-pilots to amplify overall output velocity.",
-      systemNote: "SYS_STACK // React + Node + MySQL pipeline active.",
-      timestamp: "3 days ago",
-      metrics: { likes: 104, comments: 18 }
+      code: "05",
+      tag: "THE HORIZON",
+      title: "Future Streams & Ecosystem Expansion",
+      text: "Engineering demands continuous adaptation to newer paradigms. Right now, I am aggressively expanding my domain experience into advanced Database Engineering patterns, complex Entity-Relationship transformations, and decentralized networks—specifically testing secure Smart Contracts via Solidity on the Base chain. My ultimate path is to become a highly versatile software architect bridging corporate core engines with web3 infrastructure.",
+      systemNote: "SYS_EVOLVE // Next-gen protocols stack tracking.",
+      timestamp: "2 weeks ago",
+      metrics: { likes: 120, comments: 24 }
     },
     {
       code: "04",
@@ -53,13 +44,31 @@ export default function About() {
       metrics: { likes: 56, comments: 3 }
     },
     {
-      code: "05",
-      tag: "THE HORIZON",
-      title: "Future Streams & Ecosystem Expansion",
-      text: "Engineering demands continuous adaptation to newer paradigms. Right now, I am aggressively expanding my domain experience into advanced Database Engineering patterns, complex Entity-Relationship transformations, and decentralized networks—specifically testing secure Smart Contracts via Solidity on the Base chain. My ultimate path is to become a highly versatile software architect bridging corporate core engines with web3 infrastructure.",
-      systemNote: "SYS_EVOLVE // Next-gen protocols stack tracking.",
-      timestamp: "2 weeks ago",
-      metrics: { likes: 120, comments: 24 }
+      code: "03",
+      tag: "THE WORKFLOW",
+      title: "Stack Architecture & Productivity Sync",
+      text: "Currently, my technical stack focuses on creating scalable web engineering components using a modern foundation—primarily React for building interactive UI, alongside Express and Node.js for reliable backend logic and MySQL for structured data pipelines. Beyond traditional programming paradigms, I systematically leverage generative AI environments (Claude, Gemini, Grok) as real-time development co-pilots to amplify overall output velocity.",
+      systemNote: "SYS_STACK // React + Node + MySQL pipeline active.",
+      timestamp: "3 days ago",
+      metrics: { likes: 104, comments: 18 }
+    },
+    {
+      code: "02",
+      tag: "THE RUNTIME",
+      title: "Academic Endurance & BulSU Logic Loops",
+      text: "As a 3rd Year Information Systems student at Bulacan State University, I discovered early on that pure interest means nothing without technical discipline. The university serves as my testing ground to deploy abstract concepts into actual production workflows. This sandbox forces me to dissect real relational database structures, map complex component states, and debug intricate logic trees until deep into the night.",
+      systemNote: "SYS_COMPILE // BSU_CORE_v3.0_stable",
+      timestamp: "Yesterday",
+      metrics: { likes: 88, comments: 12 }
+    },
+    {
+      code: "01",
+      tag: "THE ORIGIN",
+      title: "Sparking Curiosity & First Compiling",
+      text: "It all started with a simple 'Inspect Element' tweak in high school. That was the moment I realized the digital world isn't a static environment, but a living ecosystem responding directly to our commands. Seeing an interface's structure shift layout or color because of my own input hooked me instantly—sparking a lasting drive to turn abstract concepts into tangible, responsive software platforms.",
+      systemNote: "SYS_INIT // Core curiosity vector engaged.",
+      timestamp: "2 hrs ago",
+      metrics: { likes: 42, comments: 5 }
     }
   ];
 
@@ -67,7 +76,10 @@ export default function About() {
     setLikedLogs(prev => ({ ...prev, [code]: !prev[code] }));
   };
 
-  // PREMIUM SOLID SCALLOPED VERIFIED BADGE
+  const cycleStack = () => {
+    setTopImageIndex((prevIndex) => (prevIndex + 1) % galleryImages.length);
+  };
+
   const VerifiedBadge = () => (
     <svg 
       viewBox="0 0 24 24" 
@@ -86,7 +98,7 @@ export default function About() {
     >
       <div className="max-w-6xl mx-auto w-full">
         
-        {/* SECTION METADATA BLOCK */}
+        {/* HEADER BLOCK */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div className="space-y-2">
             <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest">Identity Stream</div>
@@ -95,7 +107,6 @@ export default function About() {
             </h2>
           </div>
           
-          {/* NAVIGATION CONTROLS */}
           <div className="flex gap-4 font-mono text-xs border-b border-zinc-100 dark:border-zinc-900 sm:border-0 pb-2 sm:pb-0">
             <button
               onClick={() => setDisplayMode('feed')}
@@ -112,22 +123,21 @@ export default function About() {
           </div>
         </div>
 
-        {/* PRIMARY TWO-COLUMN GRID */}
+        {/* MAIN LAYOUT GRID */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
           
-          {/* STATIC EDITORIAL PROFILE BAR */}
+          {/* PROFILE SIDEBAR */}
           <div className="md:col-span-1 space-y-6 md:sticky md:top-8">
             <div className="space-y-4">
               <div className="w-14 h-14 rounded-xl bg-zinc-100 dark:bg-zinc-900 overflow-hidden border border-zinc-200/60 dark:border-zinc-800">
                 <img 
                   src={profileData.avatar} 
                   alt={profileData.name} 
-                  className="w-full h-full object-cover opacity-95 hover:opacity-100 transition-opacity"
+                  className="w-full h-full object-cover opacity-95"
                   onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&h=150&q=80" }}
                 />
               </div>
               <div>
-                {/* NAME WITH SCALLOPED VERIFIED BADGE */}
                 <h2 className="text-base font-bold tracking-tight text-zinc-900 dark:text-white flex items-center gap-1.5">
                   <span>{profileData.name}</span>
                   <VerifiedBadge />
@@ -144,9 +154,69 @@ export default function About() {
                 <div>Core Stack: {profileData.specialization}</div>
               </div>
             </div>
+
+            {/* ================= ORGANIC SCATTER PHOTO STACK WIDGET ================= */}
+            <div className="pt-6 border-t border-zinc-100 dark:border-zinc-900 space-y-4">
+              <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-wider text-zinc-400">
+                <span>Instants Stack</span>
+                <span className="text-[10px] text-zinc-400 opacity-80">Tap to cycle ({topImageIndex + 1}/{galleryImages.length})</span>
+              </div>
+
+              {/* OVERFLOW VISIBLE WRAPPER FOR SCATTER VISUALS */}
+              <div className="w-full min-h-[320px] flex items-center justify-center select-none relative overflow-visible py-8">
+                {galleryImages.map((img, index) => {
+                  const relativeIndex = (index - topImageIndex + galleryImages.length) % galleryImages.length;
+                  
+                  // Only display top 3 images to prevent cluttered container weights
+                  if (relativeIndex > 2) return null;
+
+                  // Organic positions mirroring the reference screenshot scatter mechanics
+                  const transformStyles = [
+                    { scale: 1,     translateY: 0,   translateX: 0,   rotate: '-3deg' },
+                    { scale: 0.97,  translateY: -10, translateX: 14,  rotate: '7deg'  },
+                    { scale: 0.95,  translateY: -16, translateX: -12, rotate: '-7deg' }
+                  ];
+
+                  const currentStyle = transformStyles[relativeIndex] || { scale: 0.9, translateY: 0, translateX: 0, rotate: '0deg' };
+
+                  return (
+                    <div
+                      key={img.id}
+                      onClick={cycleStack}
+                      style={{
+                        zIndex: galleryImages.length - relativeIndex,
+                        transform: `scale(${currentStyle.scale}) translateY(${currentStyle.translateY}px) translateX(${currentStyle.translateX}px) rotate(${currentStyle.rotate})`,
+                        transition: 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease',
+                      }}
+                      className={`absolute w-[76%] aspect-square bg-white dark:bg-zinc-900 p-1 rounded-[16px] cursor-pointer origin-center
+                        ${relativeIndex === 0 
+                          ? 'shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] dark:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)]' 
+                          : 'shadow-[0_12px_24px_-8px_rgba(0,0,0,0.18)] dark:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.35)]'
+                        } border border-zinc-200/60 dark:border-zinc-800`}
+                    >
+                      {/* Internal Polaroid-styled Image Frame */}
+                      <div className="w-full h-full overflow-hidden rounded-[12px] bg-zinc-150 dark:bg-zinc-800 relative">
+                        <img 
+                          src={img.src} 
+                          alt={img.alt} 
+                          className="w-full h-full object-cover pointer-events-none select-none"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-tr from-black/5 via-transparent to-white/5 pointer-events-none" />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* STACK BOTTOM META METADATA */}
+              <div className="text-center font-mono text-[10px] text-zinc-400/80 tracking-tight pt-1">
+                {profileData.alias} • {topImageIndex === 0 ? 'Just now' : topImageIndex === 1 ? '2h ago' : '1d ago'}
+              </div>
+            </div>
+
           </div>
 
-          {/* MAIN COLUMN CORE CONTENT */}
+          {/* MAIN COLUMN CONTENT */}
           <div className="md:col-span-2 space-y-12">
             {displayMode === 'feed' ? (
               <div className="space-y-12">
@@ -155,7 +225,7 @@ export default function About() {
                   return (
                     <article key={log.code} className="space-y-3">
                       
-                      {/* ENTRY METADATA BLOCK */}
+                      {/* ENTRY METADATA */}
                       <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
                         <div className="flex items-center gap-2">
                           <span className="text-zinc-900 dark:text-zinc-200 font-medium">[{log.code}]</span>
@@ -165,7 +235,7 @@ export default function About() {
                         <span>{log.timestamp}</span>
                       </div>
 
-                      {/* ARTICLE ENGINE BLOCK */}
+                      {/* ARTICLE CONTENT */}
                       <div className="space-y-2">
                         <h3 className="text-[16px] font-bold tracking-tight text-zinc-900 dark:text-white">
                           {log.title}
@@ -175,13 +245,13 @@ export default function About() {
                         </p>
                       </div>
 
-                      {/* LOW-CONTRAST RUNTIME DATA FOOTNOTE */}
+                      {/* LOG SYSTEM FOOTNOTE */}
                       <div className="font-mono text-[11px] text-zinc-400/60 pt-1 flex items-center gap-1.5">
                         <span className="w-1 h-1 rounded-full bg-zinc-200 dark:bg-zinc-800"></span>
                         <span>{log.systemNote}</span>
                       </div>
 
-                      {/* STRUCTURAL INTERACTION ELEMENTS */}
+                      {/* METRICS & FEEDBACK DECK */}
                       <div className="flex items-center gap-6 pt-2 text-xs font-mono text-zinc-400 border-b border-zinc-100 dark:border-zinc-900 pb-4">
                         <button 
                           onClick={() => handleLike(log.code)}
@@ -207,7 +277,7 @@ export default function About() {
                 })}
               </div>
             ) : (
-              /* RAW DATA STRUCTURAL FALLBACK */
+              /* ALTERNATIVE DISPLAY MODE */
               <div className="border border-zinc-100 dark:border-zinc-900 rounded-xl p-6 bg-zinc-50 dark:bg-zinc-900/10 text-zinc-500 dark:text-zinc-400 font-mono text-xs overflow-x-auto leading-relaxed">
                 <pre className="whitespace-pre-wrap">{JSON.stringify({ identity: profileData, operational_logs: logs }, null, 2)}</pre>
               </div>

@@ -21,7 +21,7 @@ export default function Navbar({ viewMode, setViewMode }) {
     return (
         <div 
             className="w-full bg-white dark:bg-zinc-950 border-b border-gray-200 dark:border-zinc-800 sticky top-0 z-50 transition-colors duration-200"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
         >
             {/* 1. Top Mini Status Ticker Bar */}
             <div className="w-full border-b border-gray-100 dark:border-zinc-900 h-9 px-4 sm:px-6 flex items-center justify-between text-[11px] text-gray-400 dark:text-zinc-500 font-mono tracking-tight bg-gray-50/40 dark:bg-zinc-900/20">
@@ -121,7 +121,6 @@ export default function Navbar({ viewMode, setViewMode }) {
             {isMenuOpen && (
                 <div className="lg:hidden w-full bg-white dark:bg-zinc-950 border-t border-gray-100 dark:border-zinc-900 px-4 py-4 space-y-3 shadow-inner uppercase tracking-tight font-bold text-xs">
                     <nav className="flex flex-col space-y-3 text-gray-500 dark:text-zinc-400">
-                        {/* 🌟 Tinanggal na ang "Home" text link dito. Logo na lang ang gagamitin ng user. */}
                         <Link to="/about" onClick={() => handleLinkClick('/about')} className={`hover:text-black dark:hover:text-white py-1 transition-colors decoration-2 underline-offset-4 ${location.pathname === '/about' ? 'text-black dark:text-white underline' : ''}`}>About</Link>
                         <Link to="/projects" onClick={() => handleLinkClick('/projects')} className={`hover:text-black dark:hover:text-white py-1 transition-colors decoration-2 underline-offset-4 ${location.pathname === '/projects' ? 'text-black dark:text-white underline' : ''}`}>Projects</Link>
                         <Link to="/experience" onClick={() => handleLinkClick('/experience')} className={`hover:text-black dark:hover:text-white py-1 transition-colors decoration-2 underline-offset-4 ${location.pathname === '/experience' ? 'text-black dark:text-white underline' : ''}`}>Experience</Link>

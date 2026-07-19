@@ -67,7 +67,7 @@ export function TechCapabilities() {
           <h3
             className="text-xl font-black text-gray-900 dark:text-white mb-8"
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
               letterSpacing: '-0.04em'
             }}
           >
@@ -79,7 +79,7 @@ export function TechCapabilities() {
               <div key={cat.title} className="space-y-4">
                 <span
                   className="text-[11px] font-medium tracking-[0.15em] text-gray-400 dark:text-zinc-500 uppercase block"
-                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                 >
                   {cat.title}
                 </span>
@@ -115,7 +115,7 @@ export function TechCapabilities() {
 
         {/* IN PROGRESS BLOCK */}
         <div className="pt-8 mt-12 border-t border-gray-200 dark:border-zinc-800 transition-colors duration-200">
-          <span className="text-[11px] font-medium tracking-[0.15em] text-gray-400 dark:text-zinc-500 uppercase block mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <span className="text-[11px] font-medium tracking-[0.15em] text-gray-400 dark:text-zinc-500 uppercase block mb-3" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
             In progress
           </span>
 
@@ -141,14 +141,14 @@ export function TechCapabilities() {
           <h3
             className="text-xl font-black text-gray-900 dark:text-white mb-8"
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
               letterSpacing: '-0.04em'
             }}
           >
             Profile 
           </h3>
 
-          {/* 👤 PROFILE IMAGE HOLDER (Tinanggal ang border-b at pb-6 para mawala ang linya) */}
+          {/* 👤 PROFILE IMAGE HOLDER */}
           <div className="flex items-center gap-5 mb-8">
             <div 
               onClick={() => setIsModalOpen(true)}
@@ -159,7 +159,6 @@ export function TechCapabilities() {
                 alt="Profile Avatar"
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              {/* Subtle active indicator dot */}
               <span className="absolute bottom-1.5 right-1.5 w-3 h-3 bg-emerald-500 border-2 border-white dark:border-zinc-900 rounded-full shadow-sm"></span>
             </div>
 
@@ -189,7 +188,7 @@ export function TechCapabilities() {
         <div className="pt-12 mt-auto flex justify-end">
           <button
             className="bg-[#2D2D2D] hover:bg-black dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white text-white text-xs font-medium px-5 py-2.5 rounded-lg shadow-sm transition-all flex items-center gap-2 tracking-tight"
-            style={{ fontFamily: "'Inter', sans-serif" }}
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             Story <ArrowUpRight size={14} />
           </button>

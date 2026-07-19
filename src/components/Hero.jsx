@@ -12,7 +12,7 @@ export default function Hero() {
     <section
       id="about"
       className="grid grid-cols-1 lg:grid-cols-12 border-b border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 items-stretch transition-colors duration-200"
-      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
 
       {/* KALIWANG SIDE: Hologram Viewport View */}
@@ -35,7 +35,7 @@ export default function Hero() {
                 I'm
               </h1>
 
-              <h1 className="text-4xl md:text-5xl font-bold inline-flex flex-wrap items-center gap-2 md:gap-3 text-gray-900 dark:text-white leading-none uppercase transition-colors duration-200">
+              <h1 className="text-4xl md:text-5xl font-bold inline-flex flex-wrap items-center gap-2 md:gap-3 text-gray-900 dark:text-white leading-none  transition-colors duration-200">
                 <span>Khen Gabriel</span>
 
                 {/* Minimalist Solid Blue Verified Badge */}
@@ -66,7 +66,6 @@ export default function Hero() {
 
           {/* 💡 CAROUSEL LOOP CONTAINER */}
           <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
-            {/* Ginamit ang `animate-marquee-pure` mula sa iyong custom CSS at pinanatili ang control classes ng Tailwind */}
             <div className="flex w-max animate-marquee-pure gap-4 pr-4 hover:[animation-play-state:paused] cursor-pointer">
               
               {/* Unang Set ng Badges */}

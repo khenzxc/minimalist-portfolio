@@ -50,7 +50,7 @@ export default function ProjectShowcase() {
     <section 
       id="projects" 
       className="grid grid-cols-1 lg:grid-cols-12 bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-800 items-stretch transition-colors duration-200"
-      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       
       {/* ================= KANANG SIDE (FEATURED PROJECTS) ================= */}
@@ -58,7 +58,7 @@ export default function ProjectShowcase() {
         <div>
           <h3 
             className="text-xl font-black text-gray-900 dark:text-white mb-8"
-            style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em' }}
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", letterSpacing: '-0.04em' }}
           >
             Featured Projects
           </h3>
@@ -91,11 +91,12 @@ export default function ProjectShowcase() {
             ))}
           </div>
 
-          {/* 🎯 SEEMORE PROJECTS: Ginawang Dark Background (Bumabaligtad kapag Dark/Light Mode) */}
+          {/* 🎯 SEEMORE PROJECTS */}
           <div className="mt-8 flex justify-center">
             <Link 
               to="/projects" 
               className="w-full max-w-xs bg-zinc-900 hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 border border-zinc-800 dark:border-zinc-200 text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md hover:scale-[1.01] text-center"
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
               See More <Plus size={14} />
             </Link>
@@ -109,7 +110,7 @@ export default function ProjectShowcase() {
         {/* Featured Badges Block */}
         <div className="order-1 lg:order-2 pt-2 space-y-4 w-full mb-12 lg:mb-0">
           <div className="flex items-center justify-between mb-2">
-            <h4 className="text-sm font-bold text-gray-900 dark:text-zinc-100 flex items-center gap-2">
+            <h4 className="text-sm font-bold text-gray-900 dark:text-zinc-100 flex items-center gap-2" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
               <Award size={16} className="text-zinc-700 dark:text-zinc-300" /> Featured Badges & Recognition
             </h4>
           </div>
@@ -128,7 +129,7 @@ export default function ProjectShowcase() {
                     <span className="text-[9px] font-mono text-gray-400 dark:text-zinc-500 block tracking-wider uppercase leading-tight">
                       {badge.event}
                     </span>
-                    <span className="text-xs font-black text-gray-900 dark:text-white block tracking-tight mt-0.5">
+                    <span className="text-xs font-black text-gray-900 dark:text-white block tracking-tight mt-0.5" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                       {badge.title}
                     </span>
                   </div>
@@ -139,6 +140,7 @@ export default function ProjectShowcase() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-zinc-800 hover:bg-black dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white text-white text-[11px] font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap shadow-sm hover:scale-[1.02]"
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                 >
                   Details
                   <ExternalLink size={11} className="opacity-80" />
@@ -146,11 +148,12 @@ export default function ProjectShowcase() {
               </div>
             ))}
 
-            {/* 🎯 SEEMORE RECOGNITIONS: Ginawang Dark Background para pantay sa disenyo */}
+            {/* 🎯 SEEMORE RECOGNITIONS */}
             <div className="pt-2 flex justify-center">
               <Link 
                 to="/collections" 
                 className="w-full bg-zinc-900 hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 border border-zinc-800 dark:border-zinc-200 text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md hover:scale-[1.01] text-center"
+                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               >
                 See More <Plus size={14} />
               </Link>
@@ -162,7 +165,7 @@ export default function ProjectShowcase() {
         <div className="order-2 lg:order-1 w-full lg:mb-12">
           <h3 
             className="text-xl font-black text-gray-900 dark:text-white mb-8"
-            style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em' }}
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", letterSpacing: '-0.04em' }}
           >
             Brand Identity
           </h3>
@@ -177,6 +180,7 @@ export default function ProjectShowcase() {
                     ? 'bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-white font-bold' 
                     : 'hover:text-gray-600 dark:hover:text-zinc-300'
                 }`}
+                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               >
                 {tab}
               </button>
