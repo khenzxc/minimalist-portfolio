@@ -1,6 +1,4 @@
 import React, { useState } from 'react'; // 🛠️ Idinagdag ang useState para sa modal state
-// 🎯 IMPORT LINK MULA SA REACT-ROUTER-DOM PARA SA NAVIGATION
-import { Link } from 'react-router-dom';
 import { Terminal, Cpu, ArrowUpRight } from 'lucide-react';
 
 export function TechCapabilities() {
@@ -186,15 +184,14 @@ export function TechCapabilities() {
           </div>
         </div>
 
-        {/* 🎯 ACTION LINK (PINALITAN MULA SA BUTTON PATUNGO SA LINK COMPONENT) */}
+        {/* ACTION BUTTON */}
         <div className="pt-12 mt-auto flex justify-end">
-          <Link
-            to="/about"
+          <button
             className="bg-[#2D2D2D] hover:bg-black dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white text-white text-xs font-medium px-5 py-2.5 rounded-lg shadow-sm transition-all flex items-center gap-2 tracking-tight"
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             Story <ArrowUpRight size={14} />
-          </Link>
+          </button>
         </div>
       </div>
 
