@@ -95,27 +95,28 @@ export default function ProjectShowcase() {
 
                 {/* ================= DETAILS POPUP DECK ================= */}
                 {openDetailsIdx === idx && (
-                  <div className="absolute inset-x-4 bottom-4 z-20 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md p-6 rounded-2xl border border-gray-200 dark:border-zinc-800/80 shadow-xl animate-in fade-in slide-in-from-bottom-3 duration-200">
-                    <div className="flex justify-between items-center gap-2 mb-2">
-                      {/* 💡 PINALAKI: Mula text-xs naging text-base */}
-                      <h4 className="text-base font-black text-gray-900 dark:text-white tracking-tight">
+                  <div className="absolute inset-x-3 bottom-3 sm:inset-x-4 sm:bottom-4 z-20 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-gray-200 dark:border-zinc-800/80 shadow-xl animate-in fade-in slide-in-from-bottom-3 duration-200 max-h-[85%] overflow-y-auto">
+                    <div className="flex justify-between items-center gap-2 mb-1.5 sm:mb-2">
+                      {/* 📱 Mobile: text-sm | 🖥️ Desktop: text-base */}
+                      <h4 className="text-sm sm:text-base font-black text-gray-900 dark:text-white tracking-tight">
                         {project.title}
                       </h4>
                       <button 
                         onClick={() => setOpenDetailsIdx(null)}
-                        className="text-gray-400 hover:text-gray-600 dark:hover:text-zinc-200 p-1 rounded-md transition-colors"
+                        className="text-gray-400 hover:text-gray-600 dark:hover:text-zinc-200 p-1 rounded-md transition-colors shrink-0"
                       >
-                        <X size={18} />
+                        <X size={16} className="sm:hidden" />
+                        <X size={18} className="hidden sm:block" />
                       </button>
                     </div>
-                    {/* 💡 PINALAKI: Mula text-[11px] naging text-sm, at leading-relaxed */}
-                    <p className="text-sm text-gray-700 dark:text-zinc-300 leading-relaxed mb-4 font-normal">
+                    {/* 📱 Mobile: text-xs, leading-normal | 🖥️ Desktop: text-sm, leading-relaxed */}
+                    <p className="text-xs sm:text-sm text-gray-700 dark:text-zinc-300 leading-normal sm:leading-relaxed mb-3 sm:mb-4 font-normal">
                       {project.description}
                     </p>
-                    {/* 💡 PINALAKI: Mula text-[9px] naging text-xs */}
-                    <div className="flex flex-wrap gap-2">
+                    {/* 📱 Mobile: text-[10px], gap-1.5 | 🖥️ Desktop: text-xs, gap-2 */}
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {project.tech.map((t, tIdx) => (
-                        <span key={tIdx} className="text-xs font-mono bg-gray-100 dark:bg-zinc-900 text-gray-800 dark:text-zinc-300 px-3 py-1 rounded-md border border-gray-200 dark:border-zinc-800">
+                        <span key={tIdx} className="text-[10px] sm:text-xs font-mono bg-gray-100 dark:bg-zinc-900 text-gray-800 dark:text-zinc-300 px-2 sm:px-3 py-0.5 sm:py-1 rounded-md border border-gray-200 dark:border-zinc-800">
                           {t}
                         </span>
                       ))}
@@ -205,7 +206,6 @@ export default function ProjectShowcase() {
                         <X size={14} />
                       </button>
                     </div>
-                    {/* 💡 PINALAKI: Naka-set na sa text-sm at may magandang line height */}
                     <p className="text-sm text-gray-700 dark:text-zinc-300 leading-relaxed mb-3">
                       {badge.description}
                     </p>
