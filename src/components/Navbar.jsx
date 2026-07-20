@@ -1,21 +1,35 @@
-import React, { useState } from 'react';
-import { ArrowUpRight, Menu, X } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { ArrowUpRight, Menu, X, Download, Eye, ChevronDown } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import DarkMode from './DarkMode';
 
 export default function Navbar({ viewMode, setViewMode }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isResumeDropdownOpen, setIsResumeDropdownOpen] = useState(false);
+    const dropdownRef = useRef(null);
     const location = useLocation();
 
-    // 🛠️ Function para i-handle ang scroll up kapag pinindot ang active page link
+    const resumePdfUrl = "/Gabriel-Resume.pdf"; // Palitan ito ng actual filename mo sa public folder
+
+    // I-handle ang pag-click sa labas ng dropdown para kusang masara ito
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsResumeDropdownOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
     const handleLinkClick = (path) => {
         if (location.pathname === path) {
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth' // "smooth" para sliding effect, o "instant" para biglang akyat
+                behavior: 'smooth'
             });
         }
-        setIsMenuOpen(false); // Isasara ang mobile menu kapag nag-click ng kahit anong link
+        setIsMenuOpen(false); 
     };
 
     return (
@@ -44,7 +58,6 @@ export default function Navbar({ viewMode, setViewMode }) {
                 {/* Brand/Logo Area & Desktop Nav */}
                 <div className="flex items-center gap-4">
                     <div className="flex items-center tracking-tight">
-                        {/* 🏠 Ang mismong Logo na ang link papuntang Home Page (Desktop at Mobile) */}
                         <Link 
                             to="/" 
                             onClick={() => handleLinkClick('/')}
@@ -97,10 +110,37 @@ export default function Navbar({ viewMode, setViewMode }) {
                     {/* Dark Mode Button */}
                     <DarkMode /> 
 
-                    {/* Resume Button */}
-                    <button className="hidden sm:flex bg-[#374151] hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 text-[11px] font-bold px-3.5 py-2.5 rounded-md transition-all items-center gap-1.5 shadow-sm uppercase tracking-tight">
-                        Resume <ArrowUpRight size={13} />
-                    </button>
+                    {/* INTERACTIVE DESKTOP RESUME DROPDOWN */}
+                    <div className="hidden sm:relative sm:block" ref={dropdownRef}>
+                        <button 
+                            onClick={() => setIsResumeDropdownOpen(!isResumeDropdownOpen)}
+                            className="bg-[#374151] hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 text-[11px] font-bold px-3.5 py-2.5 rounded-md transition-all flex items-center gap-1.5 shadow-sm uppercase tracking-tight"
+                        >
+                            Resume <ChevronDown size={12} className={`transition-transform duration-200 ${isResumeDropdownOpen ? 'rotate-180' : ''}`} />
+                        </button>
+
+                        {isResumeDropdownOpen && (
+                            <div className="absolute right-0 mt-2 w-44 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg shadow-lg py-1 z-50 text-xs font-semibold uppercase tracking-tight text-gray-700 dark:text-zinc-300">
+                                <a 
+                                    href={resumePdfUrl} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    onClick={() => setIsResumeDropdownOpen(false)}
+                                    className="flex items-center gap-2 px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors"
+                                >
+                                    <Eye size={14} /> View PDF
+                                </a>
+                                <a 
+                                    href={resumePdfUrl} 
+                                    download="Gabriel_Khen_Vonoe_Resume.pdf"
+                                    onClick={() => setIsResumeDropdownOpen(false)}
+                                    className="flex items-center gap-2 px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors border-t border-gray-100 dark:border-zinc-800"
+                                >
+                                    <Download size={14} /> Download PDF
+                                </a>
+                            </div>
+                        )}
+                    </div>
 
                     {/* Menu Button para sa Mobile */}
                     <button 
@@ -109,9 +149,9 @@ export default function Navbar({ viewMode, setViewMode }) {
                         aria-label="Toggle Menu"
                     >
                         {isMenuOpen ? (
-                            <X size={28} className="transition-transform duration-200 rotate-0" />
+                            <X size={28} />
                         ) : (
-                            <Menu size={28} className="transition-transform duration-200 rotate-0" />
+                            <Menu size={28} />
                         )}
                     </button>
                 </div>
@@ -119,7 +159,7 @@ export default function Navbar({ viewMode, setViewMode }) {
 
             {/* 3. Mobile Dropdown Menu Panel */}
             {isMenuOpen && (
-                <div className="lg:hidden w-full bg-white dark:bg-zinc-950 border-t border-gray-100 dark:border-zinc-900 px-4 py-4 space-y-3 shadow-inner uppercase tracking-tight font-bold text-xs">
+                <div className="lg:hidden w-full bg-white dark:bg-zinc-950 border-t border-gray-100 dark:border-zinc-900 px-4 py-4 space-y-4 shadow-inner uppercase tracking-tight font-bold text-xs">
                     <nav className="flex flex-col space-y-3 text-gray-500 dark:text-zinc-400">
                         <Link to="/about" onClick={() => handleLinkClick('/about')} className={`hover:text-black dark:hover:text-white py-1 transition-colors decoration-2 underline-offset-4 ${location.pathname === '/about' ? 'text-black dark:text-white underline' : ''}`}>About</Link>
                         <Link to="/projects" onClick={() => handleLinkClick('/projects')} className={`hover:text-black dark:hover:text-white py-1 transition-colors decoration-2 underline-offset-4 ${location.pathname === '/projects' ? 'text-black dark:text-white underline' : ''}`}>Projects</Link>
@@ -127,10 +167,23 @@ export default function Navbar({ viewMode, setViewMode }) {
                         <Link to="/collections" onClick={() => handleLinkClick('/collections')} className={`hover:text-black dark:hover:text-white py-1 transition-colors decoration-2 underline-offset-4 ${location.pathname === '/collections' ? 'text-black dark:text-white underline' : ''}`}>Collections</Link>
                     </nav>
                     
-                    <div className="pt-2 sm:hidden">
-                        <button className="w-full bg-[#374151] dark:bg-zinc-100 text-white dark:text-zinc-950 py-2.5 rounded-md flex items-center justify-center gap-1.5 text-xs font-bold transition-all">
-                            View Resume <ArrowUpRight size={13} />
-                        </button>
+                    {/* MOBILE RESUME ACTION LINKS */}
+                    <div className="pt-2 sm:hidden border-t border-gray-100 dark:border-zinc-900 space-y-2">
+                        <a 
+                            href={resumePdfUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-full bg-gray-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 py-2.5 rounded-md flex items-center justify-center gap-1.5 text-xs font-bold transition-all"
+                        >
+                            <Eye size={14} /> View Resume
+                        </a>
+                        <a 
+                            href={resumePdfUrl} 
+                            download="Gabriel_Khen_Vonoe_Resume.pdf"
+                            className="w-full bg-[#374151] dark:bg-zinc-100 text-white dark:text-zinc-950 py-2.5 rounded-md flex items-center justify-center gap-1.5 text-xs font-bold transition-all"
+                        >
+                            <Download size={14} /> Download Resume
+                        </a>
                     </div>
                 </div>
             )}

@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
 // 🎯 IMPORT LINK MULA SA REACT-ROUTER-DOM
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Award, ExternalLink, Code2, Presentation, Terminal, Plus } from 'lucide-react';
+import { ArrowUpRight, Award, ExternalLink, Code2, Presentation, Terminal, Plus, X } from 'lucide-react';
 
 export default function ProjectShowcase() {
   const [activeTab, setActiveTab] = useState('/White');
+  // State para ma-track kung anong project index ang kasalukuyang nakabukas ang details
+  const [openDetailsIdx, setOpenDetailsIdx] = useState(null);
+  // State para sa badges popup
+  const [openBadgeIdx, setOpenBadgeIdx] = useState(null);
 
   const projects = [
     {
       title: "Sagana Financial Architecture",
       bgClass: "bg-gradient-to-br from-cyan-950 via-slate-900 to-sky-950",
-      imageSrc: "./sagana.png"
+      imageSrc: "./sagana.png",
+      description: "A decentralized ecosystem structured to drive institutional-grade financial inclusion pipelines and scalable core ledger logic.",
+      tech: ["React", "Express", "Solidity", "Base Network"]
     },
     {
       title: "Danbhels Gym Management System",
       bgClass: "bg-gradient-to-br from-zinc-950 via-gray-900 to-neutral-950",
-      imageSrc: "./danbhels.png"
+      imageSrc: "./danbhels.png",
+      description: "Enterprise membership instrumentation tool featuring sub-routine tracking logs, point-of-sale mapping, and clean data isolation.",
+      tech: ["React", "Node.js", "MySQL", "TailwindCSS"]
     }
   ];
 
@@ -29,18 +37,21 @@ export default function ProjectShowcase() {
     {
       event: "PSITE RAITE HACKATHON PROGRAMMING CHALLENGE",
       title: "1st Runner Up",
+      description: "Achieved 1st Runner Up at the regional hackathon, designing and executing core algorithmic pathways under intense time-bound pressure.",
       icon: <Terminal size={18} className="text-zinc-400 group-hover:text-blue-400 transition-colors" />,
       certUrl: "#" 
     },
     {
       event: "PSITE RAITE HACKATHON PROGRAMMING",
       title: "Best Presentation",
+      description: "Recognized for the most articulate structural delivery, breaking down complex engineering schema into high-impact presentation dynamics.",
       icon: <Presentation size={18} className="text-zinc-400 group-hover:text-blue-400 transition-colors" />,
       certUrl: "#"
     },
     {
       event: "CODECHUM PROGRAMMING CHALLENGE",
       title: "National Competitor / Finalist",
+      description: "Advanced to the national finals among top academic programmers, demonstrating elite proficiency in backend data mapping and architecture.",
       icon: <Code2 size={18} className="text-zinc-400 group-hover:text-blue-400 transition-colors" />,
       certUrl: "#"
     }
@@ -82,8 +93,42 @@ export default function ProjectShowcase() {
                 
                 <div className="h-20 w-full pointer-events-none z-10" />
 
+                {/* ================= DETAILS POPUP DECK ================= */}
+                {openDetailsIdx === idx && (
+                  <div className="absolute inset-x-4 bottom-4 z-20 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md p-6 rounded-2xl border border-gray-200 dark:border-zinc-800/80 shadow-xl animate-in fade-in slide-in-from-bottom-3 duration-200">
+                    <div className="flex justify-between items-center gap-2 mb-2">
+                      {/* 💡 PINALAKI: Mula text-xs naging text-base */}
+                      <h4 className="text-base font-black text-gray-900 dark:text-white tracking-tight">
+                        {project.title}
+                      </h4>
+                      <button 
+                        onClick={() => setOpenDetailsIdx(null)}
+                        className="text-gray-400 hover:text-gray-600 dark:hover:text-zinc-200 p-1 rounded-md transition-colors"
+                      >
+                        <X size={18} />
+                      </button>
+                    </div>
+                    {/* 💡 PINALAKI: Mula text-[11px] naging text-sm, at leading-relaxed */}
+                    <p className="text-sm text-gray-700 dark:text-zinc-300 leading-relaxed mb-4 font-normal">
+                      {project.description}
+                    </p>
+                    {/* 💡 PINALAKI: Mula text-[9px] naging text-xs */}
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((t, tIdx) => (
+                        <span key={tIdx} className="text-xs font-mono bg-gray-100 dark:bg-zinc-900 text-gray-800 dark:text-zinc-300 px-3 py-1 rounded-md border border-gray-200 dark:border-zinc-800">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* CARD CONTROL ACTION PANEL */}
                 <div className="p-6 md:p-8 flex justify-end items-center z-10 mt-auto relative bg-gradient-to-t from-black/40 via-black/5 to-transparent w-full">
-                  <button className="bg-white/10 backdrop-blur-md hover:bg-white text-white hover:text-gray-900 border border-white/10 text-xs font-semibold px-4 py-2 rounded-full flex items-center gap-1.5 tracking-tight transition-all shadow-sm group-hover:scale-105">
+                  <button 
+                    onClick={() => setOpenDetailsIdx(openDetailsIdx === idx ? null : idx)}
+                    className="bg-white/10 backdrop-blur-md hover:bg-white text-white hover:text-gray-900 border border-white/10 text-xs font-semibold px-4 py-2 rounded-full flex items-center gap-1.5 tracking-tight transition-all shadow-sm group-hover:scale-105"
+                  >
                     Details <ArrowUpRight size={13} className="opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </button>
                 </div>
@@ -119,32 +164,61 @@ export default function ProjectShowcase() {
             {badges.map((badge, index) => (
               <div 
                 key={index} 
-                className="bg-gray-50 dark:bg-zinc-800/40 border border-gray-200 dark:border-zinc-800/80 rounded-xl p-4 flex items-center justify-between gap-4 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/70 transition-all shadow-sm group"
+                className="bg-gray-50 dark:bg-zinc-800/40 border border-gray-200 dark:border-zinc-800/80 rounded-xl p-4 flex flex-col relative overflow-hidden hover:bg-zinc-50/80 dark:hover:bg-zinc-800/70 transition-all shadow-sm group"
               >
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0 shadow-inner">
-                    {badge.icon}
+                <div className="flex items-center justify-between gap-4 w-full">
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0 shadow-inner">
+                      {badge.icon}
+                    </div>
+                    <div>
+                      <span className="text-[9px] font-mono text-gray-400 dark:text-zinc-500 block tracking-wider uppercase leading-tight">
+                        {badge.event}
+                      </span>
+                      <span className="text-xs font-black text-gray-900 dark:text-white block tracking-tight mt-0.5" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                        {badge.title}
+                      </span>
+                    </div>
                   </div>
-                  <div>
-                    <span className="text-[9px] font-mono text-gray-400 dark:text-zinc-500 block tracking-wider uppercase leading-tight">
-                      {badge.event}
-                    </span>
-                    <span className="text-xs font-black text-gray-900 dark:text-white block tracking-tight mt-0.5" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                      {badge.title}
-                    </span>
-                  </div>
+                  
+                  <button 
+                    onClick={() => setOpenBadgeIdx(openBadgeIdx === index ? null : index)}
+                    className="bg-zinc-800 hover:bg-black dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white text-white text-[11px] font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap shadow-sm hover:scale-[1.02]"
+                    style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                  >
+                    Details
+                    <ExternalLink size={11} className="opacity-80" />
+                  </button>
                 </div>
-                
-                <a 
-                  href={badge.certUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-zinc-800 hover:bg-black dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white text-white text-[11px] font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap shadow-sm hover:scale-[1.02]"
-                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-                >
-                  Details
-                  <ExternalLink size={11} className="opacity-80" />
-                </a>
+
+                {/* ================= BADGE DETAILS POPUP INLAY ================= */}
+                {openBadgeIdx === index && (
+                  <div className="mt-4 p-4 rounded-xl bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 shadow-md animate-in fade-in slide-in-from-top-2 duration-150">
+                    <div className="flex justify-between items-start gap-2 mb-1.5">
+                      <h5 className="text-[10px] font-bold text-gray-400 dark:text-zinc-500 uppercase font-mono">
+                        Event Scope & Details
+                      </h5>
+                      <button 
+                        onClick={() => setOpenBadgeIdx(null)}
+                        className="text-gray-400 hover:text-gray-600 dark:hover:text-zinc-200 p-0.5 rounded transition-colors"
+                      >
+                        <X size={14} />
+                      </button>
+                    </div>
+                    {/* 💡 PINALAKI: Naka-set na sa text-sm at may magandang line height */}
+                    <p className="text-sm text-gray-700 dark:text-zinc-300 leading-relaxed mb-3">
+                      {badge.description}
+                    </p>
+                    <a 
+                      href={badge.certUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline"
+                    >
+                      View Certification Link &rarr;
+                    </a>
+                  </div>
+                )}
               </div>
             ))}
 
@@ -221,5 +295,5 @@ export default function ProjectShowcase() {
       </div>
 
     </section>
-  );
+  ); 
 }
