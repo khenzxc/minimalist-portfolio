@@ -9,7 +9,7 @@ export default function Navbar({ viewMode, setViewMode }) {
     const dropdownRef = useRef(null);
     const location = useLocation();
 
-    const resumePdfUrl = "/Gabriel-Resume.pdf"; // Palitan ito ng actual filename mo sa public folder
+    const resumePdfUrl = "/Gabriel_Khen-Resume.pdf"; // Palitan ito ng actual filename mo sa public folder
 
     // I-handle ang pag-click sa labas ng dropdown para kusang masara ito
     useEffect(() => {
@@ -132,7 +132,7 @@ export default function Navbar({ viewMode, setViewMode }) {
                                 </a>
                                 <a 
                                     href={resumePdfUrl} 
-                                    download="Gabriel_Khen_Vonoe_Resume.pdf"
+                                    download="Gabriel_Khen-Resume.pdf"
                                     onClick={() => setIsResumeDropdownOpen(false)}
                                     className="flex items-center gap-2 px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors border-t border-gray-100 dark:border-zinc-800"
                                 >
@@ -179,7 +179,7 @@ export default function Navbar({ viewMode, setViewMode }) {
                         </a>
                         <a 
                             href={resumePdfUrl} 
-                            download="Gabriel_Khen_Vonoe_Resume.pdf"
+                            download="Gabriel_Khen-Resume.pdf"
                             className="w-full bg-[#374151] dark:bg-zinc-100 text-white dark:text-zinc-950 py-2.5 rounded-md flex items-center justify-center gap-1.5 text-xs font-bold transition-all"
                         >
                             <Download size={14} /> Download Resume
