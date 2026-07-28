@@ -14,7 +14,7 @@ export default function Navbar({ viewMode, setViewMode }) {
     const location = useLocation();
 
     const resumePdfUrl = "/Gabriel_Khen-Resume.pdf"; 
-    const GITHUB_USERNAME = "YOUR_GITHUB_USERNAME"; // 👈 PALITAN ITO NG GITHUB USERNAME MO (e.g. "kentlouiegabriel")
+    const GITHUB_USERNAME = "khenzxc"; // 👈 PALITAN ITO NG GITHUB USERNAME MO (e.g. "kentlouiegabriel")
 
     // 🐙 Fetch ng Live Stats mula sa Official GitHub REST API
     useEffect(() => {
