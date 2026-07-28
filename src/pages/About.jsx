@@ -9,10 +9,10 @@ export default function About() {
   const profileData = {
     name: "Khen Vonoe D. Gabriel",
     alias: "@khenzxc",
-    role: "Information Systems Engineer in Training",
+    role: "Aspiring Software Engineer",
     institution: "Bulacan State University",
     location: "Pulilan, PH",
-    specialization: "Full-Stack Architecture & AI Tooling Integrations",
+    specialization: "Web Development & AI Tooling Integrations",
     avatar: "profile.jpg"
   };
 
@@ -30,7 +30,6 @@ export default function About() {
       tag: "THE HORIZON",
       title: "Future Streams & Ecosystem Expansion",
       text: "Engineering demands continuous adaptation to newer paradigms. Right now, I am aggressively expanding my domain experience into advanced Database Engineering patterns, complex Entity-Relationship transformations, and decentralized networks—specifically testing secure Smart Contracts via Solidity on the Base chain. My ultimate path is to become a highly versatile software architect bridging corporate core engines with web3 infrastructure.",
-      systemNote: "SYS_EVOLVE // Next-gen protocols stack tracking.",
       timestamp: "2 weeks ago",
       metrics: { likes: 120, comments: 24 }
     },
@@ -39,7 +38,6 @@ export default function About() {
       tag: "THE PHILOSOPHY",
       title: "Human-Centric Code & UX Integrity",
       text: "I operate under the philosophy that software should not simply be constructed for machine execution, but designed for human interaction. Backend logic and clean visual design must act as a single unit to generate digital environments that are predictable, lightweight, and deeply empathetic to the person using them. Across my projects, priority is strictly placed on driving down response latency, implementing rigorous error handling routines, and preserving clear code isolation.",
-      systemNote: "SYS_UX // Accessibility loops operational.",
       timestamp: "1 week ago",
       metrics: { likes: 56, comments: 3 }
     },
@@ -48,7 +46,6 @@ export default function About() {
       tag: "THE WORKFLOW",
       title: "Stack Architecture & Productivity Sync",
       text: "Currently, my technical stack focuses on creating scalable web engineering components using a modern foundation—primarily React for building interactive UI, alongside Express and Node.js for reliable backend logic and MySQL for structured data pipelines. Beyond traditional programming paradigms, I systematically leverage generative AI environments (Claude, Gemini, Grok) as real-time development co-pilots to amplify overall output velocity.",
-      systemNote: "SYS_STACK // React + Node + MySQL pipeline active.",
       timestamp: "3 days ago",
       metrics: { likes: 104, comments: 18 }
     },
@@ -57,7 +54,6 @@ export default function About() {
       tag: "THE RUNTIME",
       title: "Academic Endurance & BulSU Logic Loops",
       text: "As a 3rd Year Information Systems student at Bulacan State University, I discovered early on that pure interest means nothing without technical discipline. The university serves as my testing ground to deploy abstract concepts into actual production workflows. This sandbox forces me to dissect real relational database structures, map complex component states, and debug intricate logic trees until deep into the night.",
-      systemNote: "SYS_COMPILE // BSU_CORE_v3.0_stable",
       timestamp: "Yesterday",
       metrics: { likes: 88, comments: 12 }
     },
@@ -66,7 +62,6 @@ export default function About() {
       tag: "THE ORIGIN",
       title: "Sparking Curiosity & First Compiling",
       text: "It all started with a simple 'Inspect Element' tweak in high school. That was the moment I realized the digital world isn't a static environment, but a living ecosystem responding directly to our commands. Seeing an interface's structure shift layout or color because of my own input hooked me instantly—sparking a lasting drive to turn abstract concepts into tangible, responsive software platforms.",
-      systemNote: "SYS_INIT // Core curiosity vector engaged.",
       timestamp: "2 hrs ago",
       metrics: { likes: 42, comments: 5 }
     }
@@ -83,7 +78,7 @@ export default function About() {
   const VerifiedBadge = () => (
     <svg 
       viewBox="0 0 24 24" 
-      className="w-[14px] h-[14px] text-blue-500 fill-current inline-block select-none flex-shrink-0 align-middle"
+      className="w-[18px] h-[18px] text-blue-500 fill-current inline-block select-none flex-shrink-0 align-middle"
       aria-label="Verified Account"
     >
       <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.99-3.818-3.99-.48 0-.941.1-1.353.277C14.774 2.535 13.493 1.5 12 1.5c-1.493 0-2.774 1.035-3.419 2.287-.412-.177-.873-.277-1.353-.277-2.109 0-3.818 1.78-3.818 3.99 0 .495.084.965.238 1.4-1.273.65-2.148 2.02-2.148 3.6 0 1.58.875 2.95 2.148 3.6-.154.435-.238.905-.238 1.4 0 2.21 1.71 4 3.818 4 .48 0 .941-.1 1.353-.277.645 1.251 1.926 2.287 3.419 2.287 1.493 0 2.774-1.036 3.419-2.287.412.177.873.277 1.353.277 2.109 0 3.818-1.79 3.818-4 0-.495-.084-.965-.238-1.4 1.273-.65 2.148-2.02 2.148-3.6zm-12.72 4.19l-3.95-3.95 1.48-1.48 2.47 2.47 6.2-6.2 1.49 1.49-7.69 7.67z" />
@@ -101,9 +96,9 @@ export default function About() {
         {/* HEADER BLOCK */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div className="space-y-2">
-            <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest">Identity Stream</div>
+            <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest">Profile</div>
             <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
-              Operational Logs
+              About Khen's
             </h2>
           </div>
           
@@ -129,7 +124,7 @@ export default function About() {
           {/* PROFILE SIDEBAR */}
           <div className="md:col-span-1 space-y-6 md:sticky md:top-8">
             <div className="space-y-4">
-              <div className="w-14 h-14 rounded-xl bg-zinc-100 dark:bg-zinc-900 overflow-hidden border border-zinc-200/60 dark:border-zinc-800">
+              <div className="w-24 h-24 rounded-2xl bg-zinc-100 dark:bg-zinc-900 overflow-hidden border border-zinc-200/60 dark:border-zinc-800 shadow-sm">
                 <img 
                   src={profileData.avatar} 
                   alt={profileData.name} 
@@ -138,20 +133,20 @@ export default function About() {
                 />
               </div>
               <div>
-                <h2 className="text-base font-bold tracking-tight text-zinc-900 dark:text-white flex items-center gap-1.5">
+                <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white flex items-center gap-2">
                   <span>{profileData.name}</span>
                   <VerifiedBadge />
                 </h2>
-                <p className="text-xs font-mono text-zinc-400 mt-0.5">{profileData.alias}</p>
+                <p className="text-sm font-mono text-zinc-400 mt-1">{profileData.alias}</p>
               </div>
             </div>
 
-            <div className="space-y-3 pt-4 border-t border-zinc-100 dark:border-zinc-900 text-xs text-zinc-500 dark:text-zinc-400 font-normal leading-relaxed">
-              <p>{profileData.role}</p>
-              <p className="text-zinc-400">{profileData.institution}</p>
-              <div className="pt-2 space-y-1 font-mono text-[11px] text-zinc-400">
-                <div>Location: {profileData.location}</div>
-                <div>Core Stack: {profileData.specialization}</div>
+            <div className="space-y-3 pt-4 border-t border-zinc-100 dark:border-zinc-900 text-sm text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed">
+              <p className="font-semibold text-zinc-900 dark:text-zinc-100">{profileData.role}</p>
+              <p className="text-zinc-500 dark:text-zinc-400">{profileData.institution}</p>
+              <div className="pt-2 space-y-1 font-mono text-xs text-zinc-400 font-normal">
+                <div>Location: <span className="text-zinc-600 dark:text-zinc-300">{profileData.location}</span></div>
+                <div>Core Stack: <span className="text-zinc-600 dark:text-zinc-300">{profileData.specialization}</span></div>
               </div>
             </div>
 
@@ -167,10 +162,8 @@ export default function About() {
                 {galleryImages.map((img, index) => {
                   const relativeIndex = (index - topImageIndex + galleryImages.length) % galleryImages.length;
                   
-                  // Only display top 3 images to prevent cluttered container weights
                   if (relativeIndex > 2) return null;
 
-                  // Organic positions mirroring the reference screenshot scatter mechanics
                   const transformStyles = [
                     { scale: 1,     translateY: 0,   translateX: 0,   rotate: '-3deg' },
                     { scale: 0.97,  translateY: -10, translateX: 14,  rotate: '7deg'  },
@@ -194,7 +187,6 @@ export default function About() {
                           : 'shadow-[0_12px_24px_-8px_rgba(0,0,0,0.18)] dark:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.35)]'
                         } border border-zinc-200/60 dark:border-zinc-800`}
                     >
-                      {/* Internal Polaroid-styled Image Frame */}
                       <div className="w-full h-full overflow-hidden rounded-[12px] bg-zinc-150 dark:bg-zinc-800 relative">
                         <img 
                           src={img.src} 
@@ -243,12 +235,6 @@ export default function About() {
                         <p className="text-[14px] md:text-[15px] text-zinc-500 dark:text-zinc-400 font-normal leading-[1.7] tracking-tight text-left whitespace-pre-line">
                           {log.text}
                         </p>
-                      </div>
-
-                      {/* LOG SYSTEM FOOTNOTE */}
-                      <div className="font-mono text-[11px] text-zinc-400/60 pt-1 flex items-center gap-1.5">
-                        <span className="w-1 h-1 rounded-full bg-zinc-200 dark:bg-zinc-800"></span>
-                        <span>{log.systemNote}</span>
                       </div>
 
                       {/* METRICS & FEEDBACK DECK */}

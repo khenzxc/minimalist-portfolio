@@ -170,17 +170,6 @@ export default function GithubActivity() {
             </div>
           </div>
 
-          {/* Technical Metadata Footer */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
-            <div className="bg-gray-50 dark:bg-zinc-800/30 border border-gray-200 dark:border-zinc-800 p-4 rounded-xl transition-colors duration-200">
-              <span className="text-[10px] font-mono text-gray-400 dark:text-zinc-500 block uppercase tracking-wider">// DATA_SOURCE</span>
-              <span className="text-xs font-bold text-gray-900 dark:text-zinc-200 block mt-1">GitHub REST Network</span>
-            </div>
-            <div className="bg-gray-50 dark:bg-zinc-800/30 border border-gray-200 dark:border-zinc-800 p-4 rounded-xl transition-colors duration-200">
-              <span className="text-[10px] font-mono text-gray-400 dark:text-zinc-500 block uppercase tracking-wider">// METRIC_YEAR</span>
-              <span className="text-xs font-bold text-gray-900 dark:text-zinc-200 block mt-1">{selectedYear} Engine Active</span>
-            </div>
-          </div>
 
         </div>
       </div>
