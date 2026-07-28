@@ -1,40 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowUpRight, Menu, X, Download, Eye, ChevronDown, FolderGit2, Users } from 'lucide-react';
+import { ArrowUpRight, Menu, X, Download, Eye, ChevronDown } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import DarkMode from './DarkMode';
 
 export default function Navbar({ viewMode, setViewMode }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isResumeDropdownOpen, setIsResumeDropdownOpen] = useState(false);
-    
-    // 🐙 State para sa official GitHub stats
-    const [githubStats, setGithubStats] = useState({ repos: null, followers: null });
-    
     const dropdownRef = useRef(null);
     const location = useLocation();
 
-    const resumePdfUrl = "/Gabriel_Khen-Resume.pdf"; 
-    const GITHUB_USERNAME = "khenzxc"; // 👈 PALITAN ITO NG GITHUB USERNAME MO (e.g. "kentlouiegabriel")
+    const resumePdfUrl = "/Gabriel_Khen-Resume.pdf"; // Palitan ito ng actual filename mo sa public folder
 
-    // 🐙 Fetch ng Live Stats mula sa Official GitHub REST API
-    useEffect(() => {
-        fetch(`https://api.github.com/users/${GITHUB_USERNAME}`)
-            .then((res) => {
-                if (!res.ok) throw new Error("GitHub user not found");
-                return res.json();
-            })
-            .then((data) => {
-                setGithubStats({
-                    repos: data.public_repos,
-                    followers: data.followers
-                });
-            })
-            .catch((err) => {
-                console.error("Error fetching GitHub stats:", err);
-            });
-    }, [GITHUB_USERNAME]);
-
-    // Close dropdown kapag nag-click sa labas
+    // I-handle ang pag-click sa labas ng dropdown para kusang masara ito
     useEffect(() => {
         function handleClickOutside(event) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -62,38 +39,16 @@ export default function Navbar({ viewMode, setViewMode }) {
         >
             {/* 1. Top Mini Status Ticker Bar */}
             <div className="w-full border-b border-gray-100 dark:border-zinc-900 h-9 px-4 sm:px-6 flex items-center justify-between text-[11px] text-gray-400 dark:text-zinc-500 font-mono tracking-tight bg-gray-50/40 dark:bg-zinc-900/20">
-                
-                {/* 🟢 SERVER STATUS (BUMALIK NA SA GREEN PULSE) */}
                 <div className="flex items-center gap-2 uppercase">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                     <span>Server status</span>
                 </div>
-                
-                {/* 🐙 LIVE GITHUB STATS DISPLAY (NATURAL MONOCHROME ICONS) */}
-                <div className="flex items-center gap-3 sm:gap-4 text-gray-600 dark:text-zinc-400 font-semibold">
-                    <a 
-                        href={`https://github.com/${GITHUB_USERNAME}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 hover:text-black dark:hover:text-white transition-colors"
-                        title="View GitHub Repositories"
-                    >
-                        <FolderGit2 size={13} className="text-gray-500 dark:text-zinc-400" />
-                        <span>Repos: {githubStats.repos !== null ? githubStats.repos : '...'}</span>
-                    </a>
-
-                    <span className="text-gray-300 dark:text-zinc-700">•</span>
-
-                    <a 
-                        href={`https://github.com/${GITHUB_USERNAME}?tab=followers`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 hover:text-black dark:hover:text-white transition-colors"
-                        title="View GitHub Followers"
-                    >
-                        <Users size={13} className="text-gray-500 dark:text-zinc-400" />
-                        <span>Followers: {githubStats.followers !== null ? githubStats.followers : '...'}</span>
-                    </a>
+                <div className="hidden sm:flex items-center gap-4 uppercase">
+                    <span>releases / tags</span>
+                    <span>•</span>
+                    <div className="flex items-center gap-2">
+                        <span>Like 11</span>
+                    </div>
                 </div>
             </div>
 
@@ -155,7 +110,7 @@ export default function Navbar({ viewMode, setViewMode }) {
                     {/* Dark Mode Button */}
                     <DarkMode /> 
 
-                    {/* Desktop Resume Dropdown */}
+                    {/* INTERACTIVE DESKTOP RESUME DROPDOWN */}
                     <div className="hidden sm:relative sm:block" ref={dropdownRef}>
                         <button 
                             onClick={() => setIsResumeDropdownOpen(!isResumeDropdownOpen)}
@@ -187,7 +142,7 @@ export default function Navbar({ viewMode, setViewMode }) {
                         )}
                     </div>
 
-                    {/* Mobile Menu Button */}
+                    {/* Menu Button para sa Mobile */}
                     <button 
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         className="lg:hidden p-3 -mr-3 text-gray-700 dark:text-zinc-300 hover:text-black dark:hover:text-white rounded-xl hover:bg-gray-100 dark:hover:bg-zinc-900 transition-all duration-200 active:scale-95 focus:outline-none"
@@ -212,7 +167,7 @@ export default function Navbar({ viewMode, setViewMode }) {
                         <Link to="/collections" onClick={() => handleLinkClick('/collections')} className={`hover:text-black dark:hover:text-white py-1 transition-colors decoration-2 underline-offset-4 ${location.pathname === '/collections' ? 'text-black dark:text-white underline' : ''}`}>Collections</Link>
                     </nav>
                     
-                    {/* Mobile Resume Action Links */}
+                    {/* MOBILE RESUME ACTION LINKS */}
                     <div className="pt-2 sm:hidden border-t border-gray-100 dark:border-zinc-900 space-y-2">
                         <a 
                             href={resumePdfUrl} 
