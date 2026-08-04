@@ -25,7 +25,7 @@ export default function UnderDevelopment({ title, subtitle, moduleName, theme = 
             : 'bg-blue-500/10 border-blue-500/20 text-blue-600'
         }`}>
           <span className={`h-1.5 w-1.5 rounded-full animate-pulse ${isDark ? 'bg-amber-500' : 'bg-blue-500'}`} />
-          System: {moduleName || 'Core'} {/* Status: Pending */}
+          Page: {moduleName || 'Core'} {/* Status: Pending */}
         </div>
 
         {/* Dynamic Section Title */}
@@ -37,26 +37,6 @@ export default function UnderDevelopment({ title, subtitle, moduleName, theme = 
         <p className={`text-sm font-mono max-w-md mx-auto leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-500 dark:text-zinc-400'}`}>
           {subtitle || '[DATA_LOCKED]: Compilation loops and architectural node parameters are currently being deployed.'}
         </p>
-
-        {/* ⚠️ Triangle Warning Box (Pinalit sa Loading Loader) */}
-        <div className="pt-4 max-w-xs mx-auto">
-          <div className={`border rounded-xl p-5 flex flex-col items-center justify-center gap-3 transition-colors duration-200 ${
-            isDark 
-              ? 'bg-zinc-900/40 border-amber-500/20 text-amber-400/80' 
-              : 'bg-amber-500/5 border-amber-500/20 text-amber-600'
-          }`}>
-            {/* Ang Triangle '!' Icon */}
-            <div className={`p-2 rounded-full animate-pulse ${isDark ? 'bg-amber-500/10' : 'bg-amber-500/10'}`}>
-              <AlertTriangle size={24} strokeWidth={2.5} />
-            </div>
-            
-            {/* Status Footer Text */}
-            <div className="text-center font-mono text-[10px] uppercase tracking-wider space-y-0.5">
-              <span className="block font-bold">Access Restricted</span>
-              <span className={isDark ? 'text-zinc-500' : 'text-gray-400 dark:text-zinc-500'}>Module under construction</span>
-            </div>
-          </div>
-        </div>
         
       </div>
     </div>

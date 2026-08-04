@@ -39,8 +39,8 @@ export default function App() {
                 element={
                   <UnderDevelopment 
                     title="Work Experience" 
-                    moduleName="Experience_Log"
-                    subtitle="[ERR_EMPTY_INDEX]: Compiling professional background history, engineering stack timelines, and past deployment records." 
+                    moduleName="Not Available"
+                    subtitle= "My work experience will be available soon."  
                     theme="light" 
                   />
                 } 

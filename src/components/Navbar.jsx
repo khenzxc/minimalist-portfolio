@@ -39,9 +39,9 @@ export default function Navbar({ viewMode, setViewMode }) {
         >
             {/* 1. Top Mini Status Ticker Bar */}
             <div className="w-full border-b border-gray-100 dark:border-zinc-900 h-9 px-4 sm:px-6 flex items-center justify-between text-[11px] text-gray-400 dark:text-zinc-500 font-mono tracking-tight bg-gray-50/40 dark:bg-zinc-900/20">
-                <div className="flex items-center gap-2 uppercase">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span>Server status</span>
+                <div className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                    <span>Server Status</span>
                 </div>
                 <div className="hidden sm:flex items-center gap-4 uppercase">
                     <span>releases / tags</span>
