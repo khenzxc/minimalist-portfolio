@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-// 🎯 IMPORT LINK MULA SA REACT-ROUTER-DOM
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Award, ExternalLink, Code2, Presentation, Terminal, Plus, X } from 'lucide-react';
+import { ArrowUpRight, Award, ExternalLink, Code2, Presentation, Terminal, Plus, X, Loader2 } from 'lucide-react';
 
 export default function ProjectShowcase() {
   const [activeTab, setActiveTab] = useState('/White');
-  // State para ma-track kung anong project index ang kasalukuyang nakabukas ang details
   const [openDetailsIdx, setOpenDetailsIdx] = useState(null);
-  // State para sa badges popup
   const [openBadgeIdx, setOpenBadgeIdx] = useState(null);
+
+  // 🎯 NEW: State para malaman kung naglo-load pa ang Brand Image
+  const [isBrandLoading, setIsBrandLoading] = useState(true);
 
   const projects = [
     {
@@ -31,6 +31,14 @@ export default function ProjectShowcase() {
     '/Black': './black.png',
     '/White': './white.png',
     '/Iridescent': './iridescent.png'
+  };
+
+  // 🎯 Function para sa pagpapalit ng tab na nagtri-trigger ng loading state
+  const handleTabChange = (tab) => {
+    if (tab !== activeTab) {
+      setIsBrandLoading(true);
+      setActiveTab(tab);
+    }
   };
 
   const badges = [
@@ -93,11 +101,10 @@ export default function ProjectShowcase() {
                 
                 <div className="h-20 w-full pointer-events-none z-10" />
 
-                {/* ================= DETAILS POPUP DECK ================= */}
+                {/* DETAILS POPUP DECK */}
                 {openDetailsIdx === idx && (
                   <div className="absolute inset-x-3 bottom-3 sm:inset-x-4 sm:bottom-4 z-20 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-gray-200 dark:border-zinc-800/80 shadow-xl animate-in fade-in slide-in-from-bottom-3 duration-200 max-h-[85%] overflow-y-auto">
                     <div className="flex justify-between items-center gap-2 mb-1.5 sm:mb-2">
-                      {/* 📱 Mobile: text-sm | 🖥️ Desktop: text-base */}
                       <h4 className="text-sm sm:text-base font-black text-gray-900 dark:text-white tracking-tight">
                         {project.title}
                       </h4>
@@ -109,11 +116,9 @@ export default function ProjectShowcase() {
                         <X size={18} className="hidden sm:block" />
                       </button>
                     </div>
-                    {/* 📱 Mobile: text-xs, leading-normal | 🖥️ Desktop: text-sm, leading-relaxed */}
                     <p className="text-xs sm:text-sm text-gray-700 dark:text-zinc-300 leading-normal sm:leading-relaxed mb-3 sm:mb-4 font-normal">
                       {project.description}
                     </p>
-                    {/* 📱 Mobile: text-[10px], gap-1.5 | 🖥️ Desktop: text-xs, gap-2 */}
                     <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {project.tech.map((t, tIdx) => (
                         <span key={tIdx} className="text-[10px] sm:text-xs font-mono bg-gray-100 dark:bg-zinc-900 text-gray-800 dark:text-zinc-300 px-2 sm:px-3 py-0.5 sm:py-1 rounded-md border border-gray-200 dark:border-zinc-800">
@@ -137,7 +142,7 @@ export default function ProjectShowcase() {
             ))}
           </div>
 
-          {/* 🎯 SEEMORE PROJECTS */}
+          {/* SEEMORE PROJECTS */}
           <div className="mt-8 flex justify-center">
             <Link 
               to="/projects" 
@@ -192,7 +197,7 @@ export default function ProjectShowcase() {
                   </button>
                 </div>
 
-                {/* ================= BADGE DETAILS POPUP INLAY ================= */}
+                {/* BADGE DETAILS POPUP INLAY */}
                 {openBadgeIdx === index && (
                   <div className="mt-4 p-4 rounded-xl bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 shadow-md animate-in fade-in slide-in-from-top-2 duration-150">
                     <div className="flex justify-between items-start gap-2 mb-1.5">
@@ -222,7 +227,7 @@ export default function ProjectShowcase() {
               </div>
             ))}
 
-            {/* 🎯 SEEMORE RECOGNITIONS */}
+            {/* SEEMORE RECOGNITIONS */}
             <div className="pt-2 flex justify-center">
               <Link 
                 to="/collections" 
@@ -248,7 +253,7 @@ export default function ProjectShowcase() {
             {['/Black', '/White', '/Iridescent'].map((tab) => (
               <button
                 key={tab}
-                onClick={() => setActiveTab(tab)}
+                onClick={() => handleTabChange(tab)}
                 className={`px-3 py-1 rounded-md transition-all ${
                   activeTab === tab 
                     ? 'bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-white font-bold' 
@@ -277,17 +282,27 @@ export default function ProjectShowcase() {
             />
             
             <span 
-              className={`absolute top-4 left-6 text-[10px] font-mono uppercase tracking-wider select-none ${
+              className={`absolute top-4 left-6 text-[10px] font-mono uppercase tracking-wider select-none z-10 ${
                 activeTab === '/Black' ? 'text-zinc-400 dark:text-zinc-500' : 'text-zinc-500'
               }`}
             >
               {activeTab}
             </span>
+
+            {/* 🎯 LOADING INDICATOR SPINNER */}
+            {isBrandLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-inherit z-20 transition-opacity">
+                <Loader2 className={`animate-spin ${activeTab === '/Black' ? 'text-zinc-600 dark:text-zinc-300' : 'text-zinc-400'}`} size={24} />
+              </div>
+            )}
             
             <img 
               src={brandAssets[activeTab] || "./brand-white.png"} 
               alt={`Brand Asset ${activeTab}`}
-              className="w-full h-full object-contain max-h-40 transition-transform duration-500 group-hover:scale-105"
+              onLoad={() => setIsBrandLoading(false)}
+              className={`w-full h-full object-contain max-h-40 transition-all duration-500 group-hover:scale-105 ${
+                isBrandLoading ? 'opacity-0' : 'opacity-100'
+              }`}
             />
           </div>
         </div>
