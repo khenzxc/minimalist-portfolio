@@ -39,7 +39,6 @@ export default function App() {
                 element={
                   <UnderDevelopment 
                     title="Work Experience" 
-                    moduleName="Not Available"
                     subtitle= "My work experience will be available soon."  
                     theme="light" 
                   />

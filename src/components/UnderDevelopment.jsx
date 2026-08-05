@@ -1,8 +1,48 @@
-import React from 'react';
-import { AlertTriangle } from 'lucide-react'; // Gagamit tayo ng Triangle icon mula sa lucide-react
+import React, { useState, useEffect } from 'react';
 
-export default function UnderDevelopment({ title, subtitle, moduleName, theme = 'dark' }) {
+export default function UnderDevelopment({ 
+  title = 'Under Development', 
+  subtitle, 
+  moduleName, 
+  theme = 'dark' 
+}) {
   const isDark = theme === 'dark';
+
+  // PROPER WAY: Kung walang moduleName, gagamitin ang title; kung wala rin, "Page"
+  const targetName = moduleName || title || 'Page';
+  const fullText = `${targetName} is under development...`;
+    
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const handleTyping = () => {
+      if (!isDeleting) {
+        // Typing forward
+        if (index < fullText.length) {
+          setDisplayedText((prev) => prev + fullText.charAt(index));
+          setIndex((prev) => prev + 1);
+        } else {
+          // Pause bago mag-delete
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        // Deleting backward
+        if (index > 0) {
+          setDisplayedText((prev) => prev.slice(0, -1));
+          setIndex((prev) => prev - 1);
+        } else {
+          setIsDeleting(false);
+        }
+      }
+    };
+
+    const speed = isDeleting ? 40 : 80;
+    const timer = setTimeout(handleTyping, speed);
+
+    return () => clearTimeout(timer);
+  }, [index, isDeleting, fullText]);
 
   return (
     <div 
@@ -18,14 +58,16 @@ export default function UnderDevelopment({ title, subtitle, moduleName, theme = 
       } [background-size:24px_24px]`} />
 
       <div className="relative z-10 text-center max-w-xl space-y-5">
-        {/* Animated System Status Badge */}
-        <div className={`inline-flex items-center gap-2 border font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full ${
+        
+        {/* Terminal Box with Dynamic Typing Animation */}
+        <div className={`inline-flex items-center font-mono text-xs px-4 py-2 rounded-md border min-w-[280px] justify-start ${
           isDark 
-            ? 'bg-amber-500/10 border-amber-500/20 text-amber-400' 
-            : 'bg-blue-500/10 border-blue-500/20 text-blue-600'
+            ? 'bg-zinc-900/90 border-zinc-800 text-zinc-300' 
+            : 'bg-zinc-100 border-zinc-200 text-zinc-700 dark:bg-zinc-800/80 dark:border-zinc-700 dark:text-zinc-300'
         }`}>
-          <span className={`h-1.5 w-1.5 rounded-full animate-pulse ${isDark ? 'bg-amber-500' : 'bg-blue-500'}`} />
-          Page: {moduleName || 'Core'} {/* Status: Pending */}
+          <span>{displayedText}</span>
+          {/* Blinking Block Cursor */}
+          <span className={`inline-block w-2 h-4 ml-1 animate-pulse ${isDark ? 'bg-amber-400' : 'bg-blue-600'}`} />
         </div>
 
         {/* Dynamic Section Title */}
