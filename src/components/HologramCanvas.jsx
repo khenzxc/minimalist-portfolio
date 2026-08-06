@@ -173,7 +173,7 @@ export default function HologramCanvas() {
       </div>
 
       <div className="absolute bottom-4 left-4 font-mono text-[9px] text-blue-400/40 bg-black/50 px-2.5 py-1 rounded border border-blue-500/10 tracking-wider pointer-events-none z-10">
-        3D_FRAME // TURNTABLE_KG_BLOCKS
+        3D FRAME TURNTABLE KG BLOCKS
       </div>
     </div>
   );

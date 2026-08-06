@@ -1,21 +1,30 @@
-import React from 'react';
-import { ArrowUp, Heart, Mail } from 'lucide-react';
+import React, { useState } from 'react';
+import { Heart, Mail } from 'lucide-react';
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  // State para sa Like count at status
+  const [likes, setLikes] = useState(11);
+  const [hasLiked, setHasLiked] = useState(false);
+
+  const handleLike = () => {
+    if (hasLiked) {
+      setLikes((prev) => prev - 1);
+      setHasLiked(false);
+    } else {
+      setLikes((prev) => prev + 1);
+      setHasLiked(true);
+    }
   };
 
   return (
     <footer
       id="footer"
-      // 🎯 GLOBAL SECTION BORDER: Pinalitan ang border-gray-100 ng border-gray-200 dark:border-zinc-800 para sa tuluy-tuloy na disenyo mula sa itaas na sections
       className="bg-white dark:bg-zinc-900 text-gray-900 dark:text-zinc-100 border-t border-gray-200 dark:border-zinc-800 py-16 px-8 md:px-16 relative overflow-hidden transition-colors duration-200"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
 
-        {/* ================= BRAND LOGO SECTION ================= */}
+        {/* BRAND LOGO SECTION */}
         <div className="md:col-span-6 flex items-center">
           <div className="relative w-90 h-50 flex items-center justify-center">
             <img
@@ -26,7 +35,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ================= LINKS & SOCIALS ================= */}
+        {/* LINKS & SOCIALS */}
         <div className="md:col-span-6 grid grid-cols-2 gap-8 md:justify-items-start">
 
           {/* Resources Column */}
@@ -44,12 +53,10 @@ export default function Footer() {
             <h4 className="text-sm font-bold text-gray-900 dark:text-white tracking-tight">Social</h4>
             <div className="flex flex-wrap gap-3">
 
-              {/* Facebook */}
               <a
                 href="https://facebook.com/khenqt"
                 target="_blank"
                 rel="noopener noreferrer"
-                // 🎯 CARD LINES: Inilapat ang border-gray-200 at dark:border-zinc-800 para sa uniform frame thickness
                 className="w-11 h-11 bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-800 rounded-xl flex items-center justify-center text-gray-700 dark:text-zinc-300 shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:text-[#1877F2] dark:hover:text-[#1877F2] hover:border-[#1877F2]/20 hover:scale-105 transition-all duration-200"
               >
                 <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -57,7 +64,6 @@ export default function Footer() {
                 </svg>
               </a>
 
-              {/* LinkedIn */}
               <a
                 href="https://linkedin.com/in/khengabriel"
                 target="_blank"
@@ -69,7 +75,6 @@ export default function Footer() {
                 </svg>
               </a>
 
-              {/* GitHub */}
               <a
                 href="https://github.com/khenzxc"
                 target="_blank"
@@ -81,21 +86,17 @@ export default function Footer() {
                 </svg>
               </a>
 
-              {/* Telegram */}
               <a
                 href="https://t.me/Khenasty"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-11 h-11 bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-800 rounded-xl flex items-center justify-center text-gray-700 dark:text-zinc-300 shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:text-[#26A5E4] dark:hover:text-[#26A5E4] hover:border-[#26A5E4]/20 hover:scale-105 transition-all duration-200"
               >
-                {/* 🎯 CORRECTION: Inayos ang SVG viewBox at inline path na dating may sira ang hugis at nagiging blanko */}
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                   <path d="M11.944 0C5.344 0 0 5.344 0 11.944c0 5.622 3.88 10.331 9.111 11.667.111.022.233.033.344.033.456 0 .833-.311.922-.756l1.389-7.311 4.544 4.544c.189.189.444.3.711.3h.022c.544 0 .989-.422 1.022-.967l1.922-15.656c.033-.289-.056-.578-.256-.789-.2-.2-.489-.3-.778-.267L1.922 6.133c-.489.067-.844.478-.856.967-.011.5.311.944.8 1.056l4.633 1.067 1.744 5.322.456-2.456 6.8-5.833c.156-.133.378-.133.533 0s.156.378 0 .533l-5.789 6.044 3.733 3.733 1.578-12.833L11.944 0z" />
                 </svg>
               </a>
 
-              {/* Email (Mail) */}
-              {/* Email (Mail) */}
               <a
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=dalanginkhen@gmail.com"
                 target="_blank"
@@ -111,8 +112,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ================= BOTTOM BAR ================= */}
-      {/* 🎯 DIVIDER ALIGNMENT: Ginawang border-gray-200 dark:border-zinc-800 ang solid separator ng sub-footer links */}
+      {/* BOTTOM BAR */}
       <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-200 dark:border-zinc-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-medium text-gray-400 dark:text-zinc-500 relative transition-colors duration-200">
         <div className="flex items-center gap-1">
           <span>© 2026 KHEN Resources.</span>
@@ -120,27 +120,31 @@ export default function Footer() {
         </div>
 
         <div className="flex items-center gap-6 pr-0 md:pr-16">
-          {/* Like Counter Box dark variants */}
-          <div className="flex items-center gap-1.5 cursor-pointer text-gray-400 dark:text-zinc-500 hover:text-gray-600 dark:hover:text-zinc-300 transition-colors">
-            <Heart size={12} className="text-gray-400 dark:text-zinc-500" />
-            <span>Like</span>
-            {/* 🎯 MICRO OUTLINE SYNC: In-adjust ang style block ng counter sa standard micro-border config ng system */}
-            <span className="bg-gray-50 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-800 px-1.5 py-0.5 rounded text-[10px] text-gray-900 dark:text-zinc-300 font-bold">
-              11
+          {/* 🎯 FUNCTIONAL LIKE BUTTON */}
+          <button
+            onClick={handleLike}
+            className="flex items-center gap-1.5 cursor-pointer text-gray-400 dark:text-zinc-500 hover:text-rose-500 dark:hover:text-rose-400 transition-all duration-200 active:scale-95 group"
+            aria-label="Like this site"
+          >
+            <Heart
+              size={14}
+              className={`transition-all duration-200 ${
+                hasLiked
+                  ? 'fill-rose-500 text-rose-500 scale-110'
+                  : 'text-gray-400 dark:text-zinc-500 group-hover:text-rose-500'
+              }`}
+            />
+            <span className={hasLiked ? 'text-rose-500 font-semibold' : ''}>
+              {hasLiked ? 'Liked' : 'Like'}
             </span>
-          </div>
+            <span className="bg-gray-50 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-800 px-1.5 py-0.5 rounded text-[10px] text-gray-900 dark:text-zinc-300 font-bold transition-colors">
+              {likes}
+            </span>
+          </button>
+
           <span>Created by <a href="#" className="text-gray-500 dark:text-zinc-400 hover:underline">@KhenDevs</a></span>
         </div>
       </div>
-
-      {/* Floating Scroll To Top Button */}
-      <button
-        onClick={scrollToTop}
-        className="absolute bottom-8 right-8 md:right-16 bg-[#2D2D2D] dark:bg-zinc-100 text-white dark:text-zinc-950 p-3 rounded-full shadow-lg hover:bg-black dark:hover:bg-white transition-all group z-10"
-        aria-label="Scroll to top"
-      >
-        <ArrowUp size={16} className="group-hover:-translate-y-0.5 transition-transform" />
-      </button>
 
     </footer>
   );

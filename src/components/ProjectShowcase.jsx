@@ -246,7 +246,7 @@ export default function ProjectShowcase() {
             className="text-xl font-black text-gray-900 dark:text-white mb-8"
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", letterSpacing: '-0.04em' }}
           >
-            Brand Identity
+            Brand Assets
           </h3>
 
           <div className="flex items-center gap-2 text-xs font-medium text-gray-400 dark:text-zinc-500 mb-6">

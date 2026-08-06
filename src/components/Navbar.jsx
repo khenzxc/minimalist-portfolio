@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowUpRight, Menu, X, Download, Eye, ChevronDown } from 'lucide-react';
+import { Menu, X, Download, Eye, ChevronDown } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import DarkMode from './DarkMode';
 
-export default function Navbar({ viewMode, setViewMode }) {
+export default function Navbar({ viewMode, setViewMode, views = "1.2k" }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isResumeDropdownOpen, setIsResumeDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
@@ -46,8 +46,10 @@ export default function Navbar({ viewMode, setViewMode }) {
                 <div className="hidden sm:flex items-center gap-4 uppercase">
                     <span>releases / tags</span>
                     <span>•</span>
-                    <div className="flex items-center gap-2">
-                        <span>Like 11</span>
+                    {/* 👁️ TOTAL VIEWS TICKER */}
+                    <div className="flex items-center gap-1.5 text-gray-500 dark:text-zinc-400">
+                        <Eye size={12} className="text-gray-400 dark:text-zinc-500" />
+                        <span>Total Views: {views}</span>
                     </div>
                 </div>
             </div>
