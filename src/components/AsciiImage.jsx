@@ -15,7 +15,7 @@ const DEFAULTS = {
   colorMode: "mono",
   inkColor: "#FFFFFF",
   reveal: true,
-  revealOptions: { size: 80, softness: 16 },
+  revealOptions: { size: 120, softness: 16 },
 };
 
 const contrastAt = (value) => 0.5 + (value / 100) * 2;
