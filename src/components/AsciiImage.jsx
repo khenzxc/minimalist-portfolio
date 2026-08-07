@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 
 const DEFAULT_IMAGE =
-  "/hero-prof.png";
+  "/hero-prof.webp";
 
 const DEFAULTS = {
   fit: "cover",

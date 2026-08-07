@@ -40,19 +40,6 @@ html.dark ::-webkit-scrollbar-track {
   background: black;
 }
 
-/* ─── HOLOGRAM ANIMATION ─────────────────────────────────────────── */
-@keyframes scanline-movement {
-  0% {
-    top: 0%;
-  }
-  100% {
-    top: 100%;
-  }
-}
-
-.animate-hologram-scan {
-  animation: scanline-movement 4s linear infinite;
-}
 
 @keyframes marquee {
   0% {

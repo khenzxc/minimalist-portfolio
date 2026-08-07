@@ -1,26 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Menu, X, Download, Eye, ChevronDown } from 'lucide-react';
+import React, { useState } from 'react';
+import { Menu, X, Eye, ArrowUpRight } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import DarkMode from './DarkMode';
 
 export default function Navbar({ viewMode, setViewMode, views = "1.2k" }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isResumeDropdownOpen, setIsResumeDropdownOpen] = useState(false);
-    const dropdownRef = useRef(null);
     const location = useLocation();
 
     const resumePdfUrl = "/Gabriel_Khen-Resume.pdf"; // Palitan ito ng actual filename mo sa public folder
-
-    // I-handle ang pag-click sa labas ng dropdown para kusang masara ito
-    useEffect(() => {
-        function handleClickOutside(event) {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setIsResumeDropdownOpen(false);
-            }
-        }
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
 
     const handleLinkClick = (path) => {
         if (location.pathname === path) {
@@ -112,37 +99,16 @@ export default function Navbar({ viewMode, setViewMode, views = "1.2k" }) {
                     {/* Dark Mode Button */}
                     <DarkMode /> 
 
-                    {/* INTERACTIVE DESKTOP RESUME DROPDOWN */}
-                    <div className="hidden sm:relative sm:block" ref={dropdownRef}>
-                        <button 
-                            onClick={() => setIsResumeDropdownOpen(!isResumeDropdownOpen)}
-                            className="bg-[#374151] hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 text-[11px] font-bold px-3.5 py-2.5 rounded-md transition-all flex items-center gap-1.5 shadow-sm uppercase tracking-tight"
-                        >
-                            Resume <ChevronDown size={12} className={`transition-transform duration-200 ${isResumeDropdownOpen ? 'rotate-180' : ''}`} />
-                        </button>
-
-                        {isResumeDropdownOpen && (
-                            <div className="absolute right-0 mt-2 w-44 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg shadow-lg py-1 z-50 text-xs font-semibold uppercase tracking-tight text-gray-700 dark:text-zinc-300">
-                                <a 
-                                    href={resumePdfUrl} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    onClick={() => setIsResumeDropdownOpen(false)}
-                                    className="flex items-center gap-2 px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors"
-                                >
-                                    <Eye size={14} /> View PDF
-                                </a>
-                                <a 
-                                    href={resumePdfUrl} 
-                                    download="Gabriel_Khen-Resume.pdf"
-                                    onClick={() => setIsResumeDropdownOpen(false)}
-                                    className="flex items-center gap-2 px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors border-t border-gray-100 dark:border-zinc-800"
-                                >
-                                    <Download size={14} /> Download PDF
-                                </a>
-                            </div>
-                        )}
-                    </div>
+                    {/* DIRECT RESUME VIEW BUTTON (DESKTOP) */}
+                    <a 
+                        href={resumePdfUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hidden sm:flex bg-[#374151] hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 text-[11px] font-bold px-4 py-2.5 rounded-md transition-all items-center justify-center gap-1 shadow-sm uppercase tracking-tight"
+                    >
+                        <span>Resume</span>
+                        <ArrowUpRight size={14} className="opacity-80" />
+                    </a>
 
                     {/* Menu Button para sa Mobile */}
                     <button 
@@ -169,22 +135,16 @@ export default function Navbar({ viewMode, setViewMode, views = "1.2k" }) {
                         <Link to="/collections" onClick={() => handleLinkClick('/collections')} className={`hover:text-black dark:hover:text-white py-1 transition-colors decoration-2 underline-offset-4 ${location.pathname === '/collections' ? 'text-black dark:text-white underline' : ''}`}>Collections</Link>
                     </nav>
                     
-                    {/* MOBILE RESUME ACTION LINKS */}
-                    <div className="pt-2 sm:hidden border-t border-gray-100 dark:border-zinc-900 space-y-2">
+                    {/* DIRECT RESUME VIEW BUTTON (MOBILE) */}
+                    <div className="pt-2 sm:hidden border-t border-gray-100 dark:border-zinc-900">
                         <a 
                             href={resumePdfUrl} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="w-full bg-gray-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 py-2.5 rounded-md flex items-center justify-center gap-1.5 text-xs font-bold transition-all"
+                            className="w-full bg-[#374151] dark:bg-zinc-100 text-white dark:text-zinc-950 py-2.5 rounded-md flex items-center justify-center gap-1 text-xs font-bold transition-all uppercase tracking-tight"
                         >
-                            <Eye size={14} /> View Resume
-                        </a>
-                        <a 
-                            href={resumePdfUrl} 
-                            download="Gabriel_Khen-Resume.pdf"
-                            className="w-full bg-[#374151] dark:bg-zinc-100 text-white dark:text-zinc-950 py-2.5 rounded-md flex items-center justify-center gap-1.5 text-xs font-bold transition-all"
-                        >
-                            <Download size={14} /> Download Resume
+                            <span>Resume</span>
+                            <ArrowUpRight size={14} />
                         </a>
                     </div>
                 </div>
