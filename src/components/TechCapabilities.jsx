@@ -115,26 +115,6 @@ export function TechCapabilities() {
           </div>
         </div>
 
-        {/* IN PROGRESS BLOCK */}
-        <div className="pt-8 mt-12 border-t border-gray-200 dark:border-zinc-800 transition-colors duration-200">
-          <span className="text-[11px] font-medium tracking-[0.15em] text-gray-400 dark:text-zinc-500 uppercase block mb-3" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-            In progress
-          </span>
-
-          <div className="bg-[#1A1A1A] dark:bg-zinc-950 text-white p-5 rounded-xl font-mono text-xs space-y-3 max-w-sm border border-gray-800 dark:border-zinc-850 shadow-md transition-colors duration-200">
-            <div className="flex items-center justify-between text-gray-500 dark:text-zinc-600 text-[9px] tracking-wider">
-              <span>LEARNING_MONITOR</span>
-              <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse"></span>
-            </div>
-
-            {learningStack.map((stack, index) => (
-              <div key={index} className="flex items-center gap-2 text-gray-200 dark:text-zinc-300">
-                {stack.icon}
-                <span>{stack.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
 
       {/* 📋 DESCRIPTION COLUMN */}
@@ -147,36 +127,14 @@ export function TechCapabilities() {
               letterSpacing: '-0.04em'
             }}
           >
-            Profile 
+            Description 
           </h3>
 
-          {/* 👤 PROFILE IMAGE HOLDER */}
-          <div className="flex items-center gap-5 mb-8">
-            <div 
-              onClick={() => setIsModalOpen(true)}
-              className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gray-50 dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 overflow-hidden shrink-0 shadow-sm group relative cursor-pointer active:scale-95 transition-all duration-150"
-            >
-              <img
-                src="profile.jpg"
-                alt="Profile Avatar"
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              <span className="absolute bottom-1.5 right-1.5 w-3 h-3 bg-emerald-500 border-2 border-white dark:border-zinc-900 rounded-full shadow-sm"></span>
-            </div>
-
-            <div>
-              <h4 className="text-base font-bold text-gray-900 dark:text-white leading-tight">
-                Khen Vonoe D. Gabriel
-              </h4>
-              <p className="text-xs text-gray-400 dark:text-zinc-500 mt-1 font-mono">
-                @khenzxc / dev
-              </p>
-            </div>
-          </div>
+     
 
           <div className="space-y-5 text-[15px] text-gray-500 dark:text-zinc-400 font-normal leading-[1.7] tracking-tight max-w-2xl text-justify">
             <p>
-              I am a <span className="text-gray-900 dark:text-zinc-200 font-semibold">3rd Year Information Systems student at Bulacan State University</span> with a passion for building modern, user-friendly web applications and business systems. I enjoy turning ideas into practical solutions through clean, maintainable code and intuitive user experiences.
+              I'm an <span className="text-gray-900 dark:text-zinc-200 font-semibold">Information Systems student at Bulacan State University</span> with a passion for building modern, user-friendly web applications and business systems. I enjoy turning ideas into practical solutions through clean, maintainable code and intuitive user experiences.
             </p>
 
             <p>
